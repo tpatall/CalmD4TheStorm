@@ -20,5 +20,34 @@ public class Enemy : MonoBehaviour {
         }
     }
 
-    [SerializeReference] List<BattleAction> battleActions;
+    private int dexterity;
+    public int Dexterity {
+        get {
+            return dexterity;
+        }
+        set {
+            dexterity = value;
+        }
+    }
+
+    BattleAction[] battleActions;
+    BattleAction readiedAction;
+
+    public void Initialize() {
+        // Read actions.
+        battleActions = GetComponents<BattleAction>();
+    }
+
+    public void ReadyRandomAction() {
+        readiedAction = battleActions[Random.Range(0, battleActions.Length)];
+        Debug.Log("Readied the " + readiedAction.ToString() + " action.");
+    }
+
+    public void PerformAction() {
+        if(readiedAction == null) {
+            Debug.LogError("No readied action!");
+            return;
+        }
+        readiedAction.DoAction();
+    }
 }
