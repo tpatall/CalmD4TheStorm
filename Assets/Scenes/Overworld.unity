@@ -201,7 +201,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 151279054}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.3, z: -10}
+  m_LocalPosition: {x: 2, y: 2.3, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1354982593}
-  offset: {x: 0, y: 1.8, z: 0}
+  offset: {x: 2, y: 1.8, z: 0}
 --- !u!1 &751813880
 GameObject:
   m_ObjectHideFlags: 0
@@ -511,6 +511,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartLevel: 0
   PlayerPosition: {x: 0, y: 0.5, z: 0}
+  playerMovement: {fileID: 0}
   battleLevelPrefab: {fileID: 7426345587132041814, guid: b7fac74458d65db49b2c503d9be5ccae, type: 3}
   shopLevelPrefab: {fileID: 530230043195497038, guid: 81e50678953a4e949806bbaa1871e27b, type: 3}
   treasureLevelPrefab: {fileID: 3102627390069971467, guid: d29f68ca25ab3db46ade6a8e983967c3, type: 3}

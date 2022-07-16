@@ -13,6 +13,8 @@ public class Overworld : PersistentSingleton<Overworld>
     ///     Position of the starting position.
     /// </summary>
     public Vector3 PlayerPosition;
+
+    [SerializeField] private PlayerMovement playerMovement;
     
     [SerializeField] private GameObject battleLevelPrefab;
     [SerializeField] private GameObject shopLevelPrefab;
@@ -24,69 +26,22 @@ public class Overworld : PersistentSingleton<Overworld>
     ///     List of level objects in scene.
     ///     Used to get information about next level.
     /// </summary>
-    private List<GameObject> levelObjects = new List<GameObject>();
+    private List<LevelObject> levelObjects = new List<LevelObject>();
 
-    /// <summary>
-    ///     Current index in the list of levels the player is at.
-    /// </summary>
-    private int currentLevelIndex = 1;
+    private int currentLevelIndex = 0;
+
+    // Levels since the start.
+    private int progression = 0;
+
+    public GameState CurrentState { get; private set; }
 
     void Start()
     {
-        currentLevelIndex = StartLevel > 1 ? StartLevel : 1;
-
         PopulateMap();
-        //PopulateLevels();
-    }
-
-    /// <summary>
-    ///     Populate map with level objects and fill in the levelObjects list.
-    /// </summary>
-    private void PopulateLevels() {
-        // Do we need splt paths? The path can split up a maximum of 2 times. 
-        // int pathSplits = 2;
-
-        float previousYCoordinate = 0f;
-        for (int i = 0; i < Levels.Count; i++) {
-            GameObject gameObject;
-
-            float chance = Random.Range(0f, 1f);
-            // At a 40% move the path vertically, to simulate COMPLEX_LEVEL_DESIGN.
-            if (chance < 0.3f) 
-                previousYCoordinate -= 1f;
-            // Only move up if the y coordinate is already below 0, to account for the lack of a space program.
-            else if (chance < 0.4f && previousYCoordinate < -0.1f) 
-                previousYCoordinate += 0.5f; 
-
-            // Generate the next level position based on the previous position.
-            Vector2 levelPosition = new Vector2(
-                levelObjects.Count * 3,
-                previousYCoordinate);
-
-            switch (Levels[i]) {
-                case LevelTypes.BattleLevel:
-                    gameObject = Instantiate(battleLevelPrefab, transform);
-                    gameObject.transform.position = levelPosition;
-                    levelObjects.Add(gameObject);
-                    break;
-                case LevelTypes.ShopLevel:
-                    gameObject = Instantiate(shopLevelPrefab, transform);
-                    gameObject.transform.position = levelPosition;
-                    levelObjects.Add(gameObject);
-                    break;
-                case LevelTypes.TreasureLevel:
-                    gameObject = Instantiate(treasureLevelPrefab, transform);
-                    gameObject.transform.position = levelPosition;
-                    levelObjects.Add(gameObject);
-                    break;
-                default:
-                    break;
-            }
-        }
+        CurrentState = GameState.WaitForEnter;
     }
 
     private void PopulateMap() {
-        Debug.Log("Total levels: " + Levels.Count);
         GenerateMap generateMap = new GenerateMap(Levels.Count);
         List<Branch> branches = generateMap.Branches;
 
@@ -94,42 +49,58 @@ public class Overworld : PersistentSingleton<Overworld>
         // Build the map branch by branch (to avoid crossing paths).
         for (int i = 0; i < branches.Count; i++) {
             for (int j = 0; j < branches[i].Levels.Count; j++) {
-                GameObject gameObject;
+                Level level = branches[i].Levels[j];
 
                 // Choose the level type from the specified level types based on progression in the game.
                 // With a chance to divert?
-                levelID = branches[i].Levels[j].LevelID;
+                levelID = level.LevelID;
 
                 Vector2 gameObjectPos = new Vector2(levelID * 3f, 0.5f - (2 * i));
 
                 switch (Levels[levelID]) {
                     case LevelTypes.BattleLevel:
-                        gameObject = Instantiate(battleLevelPrefab, transform);
-                        gameObject.transform.position = gameObjectPos;
-                        levelObjects.Add(gameObject);
+                        InstantiateLevel(battleLevelPrefab, level, gameObjectPos);
                         break;
                     case LevelTypes.ShopLevel:
-                        gameObject = Instantiate(shopLevelPrefab, transform);
-                        gameObject.transform.position = gameObjectPos;
-                        levelObjects.Add(gameObject);
+                        InstantiateLevel(shopLevelPrefab, level, gameObjectPos);
                         break;
                     case LevelTypes.TreasureLevel:
-                        gameObject = Instantiate(treasureLevelPrefab, transform);
-                        gameObject.transform.position = gameObjectPos;
-                        levelObjects.Add(gameObject);
+                        InstantiateLevel(treasureLevelPrefab, level, gameObjectPos);
                         break;
                     default:
                         break;
                 }
+
+                currentLevelIndex++;
             }
         }
+    }
+
+    /// <summary>
+    ///     Prevent repetitive code between switch cases.
+    /// </summary>
+    /// <param name="prefab">Prefab to instantiate.</param>
+    /// <param name="level">Level that belongs to this object.</param>
+    /// <param name="pos">Position for this object.</param>
+    private void InstantiateLevel(GameObject prefab, Level level, Vector2 pos) {
+        GameObject gameObject = Instantiate(prefab, transform);
+        gameObject.transform.position = pos;
+
+        LevelObject levelObject = gameObject.GetComponent<LevelObject>();
+        levelObject.SetUp(currentLevelIndex, level, this);
+        level.AssignLevelObject(levelObject);
+
+        levelObjects.Add(levelObject);
     }
 
     /// <summary>
     ///     Get the level type of the next level and randomly generate the content.
     /// </summary>
     public void StartNextLevel() {
-        switch (Levels[currentLevelIndex]) {
+        CurrentState = GameState.InLevel;
+        Debug.Log("Entering level: " + Levels[progression]);
+
+        switch (Levels[progression]) {
             case LevelTypes.BattleLevel:
                 GenerateBattleLevel();
                 break;
@@ -152,6 +123,9 @@ public class Overworld : PersistentSingleton<Overworld>
         // play battle animation
 
         // proceed to encounter class
+
+        CurrentState = GameState.WaitForMoveNext;
+        Debug.Log("Waiting for movement.");
     }
 
 
@@ -162,6 +136,9 @@ public class Overworld : PersistentSingleton<Overworld>
         // play shop animation
 
         // proceed to shop class
+
+        CurrentState = GameState.WaitForMoveNext;
+        Debug.Log("Waiting for movement.");
     }
 
     /// <summary>
@@ -171,18 +148,39 @@ public class Overworld : PersistentSingleton<Overworld>
         // play treasure animation
 
         // proceed to treasure class
+
+        CurrentState = GameState.WaitForMoveNext;
+        Debug.Log("Waiting for movement.");
     }
 
     /// <summary>
-    ///     Get the next level from the list of levels and update the index.
+    ///     Move to next level.
     /// </summary>
     /// <returns>Position of the next level object.</returns>
-    public Vector3 GetNextLevel() {
-        Vector3 nextLevelPosition = levelObjects[currentLevelIndex].transform.position;
-        
-        currentLevelIndex++;
+    public void GoNextLevel(int currentLevelIndex, Vector2 objectPos) {
+        CurrentState = GameState.Walking;
+        Debug.Log("Walking to next position.");
 
-        return nextLevelPosition;
+        // Disable the possible selected levels from being interacted with now that one is chosen.
+        LevelObject levelObject = levelObjects[currentLevelIndex];
+        foreach (Level level in levelObject.Level.NextLevels) {
+            level.Object.Next = false;
+        }
+
+        this.currentLevelIndex = currentLevelIndex;
+
+        // Enable the new possible to-be selected levels to be interacted with.
+        levelObject = levelObjects[currentLevelIndex];
+        foreach (Level level in levelObject.Level.NextLevels) {
+            level.Object.Next = true;
+            Debug.Log("Level " + level.Object.CurrentLevelIndex + " is enabled.");
+        }
+
+        progression++;
+        playerMovement.MoveToNext(objectPos);
+
+        CurrentState = GameState.WaitForEnter;
+        Debug.Log("Waiting to enter level.");
     }
 }
 
@@ -191,6 +189,14 @@ enum LevelTypes
     BattleLevel,
     ShopLevel,
     TreasureLevel
+}
+
+public enum GameState
+{
+    WaitForMoveNext,
+    Walking,
+    WaitForEnter,
+    InLevel
 }
 
 public class GenerateMap
@@ -261,41 +267,6 @@ public class GenerateMap
         // Give the previous level references to the two newly created levels.
         branch.CurrentLevel.ReferenceNextLevels(levels);
     }
-
-    //private void PopulateMap() {
-    //    List<GameObject> levelObjects = new List<GameObject>();
-
-    //    GameObject levelObject = new GameObject();
-    //    Vector2 levelObjectPosition = new Vector2(0f, 0.5f);
-
-    //    // Set the start level or level you leave from.
-    //    levelObject.transform.position = levelObjectPosition;
-
-    //    for (int i = 0; i < levelLength; i++) {
-    //        levelObjectPosition = new Vector2(levelObjectPosition.x + 3f, levelObjectPosition.y);
-
-    //        // Make a new levelObject for each active branch.
-    //        for (int j = 0; j < branches.Count; j++) {
-    //            Level level = branches[j].Levels.Find(l => l.LevelID == i);
-
-    //            // If the branch has a level with the currently active ID.
-    //            if (level != null) {
-    //                // Last level in branch, so it has one next level.
-    //                if (level.CurrentBranchID == branches.Count) {
-
-    //                }
-                    
-    //                levelObject = new GameObject("", typeof(MapPoint));
-    //                levelObject.transform.position = new Vector2(levelObjectPosition.x, levelObjectPosition.y + j);
-
-    //                MapPoint mapPoint = levelObject.GetComponent<MapPoint>();
-    //                mapPoint.SetUp();
-    //            }
-    //        }
-
-
-    //    }
-    //}
 }
 
 /// <summary>
@@ -314,6 +285,9 @@ public class Branch
     /// </summary>
     public int BranchID { get; set; }
     
+    /// <summary>
+    ///     Current level used for map generation.
+    /// </summary>
     public Level CurrentLevel { get; set; }
 
     /// <summary>
@@ -321,6 +295,9 @@ public class Branch
     /// </summary>
     public Branch ParentBranch { get; set; }
 
+    /// <summary>
+    ///     Levels that wish for this branch to adopt them.
+    /// </summary>
     public List<Level> DiscontinuedChildren { get; set; }
     
     /// <summary>
@@ -368,6 +345,11 @@ public class Branch
 public class Level
 {
     /// <summary>
+    ///     GameObject tied to this level.
+    /// </summary>
+    public LevelObject Object { get; set; } 
+
+    /// <summary>
     ///     The ID of the vertical line of this level (to find out what levels are at the same progression in other branches).
     /// </summary>
     public int LevelID { get; set; }
@@ -411,5 +393,13 @@ public class Level
     /// <param name="prevLevel">The level that gets merged in.</param>
     public void ReferencePrevLevel(Level prevLevel) {
         PreviousLevels.Add(prevLevel);
+    }
+
+    /// <summary>
+    ///     Assign level object after generation.
+    /// </summary>
+    /// <param name="gameObject">GameObject on the map.</param>
+    public void AssignLevelObject(LevelObject levelObject) {
+        Object = levelObject;
     }
 }

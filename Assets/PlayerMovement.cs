@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private Overworld overworld;
+
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = Overworld.Instance.PlayerPosition;
+        overworld = Overworld.Instance;
+
+        transform.position = overworld.PlayerPosition;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            Vector3 nextLevelPosition = Overworld.Instance.GetNextLevel();
-            MoveToNext(nextLevelPosition);
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.Space) && overworld.CurrentState == GameState.WaitForEnter) {
+            overworld.StartNextLevel();
         }
     }
 
@@ -23,12 +24,10 @@ public class PlayerMovement : MonoBehaviour
     ///     Animation of moving the player to the next level.
     ///     Should be called once and the animation should start separately.
     /// </summary>
-    /// <param name="nextLevelPos">Vector3 position of the next level.</param>
-    private void MoveToNext(Vector3 nextLevelPos) {
-        transform.position = Vector3.MoveTowards(transform.position, nextLevelPos, 5f);
+    public void MoveToNext(Vector3 nextLevelPosition) {
+        transform.position = Vector3.MoveTowards(transform.position, nextLevelPosition, 5f);
 
         // do this as animation in the overworld class maybe?
-        Overworld.Instance.PlayerPosition = transform.position;
-        Overworld.Instance.StartNextLevel();
+        overworld.PlayerPosition = transform.position;
     }
 }

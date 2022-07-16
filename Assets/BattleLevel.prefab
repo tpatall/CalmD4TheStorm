@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7426345587132041896}
   - component: {fileID: 7426345587132041815}
+  - component: {fileID: -4484798127778068476}
   m_Layer: 0
   m_Name: BattleLevel
   m_TagString: Untagged
@@ -82,3 +83,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-4484798127778068476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7426345587132041814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7943254ef98d9384e89f22f9fef0f182, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightedSprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
