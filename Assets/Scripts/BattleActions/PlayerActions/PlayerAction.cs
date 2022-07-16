@@ -2,10 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum TargetType {
+    SELF,
+    SINGLE,
+    ALL
+}
+
+public enum ActionIcon {
+    ATTACK,
+    BLOCK,
+    POISON,
+    DEBUFF
+}
+
 public interface PlayerAction {
     public int EnergyCost { get; set; }
 
-    public bool RequiresTarget { get; set; }
+    public TargetType Target { get; set; }
 
     public string ActionText { get; set; }
 

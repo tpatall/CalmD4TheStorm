@@ -5,12 +5,12 @@ using UnityEngine;
 public class RogueActionOne : PlayerAction {
     public string ActionText { get; set; }
     public int EnergyCost { get; set; }
-    public bool RequiresTarget { get; set; }
+    public TargetType Target { get; set; }
 
     public RogueActionOne() {
         ActionText = "Deal d12 damage.";
         EnergyCost = 1;
-        RequiresTarget = true;
+        Target = TargetType.SINGLE;
     }
 
     public int[] PrepareAction() {
@@ -33,12 +33,12 @@ public class RogueActionOne : PlayerAction {
 public class RogueActionTwo : PlayerAction {
     public string ActionText { get; set; }
     public int EnergyCost { get; set; }
-    public bool RequiresTarget { get; set; }
+    public TargetType Target { get; set; }
 
     public RogueActionTwo() {
         ActionText = "Block d6.";
         EnergyCost = 1;
-        RequiresTarget = false;
+        Target = TargetType.SELF;
     }
 
     public int[] PrepareAction() {
@@ -61,12 +61,12 @@ public class RogueActionTwo : PlayerAction {
 public class RogueActionThree : PlayerAction {
     public string ActionText { get; set; }
     public int EnergyCost { get; set; }
-    public bool RequiresTarget { get; set; }
+    public TargetType Target { get; set; }
 
     public RogueActionThree() {
         ActionText = "Deal d4 damage and apply d6 poison.";
         EnergyCost = 1;
-        RequiresTarget = true;
+        Target = TargetType.SINGLE;
     }
 
     public int[] PrepareAction() {
@@ -87,12 +87,12 @@ public class RogueActionThree : PlayerAction {
 public class RogueActionFour : PlayerAction {
     public string ActionText { get; set; }
     public int EnergyCost { get; set; }
-    public bool RequiresTarget { get; set; }
+    public TargetType Target { get; set; }
 
     public RogueActionFour() {
         ActionText = "Empty.";
         EnergyCost = 1;
-        RequiresTarget = true;
+        Target = TargetType.ALL;
     }
 
     public int[] PrepareAction() {
@@ -109,12 +109,12 @@ public class RogueActionFour : PlayerAction {
 public class RogueActionFive : PlayerAction {
     public string ActionText { get; set; }
     public int EnergyCost { get; set; }
-    public bool RequiresTarget { get; set; }
+    public TargetType Target { get; set; }
 
     public RogueActionFive() {
         ActionText = "Empty.";
         EnergyCost = 1;
-        RequiresTarget = true;
+        Target = TargetType.ALL;
     }
 
     public int[] PrepareAction() {

@@ -36,4 +36,14 @@ public class EnemyController : MonoBehaviour {
             spawnPosition += offset;
         }
     }
+
+    public void Kill(Enemy enemy) {
+        currEnemies.Remove(enemy);
+
+        Destroy(enemy.gameObject);
+
+        if(currEnemies.Count == 0) {
+            Debug.Log("All enemies are dead!");
+        }
+    }
 }

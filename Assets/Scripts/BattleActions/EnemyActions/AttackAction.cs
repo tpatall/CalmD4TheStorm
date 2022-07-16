@@ -4,32 +4,35 @@ using UnityEngine;
 
 public class AttackAction : MonoBehaviour, BattleAction {
 
-    Enemy enemy;
+    public Enemy enemy;
     public DiceType diceType;
     public int diceAmount;
-
-    void Start() {
-        enemy = GetComponent<Enemy>();
-    }
 
     public void DoAction() {
         Debug.Log(enemy.name + " is dealing " + diceAmount + "(" + diceType + " + " + enemy.Strength + ") damage!");
 
         for(int i = 0; i < diceAmount; i++) {
             int damage = DiceHelper.GetRandomFromDice(diceType) + enemy.Strength;
+
+            Player.Instance.TakeDamage(damage);
+
             Debug.Log("Hit for " + damage + " damage!");
         }
     }
 
     public string GetActionIcon() {
-        return "attackIcon.png";
+        return "attackIcon";
     }
 
     public string GetActionText() {
         string attackString = "";
         
         if(diceAmount > 1) {
-            attackString += diceAmount + "(";
+            attackString += diceAmount;
+        }
+
+        if(enemy.Strength != 0 && diceAmount > 1) {
+            attackString += "(";
         }
 
         attackString += diceType.ToString();
@@ -40,8 +43,8 @@ public class AttackAction : MonoBehaviour, BattleAction {
             attackString += " - " + enemy.Strength;
         }
 
-        if(diceAmount > 1) {
-            attackString += diceAmount + ")";
+        if(enemy.Strength != 0 && diceAmount > 1) {
+            attackString += ")";
         }
 
         return attackString;

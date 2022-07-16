@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
 
     public static Player Instance;
 
     int health;
+    public int maxHealth;
     public int strength;
+
+    public Slider healthBar;
 
     public enum CharacterType {
         BLANK,
@@ -21,6 +25,7 @@ public class Player : MonoBehaviour {
 
     private void Start() {
         Instance = this;
+        health = maxHealth;
     }
 
     public void SwapCharacter() {
@@ -46,5 +51,21 @@ public class Player : MonoBehaviour {
 
     public void SpendReroll() {
         GetComponent<RerollDice>().SpendDice();
+    }
+
+    public void TakeDamage(int damage) {
+        if(damage < 0) {
+            return;
+        }
+
+        health -= damage;
+
+        if(health <= 0) {
+            // Die.
+            Debug.Log("You have died!");
+            transform.GetChild(1).transform.rotation = Quaternion.Euler(0,0,90) ;
+        }
+
+        healthBar.value = (float)health / maxHealth;
     }
 }

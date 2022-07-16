@@ -16,10 +16,10 @@ public class BuffAction : MonoBehaviour, BattleAction {
     }
 
     public string GetActionIcon() {
-        return "buffIcon.png";
+        return "buffIcon";
     }
 
     public string GetActionText() {
-        return "";
+        return amount.ToString();
     }
 }

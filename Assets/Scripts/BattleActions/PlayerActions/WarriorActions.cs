@@ -5,12 +5,12 @@ using UnityEngine;
 public class WarriorActionOne : PlayerAction {
     public string ActionText { get; set; }
     public int EnergyCost { get; set; }
-    public bool RequiresTarget { get; set; }
+    public TargetType Target { get; set; }
 
     public WarriorActionOne() {
         ActionText = "Deal 3d4 damage.";
-        EnergyCost = 1;
-        RequiresTarget = true;
+        EnergyCost = 2;
+        Target = TargetType.SINGLE;
     }
 
     public int[] PrepareAction() {
@@ -33,12 +33,12 @@ public class WarriorActionOne : PlayerAction {
 public class WarriorActionTwo : PlayerAction {
     public string ActionText { get; set; }
     public int EnergyCost { get; set; }
-    public bool RequiresTarget { get; set; }
+    public TargetType Target { get; set; }
 
     public WarriorActionTwo() {
         ActionText = "Block 3d6.";
         EnergyCost = 1;
-        RequiresTarget = false;
+        Target = TargetType.SELF;
     }
 
     public int[] PrepareAction() {
@@ -61,12 +61,12 @@ public class WarriorActionTwo : PlayerAction {
 public class WarriorActionThree : PlayerAction {
     public string ActionText { get; set; }
     public int EnergyCost { get; set; }
-    public bool RequiresTarget { get; set; }
+    public TargetType Target { get; set; }
 
     public WarriorActionThree() {
         ActionText = "Increase strength by 1.";
         EnergyCost = 1;
-        RequiresTarget = true;
+        Target = TargetType.SELF;
     }
 
     public int[] PrepareAction() {
@@ -82,12 +82,12 @@ public class WarriorActionThree : PlayerAction {
 public class WarriorActionFour : PlayerAction {
     public string ActionText { get; set; }
     public int EnergyCost { get; set; }
-    public bool RequiresTarget { get; set; }
+    public TargetType Target { get; set; }
 
     public WarriorActionFour() {
         ActionText = "Empty.";
         EnergyCost = 1;
-        RequiresTarget = true;
+        Target = TargetType.ALL;
     }
 
     public int[] PrepareAction() {
@@ -104,12 +104,12 @@ public class WarriorActionFour : PlayerAction {
 public class WarriorActionFive : PlayerAction {
     public string ActionText { get; set; }
     public int EnergyCost { get; set; }
-    public bool RequiresTarget { get; set; }
+    public TargetType Target { get; set; }
 
     public WarriorActionFive() {
         ActionText = "Empty.";
         EnergyCost = 1;
-        RequiresTarget = true;
+        Target = TargetType.ALL;
     }
 
     public int[] PrepareAction() {

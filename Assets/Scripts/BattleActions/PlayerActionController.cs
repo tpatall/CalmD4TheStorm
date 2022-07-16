@@ -51,10 +51,39 @@ public class PlayerActionController : MonoBehaviour {
 
     public void ActivateAction(int index) {
         readiedAction = GetActionFromIndex(index);
+        switch(readiedAction.Target) {
+            case TargetType.SELF:
+                break;
+            case TargetType.SINGLE:
+                break;
+            case TargetType.ALL:
+                break;
+        }
 
+        PreviewAction(index);
+    }
+
+    public void PreviewAction(int index) {
         int[] numbersRolled = readiedAction.PrepareAction();
 
         ActionPreviewController.Instance.ShowPreview(numbersRolled, Player.Instance.strength);
+
+        Enemy[] targets;
+
+        switch(readiedAction.Target) {
+            case TargetType.SINGLE:
+                targets = new Enemy[1] { EnemyController.Instance.currEnemies[0] };
+                break;
+            case TargetType.ALL:
+                targets = EnemyController.Instance.currEnemies.ToArray();
+                break;
+            default:
+                targets = new Enemy[0];
+                break;
+        }
+
+        FindObjectOfType<Energy>().SpendEnergy(readiedAction.EnergyCost);
+        readiedAction.DoAction(targets, numbersRolled);
     }
 
     public PlayerAction GetActionFromIndex(int index) {

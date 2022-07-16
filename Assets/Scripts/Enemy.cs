@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class Enemy : MonoBehaviour {
@@ -30,16 +31,32 @@ public class Enemy : MonoBehaviour {
         }
     }
 
+    public Text healthText;
+    public Slider healthBar;
+
+    public GameObject previewObject;
+    public Text previewText;
+    public Image previewImage;
+
     BattleAction[] battleActions;
     BattleAction readiedAction;
 
     public void Initialize() {
         // Read actions.
         battleActions = GetComponents<BattleAction>();
+
+        health = maxHealth;
     }
 
     public void ReadyRandomAction() {
         readiedAction = battleActions[Random.Range(0, battleActions.Length)];
+
+        previewObject.SetActive(true);
+
+        previewText.text = readiedAction.GetActionText();
+        previewImage.sprite = Resources.Load<Sprite>(readiedAction.GetActionIcon());
+        
+
         Debug.Log("Readied the " + readiedAction.ToString() + " action.");
     }
 
@@ -48,6 +65,8 @@ public class Enemy : MonoBehaviour {
             Debug.LogError("No readied action!");
             return;
         }
+
+        previewObject.SetActive(false);
         readiedAction.DoAction();
     }
 
@@ -56,10 +75,18 @@ public class Enemy : MonoBehaviour {
 
         if(health <= 0) {
             // Die.
-
+            EnemyController.Instance.Kill(this);
             return true;
         }
 
+        UpdateHealthBar();
+
         return false;
+    }
+
+    private void UpdateHealthBar() {
+        healthBar.value = (float)health / maxHealth;
+
+        healthText.text = health + "/" + maxHealth; 
     }
 }

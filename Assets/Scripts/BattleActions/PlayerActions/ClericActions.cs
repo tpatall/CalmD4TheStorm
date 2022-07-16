@@ -5,12 +5,12 @@ using UnityEngine;
 public class ClericActionOne : PlayerAction {
     public string ActionText { get; set; }
     public int EnergyCost { get; set; }
-    public bool RequiresTarget { get; set; }
+    public TargetType Target { get; set; }
 
     public ClericActionOne() {
         ActionText = "Deal d4 damage.";
         EnergyCost = 1;
-        RequiresTarget = true;
+        Target = TargetType.SINGLE;
     }
 
     public int[] PrepareAction() {
@@ -26,19 +26,19 @@ public class ClericActionOne : PlayerAction {
     }
 
     public void DoAction(Enemy[] enemy, int[] numbersRolled) {
-        
+        enemy[0].ApplyDamage(numbersRolled[0] + Player.Instance.strength);
     }
 }
 
 public class ClericActionTwo : PlayerAction {
     public string ActionText { get; set; }
     public int EnergyCost { get; set; }
-    public bool RequiresTarget { get; set; }
+    public TargetType Target { get; set; }
 
     public ClericActionTwo() {
         ActionText = "Block 2d6.";
         EnergyCost = 1;
-        RequiresTarget = false;
+        Target = TargetType.SELF;
     }
 
     public int[] PrepareAction() {
@@ -61,12 +61,12 @@ public class ClericActionTwo : PlayerAction {
 public class ClericActionThree : PlayerAction {
     public string ActionText { get; set; }
     public int EnergyCost { get; set; }
-    public bool RequiresTarget { get; set; }
+    public TargetType Target { get; set; }
 
     public ClericActionThree() {
         ActionText = "Heal d6 health.";
         EnergyCost = 1;
-        RequiresTarget = true;
+        Target = TargetType.SELF;
     }
 
     public int[] PrepareAction() {
@@ -88,12 +88,12 @@ public class ClericActionThree : PlayerAction {
 public class ClericActionFour : PlayerAction {
     public string ActionText { get; set; }
     public int EnergyCost { get; set; }
-    public bool RequiresTarget { get; set; }
+    public TargetType Target { get; set; }
 
     public ClericActionFour() {
         ActionText = "Reduce target strength by 1.";
         EnergyCost = 1;
-        RequiresTarget = true;
+        Target = TargetType.SINGLE;
     }
 
     public int[] PrepareAction() {
@@ -112,12 +112,12 @@ public class ClericActionFour : PlayerAction {
 public class ClericActionFive : PlayerAction {
     public string ActionText { get; set; }
     public int EnergyCost { get; set; }
-    public bool RequiresTarget { get; set; }
+    public TargetType Target { get; set; }
 
     public ClericActionFive() {
         ActionText = "Reduce enemy dice value.";
         EnergyCost = 1;
-        RequiresTarget = true;
+        Target = TargetType.SINGLE;
     }
 
     public int[] PrepareAction() {
