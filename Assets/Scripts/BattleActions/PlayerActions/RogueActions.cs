@@ -8,7 +8,7 @@ public class RogueActionOne : PlayerAction {
     public TargetType Target { get; set; }
 
     public RogueActionOne() {
-        ActionText = "DEAL D12 DAMAGE.";
+        ActionText = "DEAL D12 DAMAGE";
         EnergyCost = 1;
         Target = TargetType.SINGLE;
     }
@@ -36,7 +36,7 @@ public class RogueActionTwo : PlayerAction {
     public TargetType Target { get; set; }
 
     public RogueActionTwo() {
-        ActionText = "BLOCK D6.";
+        ActionText = "BLOCK D6";
         EnergyCost = 1;
         Target = TargetType.SELF;
     }
@@ -64,7 +64,7 @@ public class RogueActionThree : PlayerAction {
     public TargetType Target { get; set; }
 
     public RogueActionThree() {
-        ActionText = "DEAL D4 DAMAGE. APPLY D6 POISON.";
+        ActionText = "DEAL D4 DAMAGE APPLY D6 POISON";
         EnergyCost = 1;
         Target = TargetType.SINGLE;
     }
@@ -90,7 +90,7 @@ public class RogueActionFour : PlayerAction {
     public TargetType Target { get; set; }
 
     public RogueActionFour() {
-        ActionText = "EMPTY.";
+        ActionText = "EMPTY";
         EnergyCost = 1;
         Target = TargetType.ALL;
     }
@@ -112,7 +112,7 @@ public class RogueActionFive : PlayerAction {
     public TargetType Target { get; set; }
 
     public RogueActionFive() {
-        ActionText = "EMPTY.";
+        ActionText = "EMPTY";
         EnergyCost = 1;
         Target = TargetType.ALL;
     }
