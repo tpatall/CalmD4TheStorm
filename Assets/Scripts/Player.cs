@@ -105,6 +105,8 @@ public class Player : MonoBehaviour {
         } else {
             health += heal;
         }
+
+        healthBar.value = (float)health / maxHealth;
     }
 
     public void GainBlock(int block) {
