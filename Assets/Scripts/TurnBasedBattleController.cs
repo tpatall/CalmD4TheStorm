@@ -14,10 +14,15 @@ public class TurnBasedBattleController : MonoBehaviour {
 
     BattleState currState;
 
+    Player player;
+
     EnemyController enemyController;
+
+    public GameObject playerUI;
 
 
     private void Start() {
+        player = FindObjectOfType<Player>();
         enemyController = FindObjectOfType<EnemyController>();
         StartFight(null);
     }
@@ -60,24 +65,30 @@ public class TurnBasedBattleController : MonoBehaviour {
         switch(currState) {
             case BattleState.INITIATE:
                 currState = BattleState.PLAYER_TURN;
-                foreach(Enemy enemy in enemyController.currEnemies) {
-                    enemy.ReadyRandomAction();
-                }
+                TurnStart();
                 break;
             case BattleState.PLAYER_TURN:
                 currState = BattleState.ENEMY_TURN;
+                playerUI.SetActive(false);
                 StartCoroutine(EnemyTurn());
                 break;
             case BattleState.ENEMY_TURN:
                 currState = BattleState.PLAYER_TURN;
-                foreach(Enemy enemy in enemyController.currEnemies) {
-                    enemy.ReadyRandomAction();
-                }
+                TurnStart();
                 break;
             default:
                 Debug.LogError("NextState shouldn't be called in the current state.");
                 break;
         }
+    }
+
+    void TurnStart() {
+        foreach(Enemy enemy in enemyController.currEnemies) {
+            enemy.ReadyRandomAction();
+        }
+
+        player.SwapCharacter();
+        playerUI.SetActive(true);
     }
 
     IEnumerator EnemyTurn() {
