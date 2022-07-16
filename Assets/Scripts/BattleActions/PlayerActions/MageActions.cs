@@ -8,7 +8,7 @@ public class MageActionOne : PlayerAction {
     public TargetType Target { get; set; }
 
     public MageActionOne() {
-        ActionText = "Deal 2d4 damage to all dicemies.";
+        ActionText = "DEAL 2D4 DAMAGE TO ALL.";
         EnergyCost = 1;
         Target = TargetType.ALL;
     }
@@ -42,7 +42,7 @@ public class MageActionTwo : PlayerAction {
     public TargetType Target { get; set; }
 
     public MageActionTwo() {
-        ActionText = "Block 2d6.";
+        ActionText = "BLOCK 2D6.";
         EnergyCost = 1;
         Target = TargetType.SELF;
     }
@@ -74,7 +74,7 @@ public class MageActionThree : PlayerAction {
     public TargetType Target { get; set; }
 
     public MageActionThree() {
-        ActionText = "Empty.";
+        ActionText = "EMPTY.";
         EnergyCost = 1;
         Target = TargetType.ALL;
     }
@@ -95,7 +95,7 @@ public class MageActionFour : PlayerAction {
     public TargetType Target { get; set; }
 
     public MageActionFour() {
-        ActionText = "Empty.";
+        ActionText = "EMPTY.";
         EnergyCost = 1;
         Target = TargetType.ALL;
     }
@@ -117,7 +117,7 @@ public class MageActionFive : PlayerAction {
     public TargetType Target { get; set; }
 
     public MageActionFive() {
-        ActionText = "Empty.";
+        ActionText = "EMPTY.";
         EnergyCost = 1;
         Target = TargetType.ALL;
     }

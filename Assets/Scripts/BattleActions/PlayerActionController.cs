@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerActionController : MonoBehaviour {
     List<PlayerAction> warriorActions = new List<PlayerAction>();
@@ -9,7 +10,7 @@ public class PlayerActionController : MonoBehaviour {
     List<PlayerAction> mageActions = new List<PlayerAction>();
     List<PlayerAction> clericActions = new List<PlayerAction>();
 
-    public Text[] actionTexts, actionCosts;
+    public TextMeshProUGUI[] actionTexts, actionCosts;
 
     private void Start() {
         // Create all actions.

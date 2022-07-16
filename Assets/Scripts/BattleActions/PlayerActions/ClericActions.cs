@@ -8,7 +8,7 @@ public class ClericActionOne : PlayerAction {
     public TargetType Target { get; set; }
 
     public ClericActionOne() {
-        ActionText = "Deal d4 damage.";
+        ActionText = "DEAL D4 DAMAGE.";
         EnergyCost = 1;
         Target = TargetType.SINGLE;
     }
@@ -36,7 +36,7 @@ public class ClericActionTwo : PlayerAction {
     public TargetType Target { get; set; }
 
     public ClericActionTwo() {
-        ActionText = "Block 2d6.";
+        ActionText = "BLOCK 2D6.";
         EnergyCost = 1;
         Target = TargetType.SELF;
     }
@@ -68,7 +68,7 @@ public class ClericActionThree : PlayerAction {
     public TargetType Target { get; set; }
 
     public ClericActionThree() {
-        ActionText = "Heal d6 health.";
+        ActionText = "HEAL D6 HEALTH.";
         EnergyCost = 1;
         Target = TargetType.SELF;
     }
@@ -95,7 +95,7 @@ public class ClericActionFour : PlayerAction {
     public TargetType Target { get; set; }
 
     public ClericActionFour() {
-        ActionText = "Reduce target strength by 1.";
+        ActionText = "REDUCE STRENGTH BY 1.";
         EnergyCost = 1;
         Target = TargetType.SINGLE;
     }
@@ -119,7 +119,7 @@ public class ClericActionFive : PlayerAction {
     public TargetType Target { get; set; }
 
     public ClericActionFive() {
-        ActionText = "Reduce enemy dice value.";
+        ActionText = "REDUCE DICE VALUE.";
         EnergyCost = 1;
         Target = TargetType.SINGLE;
     }

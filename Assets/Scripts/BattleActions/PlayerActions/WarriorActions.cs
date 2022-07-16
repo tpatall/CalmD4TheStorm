@@ -8,7 +8,7 @@ public class WarriorActionOne : PlayerAction {
     public TargetType Target { get; set; }
 
     public WarriorActionOne() {
-        ActionText = "Deal 3d4 damage.";
+        ActionText = "DEAL 3D4 DAMAGE.";
         EnergyCost = 2;
         Target = TargetType.SINGLE;
     }
@@ -42,7 +42,7 @@ public class WarriorActionTwo : PlayerAction {
     public TargetType Target { get; set; }
 
     public WarriorActionTwo() {
-        ActionText = "Block 3d6.";
+        ActionText = "BLOCK 3D6.";
         EnergyCost = 1;
         Target = TargetType.SELF;
     }
@@ -74,7 +74,7 @@ public class WarriorActionThree : PlayerAction {
     public TargetType Target { get; set; }
 
     public WarriorActionThree() {
-        ActionText = "Increase strength by 1.";
+        ActionText = "INCREASE STRENGTH BY 1.";
         EnergyCost = 1;
         Target = TargetType.SELF;
     }
@@ -95,7 +95,7 @@ public class WarriorActionFour : PlayerAction {
     public TargetType Target { get; set; }
 
     public WarriorActionFour() {
-        ActionText = "Empty.";
+        ActionText = "EMPTY.";
         EnergyCost = 1;
         Target = TargetType.ALL;
     }
@@ -117,7 +117,7 @@ public class WarriorActionFive : PlayerAction {
     public TargetType Target { get; set; }
 
     public WarriorActionFive() {
-        ActionText = "Empty.";
+        ActionText = "EMPTY.";
         EnergyCost = 1;
         Target = TargetType.ALL;
     }
