@@ -52,6 +52,11 @@ public class PlayerActionController : MonoBehaviour {
 
     public void ActivateAction(int index) {
         readiedAction = GetActionFromIndex(index);
+
+        if(readiedAction.EnergyCost > FindObjectOfType<Energy>().currEnergy) {
+            return;
+        }
+
         switch(readiedAction.Target) {
             case TargetType.SELF:
                 break;

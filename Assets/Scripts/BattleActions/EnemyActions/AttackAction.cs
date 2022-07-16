@@ -9,8 +9,6 @@ public class AttackAction : MonoBehaviour, BattleAction {
     public int diceAmount;
 
     public void DoAction() {
-        Debug.Log(enemy.name + " is dealing " + diceAmount + "(" + diceType + " + " + enemy.Strength + ") damage!");
-
         DiceType damageDiceType = diceType;
 
         if(enemy.debuffed && damageDiceType > 0) {
@@ -18,7 +16,7 @@ public class AttackAction : MonoBehaviour, BattleAction {
         }
 
         for(int i = 0; i < diceAmount; i++) {
-            int damage = DiceHelper.GetRandomFromDice(damageDiceType) + enemy.Strength;
+            int damage = DiceHelper.GetRandomFromDice(damageDiceType) + enemy.Strength - enemy.strengthDebuff;
 
             Player.Instance.TakeDamage(damage);
 
@@ -43,19 +41,19 @@ public class AttackAction : MonoBehaviour, BattleAction {
             attackString += diceAmount;
         }
 
-        if(enemy.Strength != 0 && diceAmount > 1) {
+        if(enemy.Strength - enemy.strengthDebuff != 0 && diceAmount > 1) {
             attackString += "(";
         }
 
         attackString += textDiceType.ToString();
 
-        if(enemy.Strength > 0) {
-            attackString += " + " + enemy.Strength;
-        } else if(enemy.Strength < 0) {
-            attackString += " - " + enemy.Strength;
+        if(enemy.Strength - enemy.strengthDebuff > 0) {
+            attackString += " + " + (enemy.Strength - enemy.strengthDebuff);
+        } else if(enemy.Strength - enemy.strengthDebuff < 0) {
+            attackString += " - " + Mathf.Abs(enemy.Strength - enemy.strengthDebuff);
         }
 
-        if(enemy.Strength != 0 && diceAmount > 1) {
+        if(enemy.Strength - enemy.strengthDebuff != 0 && diceAmount > 1) {
             attackString += ")";
         }
 

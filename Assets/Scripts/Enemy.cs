@@ -21,6 +21,8 @@ public class Enemy : MonoBehaviour {
         }
     }
 
+    public int strengthDebuff;
+
     private int dexterity;
     public int Dexterity {
         get {

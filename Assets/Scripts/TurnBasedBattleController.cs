@@ -84,6 +84,7 @@ public class TurnBasedBattleController : MonoBehaviour {
     void TurnStart() {
         foreach(Enemy enemy in enemyController.currEnemies) {
             enemy.debuffed = false;
+            enemy.strengthDebuff = 0;
             enemy.ReadyRandomAction();
         }
 
