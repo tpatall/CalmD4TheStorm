@@ -74,6 +74,13 @@ public class Overworld : PersistentSingleton<Overworld>
                 currentLevelIndex++;
             }
         }
+
+        // Enable the new possible to-be selected levels to be interacted with.
+        LevelObject levelObject = levelObjects[0];
+        foreach (Level level in levelObject.Level.NextLevels) {
+            level.Object.Next = true;
+            Debug.Log("Level " + level.Object.CurrentLevelIndex + " is enabled.");
+        }
     }
 
     /// <summary>
@@ -158,19 +165,19 @@ public class Overworld : PersistentSingleton<Overworld>
     /// </summary>
     /// <returns>Position of the next level object.</returns>
     public void GoNextLevel(int currentLevelIndex, Vector2 objectPos) {
-        CurrentState = GameState.Walking;
+         CurrentState = GameState.Walking;
         Debug.Log("Walking to next position.");
 
         // Disable the possible selected levels from being interacted with now that one is chosen.
-        LevelObject levelObject = levelObjects[currentLevelIndex];
-        foreach (Level level in levelObject.Level.NextLevels) {
-            level.Object.Next = false;
-        }
+        //LevelObject levelObject = levelObjects[currentLevelIndex];
+        //foreach (Level level in levelObject.Level.NextLevels) {
+        //    level.Object.Next = false;
+        //}
 
         this.currentLevelIndex = currentLevelIndex;
 
         // Enable the new possible to-be selected levels to be interacted with.
-        levelObject = levelObjects[currentLevelIndex];
+        LevelObject levelObject = levelObjects[currentLevelIndex];
         foreach (Level level in levelObject.Level.NextLevels) {
             level.Object.Next = true;
             Debug.Log("Level " + level.Object.CurrentLevelIndex + " is enabled.");
@@ -199,207 +206,3 @@ public enum GameState
     InLevel
 }
 
-public class GenerateMap
-{
-    public List<Branch> Branches { get; private set; }
-
-    public GenerateMap(int levelLength) {
-        Branches = new List<Branch>();
-
-        GenerateRandomBranches(levelLength);
-    }
-
-    private void GenerateRandomBranches(int levelLength) {
-        Branch mainBranch = new Branch(Branches.Count, null, null);
-        mainBranch.AddLevel(0);
-        Branches.Add(mainBranch);
-
-        // LevelLength (and i) determine the progress throughout the game.
-        for (int i = 1; i < levelLength; i++) {
-            for (int j = 0; j < Branches.Count; j++) {
-                if (Branches[j] == mainBranch) {
-                    // Let the mainbranch split off a couple of times at a random or specific point.
-                     if (i % 6 == 0 && i < 15) { // every 6 steps split off.
-                        AddBranch(mainBranch, i);
-                     }
-                     else {
-                        mainBranch.AddLevel(i);
-                    }
-                } 
-                else {
-                    // also branch out from non-main branches at a much lower chance and with some conditions.
-                    if (Random.Range(0f, 1f) < 0.05f && i < 15) { // 1 in 100 chance to split off.
-                        AddBranch(Branches[j], i);
-                    }
-                    else if (Branches[j].Continuing) Branches[j].AddLevel(i);
-                }
-            }
-        }
-    }
-
-    /// <summary>
-    ///     Adds a new branch to the list of branches, and also adds a level for the parent branch and the new branch.
-    /// </summary>
-    /// <param name="branch">The parent branch.</param>
-    /// <param name="levelID">Current level ID.</param>
-    private void AddBranch(Branch branch, int levelID) {
-        Branch newBranch = new Branch(Branches.Count, branch, branch.CurrentLevel);
-        Branches.Add(newBranch);
-
-        List<Level> levels = new List<Level>();
-
-        // Add level to branch
-        Level branchLevel = branch.AddLevel(levelID);
-        levels.Add(branchLevel);
-
-        // Merge discontinued branches back into current
-        if (branch.DiscontinuedChildren.Count > 0) {
-            foreach (Level childLevel in branch.DiscontinuedChildren) {
-                branchLevel.ReferencePrevLevel(childLevel);
-                childLevel.ReferenceNextLevels(levels);
-            }
-        }
-
-        // Add level to new branch
-        Level newBranchlevel = newBranch.AddLevel(levelID);
-        levels.Add(newBranchlevel);
-
-        // Give the previous level references to the two newly created levels.
-        branch.CurrentLevel.ReferenceNextLevels(levels);
-    }
-}
-
-/// <summary>
-///     Branch is a collection of levels.
-/// </summary>
-public class Branch
-{
-    /// <summary>
-    ///     If this branch is still active.
-    ///     If its inactive, make the next level merge into the parent branch and dont add more levels to this branch.
-    /// </summary>
-    public bool Continuing = true;
-    
-    /// <summary>
-    ///     Could be useful later, but for now only used to discern the main branch from non-main branches.
-    /// </summary>
-    public int BranchID { get; set; }
-    
-    /// <summary>
-    ///     Current level used for map generation.
-    /// </summary>
-    public Level CurrentLevel { get; set; }
-
-    /// <summary>
-    ///     Branch this level split from.
-    /// </summary>
-    public Branch ParentBranch { get; set; }
-
-    /// <summary>
-    ///     Levels that wish for this branch to adopt them.
-    /// </summary>
-    public List<Level> DiscontinuedChildren { get; set; }
-    
-    /// <summary>
-    ///     Levels in this branch.
-    /// </summary>
-    public List<Level> Levels { get; set; }
-
-    public Branch(int branchID, Branch parentBranch, Level currentLevel) {
-        BranchID = branchID;
-        ParentBranch = parentBranch;
-
-        Levels = new List<Level>();
-
-        CurrentLevel = currentLevel;
-
-        DiscontinuedChildren = new List<Level>();
-    }
-
-    /// <summary>
-    ///     Add a level to the list of levels in this branch.
-    ///     If this exceeds a certain number, merge the branch into where it came from.
-    /// </summary>
-    /// <param name="levelID">Progress ID of the level.</param>
-    public Level AddLevel(int levelID) {
-        Level level = new Level(levelID, Levels.Count, CurrentLevel);
-        Levels.Add(level);
-        
-        if (BranchID != 0 && Levels.Count > 5) {
-            Continuing = false;
-
-            // Search for the parent branch that is still continuing.
-            Branch parent = ParentBranch;
-            while (!parent.Continuing) {
-                parent = parent.ParentBranch;
-            }
-            // And put the current level in a waiting list to be added there.
-            parent.DiscontinuedChildren.Add(level);
-        }
-
-        CurrentLevel = level;
-        return level;
-    }
-}
-
-public class Level
-{
-    /// <summary>
-    ///     GameObject tied to this level.
-    /// </summary>
-    public LevelObject Object { get; set; } 
-
-    /// <summary>
-    ///     The ID of the vertical line of this level (to find out what levels are at the same progression in other branches).
-    /// </summary>
-    public int LevelID { get; set; }
-
-    /// <summary>
-    ///     The index of this level in the current branch.
-    /// </summary>
-    public int CurrentBranchID { get; set; }
-
-    /// <summary>
-    ///     If multiple, indicates it came from a branch merge.
-    /// </summary>
-    public List<Level> PreviousLevels { get; set; }
-
-    /// <summary>
-    ///     If multiple, indicates a branch gets split.
-    /// </summary>
-    public List<Level> NextLevels { get; set; }
-
-    public Level(int levelID, int currentBranchID, Level previousLevel) {
-        LevelID = levelID;
-        CurrentBranchID = currentBranchID;
-
-        PreviousLevels = new List<Level>();
-        PreviousLevels.Add(previousLevel);
-    }
-
-    /// <summary>
-    ///     Define the levels that follow this level.
-    ///     This will only be called when the branch of this level will get a child.
-    /// </summary>
-    /// <param name="nextLevels">List of levels that follow from this level.</param>
-    public void ReferenceNextLevels(List<Level> nextLevels) {
-        NextLevels = nextLevels;
-    }
-
-    /// <summary>
-    ///     Add more previous levels to this Level.
-    ///     This will only be called when a child branch is merged into this branch at this Level.
-    /// </summary>
-    /// <param name="prevLevel">The level that gets merged in.</param>
-    public void ReferencePrevLevel(Level prevLevel) {
-        PreviousLevels.Add(prevLevel);
-    }
-
-    /// <summary>
-    ///     Assign level object after generation.
-    /// </summary>
-    /// <param name="gameObject">GameObject on the map.</param>
-    public void AssignLevelObject(LevelObject levelObject) {
-        Object = levelObject;
-    }
-}

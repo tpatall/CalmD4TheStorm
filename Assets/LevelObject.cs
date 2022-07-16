@@ -10,9 +10,9 @@ public class LevelObject : MonoBehaviour
 
     private Overworld overworld;
 
-    public bool Next { get; set; }
+    public bool Next;
 
-    public int CurrentLevelIndex { get; private set; }
+    public int CurrentLevelIndex;
 
     public Level Level { get; private set; }
 
@@ -27,29 +27,10 @@ public class LevelObject : MonoBehaviour
         startSprite = spriteRenderer.sprite;
     }
 
-    private void OnMouseEnter() {
-        // Only allow interaction when this level object is next in line.
-        if (Next) {
-            if (overworld.CurrentState == GameState.WaitForMoveNext) {
-                HighlightSprite(true);
-            }
-        }
-    }
-
-    private void OnMouseDown() {
-        if (Next) {
-            if (overworld.CurrentState == GameState.WaitForMoveNext) {
-                overworld.GoNextLevel(CurrentLevelIndex, gameObject.transform.position);
-            }
-        }
-    }
-
-    private void OnMouseExit() {
-        // Only allow interaction when this level object is next in line.
-        if (Next) {
-            if (overworld.CurrentState == GameState.WaitForMoveNext) {
-                HighlightSprite(false);
-            }
+    private void Update() {
+        if (overworld.PlayerPosition.x > transform.position.x) {
+            Next = false;
+            spriteRenderer.sprite = startSprite;
         }
     }
 
