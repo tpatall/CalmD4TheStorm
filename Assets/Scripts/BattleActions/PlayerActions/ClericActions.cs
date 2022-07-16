@@ -54,7 +54,11 @@ public class ClericActionTwo : PlayerAction {
     }
 
     public void DoAction(Enemy[] enemy, int[] numbersRolled) {
-
+        int totalBlock = 0;
+        for(int i = 0; i < numbersRolled.Length; i++) {
+            totalBlock += numbersRolled[i];
+        }
+        Player.Instance.GainBlock(totalBlock);
     }
 }
 
@@ -82,7 +86,7 @@ public class ClericActionThree : PlayerAction {
     }
 
     public void DoAction(Enemy[] enemy, int[] numbersRolled) {
-
+        Player.Instance.Heal(numbersRolled[0]);
     }
 }
 public class ClericActionFour : PlayerAction {

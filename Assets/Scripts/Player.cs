@@ -9,9 +9,16 @@ public class Player : MonoBehaviour {
 
     int health;
     public int maxHealth;
+
+    public int block;
     public int strength;
 
     public Slider healthBar;
+
+    public GameObject blockIcon;
+    public Text blockText;
+
+    public Animator anim;
 
     public enum CharacterType {
         BLANK,
@@ -44,6 +51,21 @@ public class Player : MonoBehaviour {
     void SwapCharacterTo(int index) {
         currType = (CharacterType)index;
 
+        switch((CharacterType)index) {
+            case CharacterType.WARRIOR:
+                anim.SetTrigger("warriorTrigger");
+                break;
+            case CharacterType.ROGUE:
+                anim.SetTrigger("rogueTrigger");
+                break;
+            case CharacterType.MAGE:
+                anim.SetTrigger("mageTrigger");
+                break;
+            case CharacterType.CLERIC:
+                anim.SetTrigger("clericTrigger");
+                break;
+        }
+
         FindObjectOfType<PlayerActionController>().UpdateButtons();
 
         Debug.Log("Player is now of type - " + currType.ToString());
@@ -58,7 +80,15 @@ public class Player : MonoBehaviour {
             return;
         }
 
-        health -= damage;
+        if(block >= damage) {
+            block -= damage;
+        } else {
+            damage -= block;
+            block = 0;
+            health -= damage;
+        }
+
+        UpdateBlock();
 
         if(health <= 0) {
             // Die.
@@ -67,5 +97,32 @@ public class Player : MonoBehaviour {
         }
 
         healthBar.value = (float)health / maxHealth;
+    }
+
+    public void Heal(int heal) {
+        if(health + heal >= maxHealth) {
+            health = maxHealth;
+        } else {
+            health += heal;
+        }
+    }
+
+    public void GainBlock(int block) {
+        this.block += block;
+        UpdateBlock();
+    }
+
+    public void RemoveBlock() {
+        block = 0;
+        UpdateBlock();
+    }
+
+    void UpdateBlock() {
+        if(block == 0) {
+            blockIcon.SetActive(false);
+        } else {
+            blockIcon.SetActive(true);
+            blockText.text = block.ToString();
+        }
     }
 }

@@ -26,15 +26,12 @@ public class MageActionOne : PlayerAction {
     }
 
     public void DoAction(Enemy[] enemy, int[] numbersRolled) {
-        int totalDamage = 0;
-        for(int j = 0; j < numbersRolled.Length; j++) {
-            totalDamage += numbersRolled[j] + Player.Instance.strength;
-        }
-
         for(int i = 0; i < enemy.Length; i++) {
-
-
-            enemy[i].ApplyDamage(totalDamage);
+            for(int j = 0; j < numbersRolled.Length; j++) {
+                if(enemy[i].ApplyDamage(numbersRolled[j] + Player.Instance.strength)) {
+                    break;
+                }
+            }
         }
     }
 }
@@ -63,7 +60,11 @@ public class MageActionTwo : PlayerAction {
     }
 
     public void DoAction(Enemy[] enemy, int[] numbersRolled) {
-
+        int totalBlock = 0;
+        for(int i = 0; i < numbersRolled.Length; i++) {
+            totalBlock += numbersRolled[i];
+        }
+        Player.Instance.GainBlock(totalBlock);
     }
 }
 

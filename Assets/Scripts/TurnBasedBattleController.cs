@@ -88,6 +88,8 @@ public class TurnBasedBattleController : MonoBehaviour {
 
         player.SwapCharacter();
 
+        player.RemoveBlock();
+
         playerUI.SetActive(true);
 
         energy.RefreshEnergy();
