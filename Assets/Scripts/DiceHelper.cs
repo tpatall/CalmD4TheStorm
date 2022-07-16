@@ -14,16 +14,16 @@ public static class DiceHelper {
                 maxValue = 6;
                 break;
             case DiceType.D8:
-                maxValue = 4;
+                maxValue = 8;
                 break;
             case DiceType.D10:
-                maxValue = 4;
+                maxValue = 10;
                 break;
             case DiceType.D12:
-                maxValue = 4;
+                maxValue = 12;
                 break;
             case DiceType.D20:
-                maxValue = 4;
+                maxValue = 20;
                 break;
             default:
                 Debug.LogError("Unknown dicetype");

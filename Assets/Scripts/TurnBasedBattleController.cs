@@ -16,6 +16,8 @@ public class TurnBasedBattleController : MonoBehaviour {
 
     Player player;
 
+    Energy energy;
+
     EnemyController enemyController;
 
     public GameObject playerUI;
@@ -23,6 +25,7 @@ public class TurnBasedBattleController : MonoBehaviour {
 
     private void Start() {
         player = FindObjectOfType<Player>();
+        energy = FindObjectOfType<Energy>();
         enemyController = FindObjectOfType<EnemyController>();
         StartFight(null);
     }
@@ -30,10 +33,6 @@ public class TurnBasedBattleController : MonoBehaviour {
     private void Update() {
         switch(currState) {
             case BattleState.PLAYER_TURN:
-                if(Input.GetKeyDown(KeyCode.Space)) {
-                    Debug.Log("Player passed his turn.");
-                    NextState();
-                }
                 break;
             case BattleState.ENEMY_TURN:
                 break;
@@ -61,7 +60,7 @@ public class TurnBasedBattleController : MonoBehaviour {
         NextState();
     }
 
-    void NextState() {
+    public void NextState() {
         switch(currState) {
             case BattleState.INITIATE:
                 currState = BattleState.PLAYER_TURN;
@@ -88,7 +87,10 @@ public class TurnBasedBattleController : MonoBehaviour {
         }
 
         player.SwapCharacter();
+
         playerUI.SetActive(true);
+
+        energy.RefreshEnergy();
     }
 
     IEnumerator EnemyTurn() {

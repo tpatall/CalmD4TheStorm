@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
-    int health;
 
-    enum CharacterType {
+    public static Player Instance;
+
+    int health;
+    public int strength;
+
+    public enum CharacterType {
         BLANK,
         WARRIOR,
         ROGUE,
@@ -13,7 +17,11 @@ public class Player : MonoBehaviour {
         CLERIC
     }
 
-    CharacterType currType;
+    public CharacterType currType;
+
+    private void Start() {
+        Instance = this;
+    }
 
     public void SwapCharacter() {
         if(currType == CharacterType.BLANK) {
@@ -30,6 +38,8 @@ public class Player : MonoBehaviour {
 
     void SwapCharacterTo(int index) {
         currType = (CharacterType)index;
+
+        FindObjectOfType<PlayerActionController>().UpdateButtons();
 
         Debug.Log("Player is now of type - " + currType.ToString());
     }

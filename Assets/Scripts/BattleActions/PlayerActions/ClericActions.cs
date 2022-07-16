@@ -1,0 +1,132 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ClericActionOne : PlayerAction {
+    public string ActionText { get; set; }
+    public int EnergyCost { get; set; }
+    public bool RequiresTarget { get; set; }
+
+    public ClericActionOne() {
+        ActionText = "Deal d4 damage.";
+        EnergyCost = 1;
+        RequiresTarget = true;
+    }
+
+    public int[] PrepareAction() {
+        Debug.Log("Performing action");
+
+        int[] numbersRolled = new int[1];
+
+        for(int i = 0; i < 1; i++) {
+            numbersRolled[i] = DiceHelper.GetRandomFromDice(DiceType.D4);
+        }
+
+        return numbersRolled;
+    }
+
+    public void DoAction(Enemy[] enemy, int[] numbersRolled) {
+        
+    }
+}
+
+public class ClericActionTwo : PlayerAction {
+    public string ActionText { get; set; }
+    public int EnergyCost { get; set; }
+    public bool RequiresTarget { get; set; }
+
+    public ClericActionTwo() {
+        ActionText = "Block 2d6.";
+        EnergyCost = 1;
+        RequiresTarget = false;
+    }
+
+    public int[] PrepareAction() {
+        Debug.Log("Performing action");
+
+        int[] numbersRolled = new int[2];
+
+        for(int i = 0; i < 2; i++) {
+            numbersRolled[i] = DiceHelper.GetRandomFromDice(DiceType.D6);
+        }
+
+        return numbersRolled;
+    }
+
+    public void DoAction(Enemy[] enemy, int[] numbersRolled) {
+
+    }
+}
+
+public class ClericActionThree : PlayerAction {
+    public string ActionText { get; set; }
+    public int EnergyCost { get; set; }
+    public bool RequiresTarget { get; set; }
+
+    public ClericActionThree() {
+        ActionText = "Heal d6 health.";
+        EnergyCost = 1;
+        RequiresTarget = true;
+    }
+
+    public int[] PrepareAction() {
+        Debug.Log("Performing action");
+
+        int[] numbersRolled = new int[1];
+
+        for(int i = 0; i < 1; i++) {
+            numbersRolled[i] = DiceHelper.GetRandomFromDice(DiceType.D6);
+        }
+
+        return numbersRolled;
+    }
+
+    public void DoAction(Enemy[] enemy, int[] numbersRolled) {
+
+    }
+}
+public class ClericActionFour : PlayerAction {
+    public string ActionText { get; set; }
+    public int EnergyCost { get; set; }
+    public bool RequiresTarget { get; set; }
+
+    public ClericActionFour() {
+        ActionText = "Reduce target strength by 1.";
+        EnergyCost = 1;
+        RequiresTarget = true;
+    }
+
+    public int[] PrepareAction() {
+        Debug.Log("Performing action");
+
+        int[] numbersRolled = new int[1] { 1 };
+
+        return numbersRolled;
+    }
+
+    public void DoAction(Enemy[] enemy, int[] numbersRolled) {
+
+    }
+}
+
+public class ClericActionFive : PlayerAction {
+    public string ActionText { get; set; }
+    public int EnergyCost { get; set; }
+    public bool RequiresTarget { get; set; }
+
+    public ClericActionFive() {
+        ActionText = "Reduce enemy dice value.";
+        EnergyCost = 1;
+        RequiresTarget = true;
+    }
+
+    public int[] PrepareAction() {
+        Debug.Log("Performing action");
+
+        return new int[0];
+    }
+
+    public void DoAction(Enemy[] enemy, int[] numbersRolled) {
+
+    }
+}

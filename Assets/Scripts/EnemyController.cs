@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour {
 
+    public static EnemyController Instance;
+
     public List<Enemy> currEnemies;
 
     public GameObject defaultEnemy;
 
     public Vector2 spawnPosition;
     public Vector2 offset;
+
+    private void Start() {
+        Instance = this;
+    }
 
     public void SpawnEnemies(List<GameObject> enemyObjects) {
         if(enemyObjects == null) {

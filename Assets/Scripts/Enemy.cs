@@ -50,4 +50,16 @@ public class Enemy : MonoBehaviour {
         }
         readiedAction.DoAction();
     }
+
+    public bool ApplyDamage(int damage) {
+        health -= damage;
+
+        if(health <= 0) {
+            // Die.
+
+            return true;
+        }
+
+        return false;
+    }
 }
