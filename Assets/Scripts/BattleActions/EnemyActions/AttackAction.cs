@@ -11,8 +11,14 @@ public class AttackAction : MonoBehaviour, BattleAction {
     public void DoAction() {
         Debug.Log(enemy.name + " is dealing " + diceAmount + "(" + diceType + " + " + enemy.Strength + ") damage!");
 
+        DiceType damageDiceType = diceType;
+
+        if(enemy.debuffed && damageDiceType > 0) {
+            damageDiceType--;
+        }
+
         for(int i = 0; i < diceAmount; i++) {
-            int damage = DiceHelper.GetRandomFromDice(diceType) + enemy.Strength;
+            int damage = DiceHelper.GetRandomFromDice(damageDiceType) + enemy.Strength;
 
             Player.Instance.TakeDamage(damage);
 
@@ -26,7 +32,13 @@ public class AttackAction : MonoBehaviour, BattleAction {
 
     public string GetActionText() {
         string attackString = "";
-        
+
+        DiceType textDiceType = diceType;
+
+        if(enemy.debuffed && textDiceType > 0) {
+            textDiceType--;
+        }
+
         if(diceAmount > 1) {
             attackString += diceAmount;
         }
@@ -35,7 +47,7 @@ public class AttackAction : MonoBehaviour, BattleAction {
             attackString += "(";
         }
 
-        attackString += diceType.ToString();
+        attackString += textDiceType.ToString();
 
         if(enemy.Strength > 0) {
             attackString += " + " + enemy.Strength;

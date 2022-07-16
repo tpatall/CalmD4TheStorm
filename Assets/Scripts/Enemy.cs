@@ -31,6 +31,8 @@ public class Enemy : MonoBehaviour {
         }
     }
 
+    public bool debuffed;
+
     public Text healthText;
     public Slider healthBar;
 
@@ -39,7 +41,7 @@ public class Enemy : MonoBehaviour {
     public Image previewImage;
 
     BattleAction[] battleActions;
-    BattleAction readiedAction;
+    public BattleAction readiedAction;
 
     public void Initialize() {
         // Read actions.
@@ -55,7 +57,6 @@ public class Enemy : MonoBehaviour {
 
         previewText.text = readiedAction.GetActionText();
         previewImage.sprite = Resources.Load<Sprite>(readiedAction.GetActionIcon());
-        
 
         Debug.Log("Readied the " + readiedAction.ToString() + " action.");
     }

@@ -131,6 +131,9 @@ public class ClericActionFive : PlayerAction {
     }
 
     public void DoAction(Enemy[] enemy, int[] numbersRolled) {
+        enemy[0].debuffed = true;
 
+        enemy[0].previewText.text = enemy[0].readiedAction.GetActionText();
+        enemy[0].previewImage.sprite = Resources.Load<Sprite>(enemy[0].readiedAction.GetActionIcon());
     }
 }
