@@ -26,7 +26,13 @@ public class WarriorActionOne : PlayerAction {
     }
 
     public void DoAction(Enemy[] enemy, int[] numbersRolled) {
-        
+        for(int i = 0; i < enemy.Length; i++) {
+            for(int j = 0; j < numbersRolled.Length; j++) {
+                if(enemy[i].ApplyDamage(numbersRolled[j] + Player.Instance.strength)) {
+                    break;
+                }
+            }
+        }
     }
 }
 
@@ -54,7 +60,11 @@ public class WarriorActionTwo : PlayerAction {
     }
 
     public void DoAction(Enemy[] enemy, int[] numbersRolled) {
-
+        int totalBlock = 0;
+        for(int i = 0; i < numbersRolled.Length; i++) {
+            totalBlock += numbersRolled[i];
+        }
+        Player.Instance.GainBlock(totalBlock);
     }
 }
 

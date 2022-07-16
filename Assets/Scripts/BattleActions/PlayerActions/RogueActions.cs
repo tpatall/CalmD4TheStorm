@@ -26,7 +26,7 @@ public class RogueActionOne : PlayerAction {
     }
 
     public void DoAction(Enemy[] enemy, int[] numbersRolled) {
-        
+        enemy[0].ApplyDamage(numbersRolled[0] + Player.Instance.strength);
     }
 }
 
@@ -54,7 +54,7 @@ public class RogueActionTwo : PlayerAction {
     }
 
     public void DoAction(Enemy[] enemy, int[] numbersRolled) {
-
+        Player.Instance.GainBlock(numbersRolled[0]);
     }
 }
 
@@ -81,7 +81,7 @@ public class RogueActionThree : PlayerAction {
     }
 
     public void DoAction(Enemy[] enemy, int[] numbersRolled) {
-
+        enemy[0].ApplyDamage(numbersRolled[0] + Player.Instance.strength);
     }
 }
 public class RogueActionFour : PlayerAction {
