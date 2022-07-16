@@ -90,6 +90,8 @@ public class TurnBasedBattleController : MonoBehaviour {
 
         player.RemoveBlock();
 
+        ActionPreviewController.Instance.HidePreview();
+
         playerUI.SetActive(true);
 
         energy.RefreshEnergy();
