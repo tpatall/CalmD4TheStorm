@@ -92,7 +92,7 @@ public class RogueActionThree : PlayerAction {
     public bool Upgraded { get; set; } = false;
 
     public RogueActionThree() {
-        ActionText = "DEAL D4 DAMAGE APPLY D6 POISON";
+        ActionText = "DEAL 2D4 DAMAGE";
         DiceType = DiceType.D4;
         EnergyCost = 1;
         Target = TargetType.SINGLE;
@@ -104,7 +104,7 @@ public class RogueActionThree : PlayerAction {
         int[] numbersRolled = new int[2];
 
         numbersRolled[0] = DiceHelper.GetRandomFromDice(DiceType);
-        numbersRolled[1] = DiceHelper.GetRandomFromDice(DiceType.D6);
+        numbersRolled[1] = DiceHelper.GetRandomFromDice(DiceType);
 
         return numbersRolled;
     }
@@ -116,8 +116,8 @@ public class RogueActionThree : PlayerAction {
     public void Upgrade() {
         Upgraded = true;
 
-        ActionText = "DEAL D6 DAMAGE APPLY D6 POISON";
-        DiceType = DiceType.D4;
+        ActionText = "DEAL 2D6";
+        DiceType = DiceType.D6;
     }
 }
 
