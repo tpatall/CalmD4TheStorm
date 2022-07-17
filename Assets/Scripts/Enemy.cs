@@ -100,4 +100,8 @@ public class Enemy : MonoBehaviour {
     public void Targeted() {
         FindObjectOfType<PlayerActionController>().PreviewAction(gameObject);
     }
+
+    public void HidePreview() {
+        previewObject.SetActive(false);
+    }
 }

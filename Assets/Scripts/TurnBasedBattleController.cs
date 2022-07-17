@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TurnBasedBattleController : MonoBehaviour {
 
-    enum BattleState { 
+    enum BattleState {
         INITIATE,
         PLAYER_TURN,
         ENEMY_TURN,
@@ -20,7 +20,7 @@ public class TurnBasedBattleController : MonoBehaviour {
 
     EnemyController enemyController;
 
-    public GameObject playerUI;
+    public GameObject playerUI, deathButton;
 
 
     private void Start() {
@@ -81,6 +81,16 @@ public class TurnBasedBattleController : MonoBehaviour {
         }
     }
 
+    public void VictoryState() {
+        currState = BattleState.DEATH;
+
+        foreach(Enemy enemy in EnemyController.Instance.currEnemies) {
+            enemy.HidePreview();
+        }
+
+        // Go to death screen
+    }
+
     void TurnStart() {
         foreach(Enemy enemy in enemyController.currEnemies) {
             enemy.debuffed = false;
@@ -101,10 +111,16 @@ public class TurnBasedBattleController : MonoBehaviour {
 
     IEnumerator EnemyTurn() {
         foreach(Enemy enemy in enemyController.currEnemies) {
+            if(currState == BattleState.DEATH) {
+                yield break;
+            }
             enemy.PerformAction();
             yield return new WaitForSeconds(2);
         }
 
+        if(currState == BattleState.DEATH) {
+            yield break;
+        }
         NextState();
     }
 }

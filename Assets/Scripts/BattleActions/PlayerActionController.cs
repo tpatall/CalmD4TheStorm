@@ -111,7 +111,11 @@ public class PlayerActionController : MonoBehaviour {
         FindObjectOfType<Energy>().SpendEnergy(readiedAction.EnergyCost);
 
         if(!readiedAction.SkipReroll) {
-            ActionPreviewController.Instance.ShowPreview(numbersRolled, Player.Instance.strength);
+            if(readiedAction.Target == TargetType.SELF) {
+                ActionPreviewController.Instance.ShowPreview(numbersRolled, 0);
+            } else {
+                ActionPreviewController.Instance.ShowPreview(numbersRolled, Player.Instance.strength);
+            }
         } else {
             DoAction();
         }

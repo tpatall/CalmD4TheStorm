@@ -18,9 +18,9 @@ public class AttackAction : MonoBehaviour, BattleAction {
         for(int i = 0; i < diceAmount; i++) {
             int damage = DiceHelper.GetRandomFromDice(damageDiceType) + enemy.Strength - enemy.strengthDebuff;
 
-            Player.Instance.TakeDamage(damage);
-
-            Debug.Log("Hit for " + damage + " damage!");
+            if(Player.Instance.TakeDamage(damage)) {
+                return;
+            }
         }
     }
 

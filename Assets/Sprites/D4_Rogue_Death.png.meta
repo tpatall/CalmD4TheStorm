@@ -1,37 +1,37 @@
 fileFormatVersion: 2
-guid: 26f09d201b7707847a5732fab8d1d5b8
+guid: cfdfc39bcb1584547833b8b7475035fb
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7198539669831903162
-    second: D4_Cleric_Death_0
+      213: -4182870680936003997
+    second: D4_Rogue_Death_0
   - first:
-      213: 6648718696796888652
-    second: D4_Cleric_Death_1
+      213: 6860687270330404533
+    second: D4_Rogue_Death_1
   - first:
-      213: -161737892287090091
-    second: D4_Cleric_Death_2
+      213: 3721355377267069848
+    second: D4_Rogue_Death_2
   - first:
-      213: 2144481997072957195
-    second: D4_Cleric_Death_3
+      213: 2307069058703988136
+    second: D4_Rogue_Death_3
   - first:
-      213: 1446986098145257528
-    second: D4_Cleric_Death_4
+      213: -2791998753022771986
+    second: D4_Rogue_Death_4
   - first:
-      213: -3066992718374725776
-    second: D4_Cleric_Death_5
+      213: 1835880438292242830
+    second: D4_Rogue_Death_5
   - first:
-      213: 7566616068828153551
-    second: D4_Cleric_Death_6
+      213: 533687823449423947
+    second: D4_Rogue_Death_6
   - first:
-      213: 3458885120434610057
-    second: D4_Cleric_Death_7
+      213: -8704626610872990595
+    second: D4_Rogue_Death_7
   - first:
-      213: -8586585790170841203
-    second: D4_Cleric_Death_8
+      213: -6553511354429051199
+    second: D4_Rogue_Death_8
   - first:
-      213: 7742070727530027786
-    second: D4_Cleric_Death_10
+      213: -2727570366330606566
+    second: D4_Rogue_Death_10
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -121,7 +121,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: D4_Cleric_Death_0
+      name: D4_Rogue_Death_0
       rect:
         serializedVersion: 2
         x: 0
@@ -135,14 +135,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6489c1e4f46a91c90800000000000000
-      internalID: -7198539669831903162
+      spriteID: 366c969074573f5c0800000000000000
+      internalID: -4182870680936003997
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: D4_Cleric_Death_1
+      name: D4_Rogue_Death_1
       rect:
         serializedVersion: 2
         x: 32
@@ -156,14 +156,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c4e9316ad6ef44c50800000000000000
-      internalID: 6648718696796888652
+      spriteID: 5be861f09be063f50800000000000000
+      internalID: 6860687270330404533
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: D4_Cleric_Death_2
+      name: D4_Rogue_Death_2
       rect:
         serializedVersion: 2
         x: 64
@@ -177,14 +177,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 552f18f6e3461cdf0800000000000000
-      internalID: -161737892287090091
+      spriteID: 8935ef0cff8e4a330800000000000000
+      internalID: 3721355377267069848
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: D4_Cleric_Death_3
+      name: D4_Rogue_Death_3
       rect:
         serializedVersion: 2
         x: 96
@@ -198,14 +198,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b0ff0cea30bb2cd10800000000000000
-      internalID: 2144481997072957195
+      spriteID: 8a59854e51b540020800000000000000
+      internalID: 2307069058703988136
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: D4_Cleric_Death_4
+      name: D4_Rogue_Death_4
       rect:
         serializedVersion: 2
         x: 128
@@ -219,14 +219,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 83860e6903ab41410800000000000000
-      internalID: 1446986098145257528
+      spriteID: eec7eb04de3d049d0800000000000000
+      internalID: -2791998753022771986
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: D4_Cleric_Death_5
+      name: D4_Rogue_Death_5
       rect:
         serializedVersion: 2
         x: 160
@@ -240,14 +240,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 077909c4f5adf65d0800000000000000
-      internalID: -3066992718374725776
+      spriteID: e816f7e188b5a7910800000000000000
+      internalID: 1835880438292242830
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: D4_Cleric_Death_6
+      name: D4_Rogue_Death_6
       rect:
         serializedVersion: 2
         x: 192
@@ -261,14 +261,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fc6c3469935020960800000000000000
-      internalID: 7566616068828153551
+      spriteID: b4087a17f3a086700800000000000000
+      internalID: 533687823449423947
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: D4_Cleric_Death_7
+      name: D4_Rogue_Death_7
       rect:
         serializedVersion: 2
         x: 224
@@ -282,14 +282,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98f936ae0bd600030800000000000000
-      internalID: 3458885120434610057
+      spriteID: d74c08c6734f23780800000000000000
+      internalID: -8704626610872990595
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: D4_Cleric_Death_8
+      name: D4_Rogue_Death_8
       rect:
         serializedVersion: 2
         x: 256
@@ -303,14 +303,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d8f337fa7b156d880800000000000000
-      internalID: -8586585790170841203
+      spriteID: 1ce64c725204d05a0800000000000000
+      internalID: -6553511354429051199
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: D4_Cleric_Death_10
+      name: D4_Rogue_Death_10
       rect:
         serializedVersion: 2
         x: 320
@@ -324,8 +324,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a0b9064be4c517b60800000000000000
-      internalID: 7742070727530027786
+      spriteID: a1c6bfef339b52ad0800000000000000
+      internalID: -2727570366330606566
       vertices: []
       indices: 
       edges: []

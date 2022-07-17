@@ -4637,6 +4637,7 @@ GameObject:
   - component: {fileID: 1545341109}
   - component: {fileID: 1545341111}
   - component: {fileID: 1545341110}
+  - component: {fileID: 1545341112}
   m_Layer: 0
   m_Name: PlayerSprite
   m_TagString: Untagged
@@ -4728,6 +4729,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1545341112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545341108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 761bb6e0b19b47b4b8d44066c3cdb167, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poof: {fileID: 570547265}
 --- !u!1 &1581739001
 GameObject:
   m_ObjectHideFlags: 0
@@ -5908,6 +5922,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerUI: {fileID: 1099304761}
+  deathButton: {fileID: 0}
 --- !u!1 &2124700442
 GameObject:
   m_ObjectHideFlags: 0
