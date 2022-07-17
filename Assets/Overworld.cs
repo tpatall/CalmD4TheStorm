@@ -32,18 +32,14 @@ public class Overworld : PersistentSingleton<Overworld>
     // Current index in levelObjects list.
     private int currentLevelIndex = 0;
 
-    // Levels since the start.
-    private int progression = 0;
-
     // List of possible levels to go to next.
     private List<LevelObject> nextObjects = new List<LevelObject>();
-
-    public GameState CurrentState { get; private set; }
 
     void Start()
     {
         PopulateMap();
-        CurrentState = GameState.WaitForEnter;
+
+        LoadNextLevel();
     }
 
     private void PopulateMap() {
@@ -59,18 +55,32 @@ public class Overworld : PersistentSingleton<Overworld>
                 // Choose the level type from the specified level types based on progression in the game.
                 // With a chance to divert?
                 levelID = level.LevelID;
+                LevelTypes levelType = Levels[levelID];
+                // If a battle or treasure level is between 3 and 3-before final boss, then allow variety based on random chance.
+                if (levelID > 3 && levelID < Levels.Count - 3
+                    && Levels[levelID - 1] != Levels[levelID] && Levels[levelID + 1] != Levels[levelID]) {
+                    if (levelType == LevelTypes.BattleLevel) {
+                        // 20% chance for a battle level to become a treasure level.
+                        if (Random.Range(0f, 1f) < 0.2f) {
+                            levelType = LevelTypes.TreasureLevel;
+                        }
+                    } else if (levelType == LevelTypes.TreasureLevel) {
+                        // 40% chance for a treasure level to become a battle level.
+                        if (Random.Range(0f, 1f) < 0.4f) {
+                            levelType = LevelTypes.BattleLevel;
+                        }
+                    }
+                }
 
-                Vector2 gameObjectPos = new Vector2(levelID * 3f, 0.5f - (2 * i));
-
-                switch (Levels[levelID]) {
+                switch (levelType) {
                     case LevelTypes.BattleLevel:
-                        InstantiateLevel(battleLevelPrefab, level, gameObjectPos);
+                        InstantiateLevel(battleLevelPrefab, level, LevelTypes.BattleLevel);
                         break;
                     case LevelTypes.ShopLevel:
-                        InstantiateLevel(shopLevelPrefab, level, gameObjectPos);
+                        InstantiateLevel(shopLevelPrefab, level, LevelTypes.ShopLevel);
                         break;
                     case LevelTypes.TreasureLevel:
-                        InstantiateLevel(treasureLevelPrefab, level, gameObjectPos);
+                        InstantiateLevel(treasureLevelPrefab, level, LevelTypes.TreasureLevel);
                         break;
                     default:
                         break;
@@ -80,15 +90,11 @@ public class Overworld : PersistentSingleton<Overworld>
             }
         }
 
-        // Enable the new possible to-be selected levels to be interacted with.
-        LevelObject levelObject = levelObjects[0];
-        nextObjects = new List<LevelObject>();
-        foreach (Level level in levelObject.Level.NextLevels) {
-            level.Object.Next = true;
-            Debug.Log("Level " + level.Object.CurrentLevelIndex + " is enabled.");
+        // Set the 0th level as the first one to enter.
+        //nextObjects = new List<LevelObject>();
+        //nextObjects.Add(levelObjects[1]);
 
-            nextObjects.Add(level.Object);
-        }
+        SetNextLevel(0);
     }
 
     /// <summary>
@@ -97,13 +103,16 @@ public class Overworld : PersistentSingleton<Overworld>
     /// <param name="prefab">Prefab to instantiate.</param>
     /// <param name="level">Level that belongs to this object.</param>
     /// <param name="pos">Position for this object.</param>
-    private void InstantiateLevel(GameObject prefab, Level level, Vector2 pos) {
+    private void InstantiateLevel(GameObject prefab, Level level, LevelTypes levelType) {
         GameObject gameObject = Instantiate(prefab, transform);
-        gameObject.transform.position = pos;
 
         LevelObject levelObject = gameObject.GetComponent<LevelObject>();
-        levelObject.SetUp(currentLevelIndex, level, this);
+        levelObject.SetUp(currentLevelIndex, levelType, level);
         level.AssignLevelObject(levelObject);
+
+        //LevelObject newLevelObject = new LevelObject();
+        //newLevelObject.SetUp(currentLevelIndex, levelType, level, this);
+        //level.AssignLevelObject(newLevelObject);
 
         levelObjects.Add(levelObject);
     }
@@ -111,55 +120,65 @@ public class Overworld : PersistentSingleton<Overworld>
     /// <summary>
     ///     Get the level type of the next level and randomly generate the content.
     /// </summary>
-    public void StartNextLevel() {
-        CurrentState = GameState.InLevel;
-        Debug.Log("Entering level: " + Levels[progression]);
+    //public void StartNextLevel() {
+    //    Debug.Log("Entering level: " + Levels[progression]);
 
-        switch (Levels[progression]) {
-            case LevelTypes.BattleLevel:
-                GenerateBattleLevel();
-                break;
-            case LevelTypes.ShopLevel:
-                GenerateShopLevel();
-                break;
-            case LevelTypes.TreasureLevel:
-                GenerateTreasureLevel();
-                break;
-            default:
-                Debug.Log("This aint no level fool");
-                break;
-        }
-    }
+    //    switch (Levels[progression]) {
+    //        case LevelTypes.BattleLevel:
+    //            GenerateBattleLevel();
+    //            break;
+    //        case LevelTypes.ShopLevel:
+    //            GenerateShopLevel();
+    //            break;
+    //        case LevelTypes.TreasureLevel:
+    //            GenerateTreasureLevel();
+    //            break;
+    //        default:
+    //            Debug.Log("This aint no level fool");
+    //            break;
+    //    }
+    //}
 
     /// <summary>
     ///     Start battle level.
     /// </summary>
     private void GenerateBattleLevel() {
+        Debug.Log("Battle!");
         // play battle animation
 
-        // proceed to encounter relevant scene
+        // Allow player to choose when to start encounter
+        SceneManager.LoadScene("EnterLevel");
+        
+        // When they press enter.
         // SceneManager.LoadScene("Encounter");
-    }
 
+        // When the specific scene is done, they will do LoadNextLevel();
+    }
 
     /// <summary>
     ///     Start shop level.
     /// </summary>
     private void GenerateShopLevel() {
+        Debug.Log("Shop!");
         // play shop animation
 
         // proceed to shop scene
-        // SceneManager.LoadScene("ShopLevel");
+        SceneManager.LoadScene("Shop");
+
+        // When the specific scene is done, they will do LoadNextLevel();
     }
 
     /// <summary>
     ///     Start treasure level.
     /// </summary>
     private void GenerateTreasureLevel() {
+        Debug.Log("Treasure!");
         // play treasure animation
 
         // proceed to treasure scene
-        // SceneManager.LoadScene("TreasureLevel");
+        SceneManager.LoadScene("Treasure");
+        
+        // When the specific scene is done, they will do LoadNextLevel();
     }
 
     /// <summary>
@@ -167,66 +186,89 @@ public class Overworld : PersistentSingleton<Overworld>
     /// </summary>
     public void LoadNextLevel() {
         // Boss room, load special extra cursed scene?
-        if (currentLevelIndex == Levels.Count - 1) {
-
+        if (currentLevelIndex + 1 == Levels.Count) {
+            Debug.Log("Boss defeated lmao xd");
         }
 
-        if (nextObjects.Count == 1) {
-            // No need to choose a path, load next level
-            //SceneManager.LoadScene("EnterLevel");
+        if (nextObjects.Count == 1 && nextObjects[0] != null) {
+            LevelObject levelObject = nextObjects[0];
+            LevelTypes levelType = nextObjects[0].LevelType;
 
-            CurrentState = GameState.WaitForEnter;
+            SetNextLevel(levelObject.CurrentLevelIndex);
+
+            // No need to choose a path, load next level
+            if (levelType == LevelTypes.BattleLevel) {
+                GenerateBattleLevel();
+            } else if (levelType == LevelTypes.ShopLevel) {
+                GenerateShopLevel();
+            } else {
+                GenerateTreasureLevel();
+            }
+
             Debug.Log("Waiting for enter.");
         } else if (nextObjects.Count == 2) {
             // load scene with choice between 2 paths
             // if theres more than 2 options, just ignore the 2+.
-            //SceneManager.LoadScene("ChoosePath");
+            SceneManager.LoadScene("Choose");
 
-            CurrentState = GameState.WaitForMoveNext;
-            Debug.Log("Waiting for movement.");
+            Debug.Log("Waiting for choice.");
         }
     }
 
     /// <summary>
-    ///     Move to next level.
+    ///     Choose one of two paths given.
+    /// </summary>
+    /// <param name="left">If the chosen path was the left one.</param>
+    public void ChooseLevelLeft(bool left) {
+        LevelObject levelObject;
+        LevelTypes levelType;
+        
+        if (left) {
+            levelObject = nextObjects[0];
+            levelType = nextObjects[0].LevelType;
+
+        } else {
+            levelObject = nextObjects[1];
+            levelType = nextObjects[0].LevelType;
+        }
+
+        SetNextLevel(levelObject.CurrentLevelIndex);
+
+        if (levelType == LevelTypes.BattleLevel) {
+            GenerateBattleLevel();
+        }
+        else if (levelType == LevelTypes.ShopLevel) {
+            GenerateShopLevel();
+        }
+        else {
+            GenerateTreasureLevel();
+        }
+
+        Debug.Log("Waiting for enter.");
+    }
+
+    /// <summary>
+    ///     Set the levels that will follow the current one.
     /// </summary>
     /// <returns>Position of the next level object.</returns>
-    public void GoNextLevel(int currentLevelIndex, Vector2 objectPos) {
-        CurrentState = GameState.Walking;
-        Debug.Log("Walking to next position.");
-
+    private void SetNextLevel(int currentLevelIndex) {
         this.currentLevelIndex = currentLevelIndex;
 
         // Enable the new possible to-be selected levels to be interacted with.
         LevelObject levelObject = levelObjects[currentLevelIndex];
         nextObjects = new List<LevelObject>();
         foreach (Level level in levelObject.Level.NextLevels) {
-            level.Object.Next = true;
+            //level.Object.Next = true;
             Debug.Log("Level " + level.Object.CurrentLevelIndex + " is enabled.");
 
             nextObjects.Add(level.Object);
         }
-
-        progression++;
-        playerMovement.MoveToNext(objectPos);
-
-        CurrentState = GameState.WaitForEnter;
-        Debug.Log("Waiting to enter level.");
     }
 }
 
-enum LevelTypes
+public enum LevelTypes
 {
     BattleLevel,
     ShopLevel,
     TreasureLevel
 }
-
-public enum GameState
-{
-    WaitForMoveNext,
-    Walking,
-    WaitForEnter,
-    InLevel
-}
-

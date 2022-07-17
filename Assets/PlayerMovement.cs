@@ -14,11 +14,11 @@ public class PlayerMovement : MonoBehaviour
         transform.position = overworld.PlayerPosition;
     }
 
-    private void Update() {
-        if (Input.GetKeyDown(KeyCode.Space) && overworld.CurrentState == GameState.WaitForEnter) {
-            overworld.StartNextLevel();
-        }
-    }
+    //private void Update() {
+    //    if (Input.GetKeyDown(KeyCode.Space) && overworld.CurrentState == GameState.WaitForEnter) {
+    //        overworld.StartNextLevel();
+    //    }
+    //}
 
     /// <summary>
     ///     Animation of moving the player to the next level.

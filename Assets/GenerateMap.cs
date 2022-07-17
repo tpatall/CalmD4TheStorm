@@ -17,12 +17,12 @@ public class GenerateMap
     /// </summary>
     /// <returns>An array of possible split numbers.</returns>
     private int[] SplittingOptions() {
-        int firstSplit = (int)Mathf.Floor(Random.Range(3, 8));
+        int firstSplit = (int)Mathf.Floor(Random.Range(3, 6));
         int secondSplit = (int)Mathf.Floor(Random.Range(9, 13));
 
-        int[] splittingOptions = new int[2];
+        int[] splittingOptions = new int[1];
         splittingOptions[0] = firstSplit;
-        splittingOptions[1] = secondSplit;
+        //splittingOptions[1] = secondSplit;
 
         return splittingOptions;
     }
@@ -39,7 +39,7 @@ public class GenerateMap
             for (int j = 0; j < Branches.Count; j++) {
                 if (Branches[j] == mainBranch) {
                     // Let the mainbranch split off a couple of times at a random point.
-                    if (i == splittingOptions[0] || i == splittingOptions[1]) {
+                    if (i == splittingOptions[0]) { // || i == splittingOptions[1]) {
                         Branch newBranch = new Branch(mainBranch);
                         Branches.Add(newBranch);
 
@@ -51,7 +51,7 @@ public class GenerateMap
                 }
                 else if (Branches[j].IsActive) {
                     // also branch out from non-main branches at a much lower chance and only before a certain point.
-                    if (Random.Range(0f, 1f) < 0.1f && i < 15) {
+                    if (Random.Range(0f, 1f) < 0.1f && i < 6) {
                         Branch newBranch = new Branch(Branches[j]);
                         Branches.Add(newBranch);
                         
@@ -156,7 +156,7 @@ public class Branch
 
         // If not main branch (as mainbranch has no parent)
         // Then stop the branch at a random interval between 3 and 7 (exclusive 7).
-        if (ParentBranch != null && Levels.Count > Random.Range(3, 7)) {
+        if (ParentBranch != null && Levels.Count > Random.Range(3, 5)) {
             IsActive = false;
 
             // Search for the parent branch that is still active.

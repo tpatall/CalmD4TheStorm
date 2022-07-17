@@ -205,6 +205,49 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &480225129
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 480225131}
+  - component: {fileID: 480225130}
+  m_Layer: 0
+  m_Name: Shop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &480225130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480225129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eec0c18755c8d77498b4d148ff890cf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &480225131
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480225129}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 774.06134, y: 403.6303, z: -843.7037}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &560984716
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,38 +381,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4507303930034425234, guid: 547093ec3db48a34aa990494abe95296, type: 3}
-      propertyPath: Levels.Array.size
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 4507303930034425234, guid: 547093ec3db48a34aa990494abe95296, type: 3}
-      propertyPath: Levels.Array.data[11]
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4507303930034425234, guid: 547093ec3db48a34aa990494abe95296, type: 3}
-      propertyPath: Levels.Array.data[12]
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4507303930034425234, guid: 547093ec3db48a34aa990494abe95296, type: 3}
-      propertyPath: Levels.Array.data[13]
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4507303930034425234, guid: 547093ec3db48a34aa990494abe95296, type: 3}
-      propertyPath: Levels.Array.data[14]
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4507303930034425234, guid: 547093ec3db48a34aa990494abe95296, type: 3}
-      propertyPath: Levels.Array.data[15]
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4507303930034425234, guid: 547093ec3db48a34aa990494abe95296, type: 3}
-      propertyPath: Levels.Array.data[16]
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4507303930034425234, guid: 547093ec3db48a34aa990494abe95296, type: 3}
-      propertyPath: Levels.Array.data[17]
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4507303930034425235, guid: 547093ec3db48a34aa990494abe95296, type: 3}
       propertyPath: m_Name
       value: OverworldManager
@@ -446,7 +457,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: BATTLE
+  m_Text: SHOP
 --- !u!222 &617792254
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -549,7 +560,7 @@ RectTransform:
   - {fileID: 1281004911}
   - {fileID: 1336184769}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -652,7 +663,7 @@ GameObject:
   - component: {fileID: 1281004912}
   - component: {fileID: 1281004915}
   m_Layer: 5
-  m_Name: EnterButton
+  m_Name: ExitButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -723,8 +734,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1281004915}
-        m_TargetAssemblyTypeName: EnterButton, Assembly-CSharp
-        m_MethodName: EnterLevel
+        m_TargetAssemblyTypeName: ExitButton, Assembly-CSharp
+        m_MethodName: ExitLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -781,7 +792,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1281004910}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eae41f18d7fdf8c4eb8c8e2fd8a04a50, type: 3}
+  m_Script: {fileID: 11500000, guid: 301a3979081dd6042aca4791f903dd59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1336184768
@@ -842,7 +853,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7640989a39840334b883fa93523046bc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e8eb1ae540b422848956ca1cedad5a89, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -955,7 +966,7 @@ GameObject:
   - component: {fileID: 1590256969}
   - component: {fileID: 1590256968}
   m_Layer: 5
-  m_Name: ENTER
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1013,7 +1024,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: ENTER
+  m_Text: 'EXIT
+
+'
 --- !u!222 &1590256969
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1086,5 +1099,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
