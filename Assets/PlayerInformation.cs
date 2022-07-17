@@ -11,8 +11,6 @@ public class PlayerInformation : MonoBehaviour
 
     public int PlayerHealth { get; set; }
 
-    public int Pips { get; set; }
-
     private void Awake() {
         DontDestroyOnLoad(this.gameObject);
     }
@@ -21,7 +19,6 @@ public class PlayerInformation : MonoBehaviour
     void Start()
     {
         PlayerHealth = 20;
-        Pips = 0;
 
         // Create all actions.
         warriorActions.Add(new WarriorActionOne());
@@ -50,8 +47,8 @@ public class PlayerInformation : MonoBehaviour
     }
 
     // Call after loading in shop scene.
-    public List<PlayerAction> BuildShop() {
-        List<PlayerAction> upgradeableActions = new List<PlayerAction>();
+    public List<(PlayerAction, int, string)> BuildShop() {
+        List<(PlayerAction, int)> upgradeableActions = new List<(PlayerAction, int)>();
 
         // Get 2 unupgraded actions.
         int list;
@@ -61,7 +58,7 @@ public class PlayerInformation : MonoBehaviour
             if (list == 0) {
                 playerAction = GetRandomAction(warriorActions);
                 if (playerAction != null) {
-                    upgradeableActions.Add(playerAction);
+                    upgradeableActions.Add((playerAction, list));
                 } else {
                     i--;
                 }
@@ -69,7 +66,7 @@ public class PlayerInformation : MonoBehaviour
             } else if (list == 1) {
                 playerAction = GetRandomAction(rogueActions);
                 if (playerAction != null) {
-                    upgradeableActions.Add(playerAction);
+                    upgradeableActions.Add((playerAction, list));
                 }
                 else {
                     i--;
@@ -78,7 +75,7 @@ public class PlayerInformation : MonoBehaviour
             } else if (list == 2) {
                 playerAction = GetRandomAction(mageActions);
                 if (playerAction != null) {
-                    upgradeableActions.Add(playerAction);
+                    upgradeableActions.Add((playerAction, list));
                 }
                 else {
                     i--;
@@ -87,7 +84,7 @@ public class PlayerInformation : MonoBehaviour
             } else {
                 playerAction = GetRandomAction(clericActions);
                 if (playerAction != null) {
-                    upgradeableActions.Add(playerAction);
+                    upgradeableActions.Add((playerAction, list));
                 }
                 else {
                     i--;
@@ -95,7 +92,14 @@ public class PlayerInformation : MonoBehaviour
             }
         }
 
-        return upgradeableActions;
+        List<(PlayerAction, int, string)> shopItems = new List<(PlayerAction, int, string)>();
+        for (int i = 0; i < upgradeableActions.Count; i++) {
+            PlayerAction copyAction = upgradeableActions[i].Item1;
+            copyAction.Upgrade();
+            shopItems.Add((shopItems[i].Item1, shopItems[i].Item2, copyAction.ActionText));
+        }
+
+        return shopItems;
     }
 
     public PlayerAction GetRandomAction(List<PlayerAction> actions) {

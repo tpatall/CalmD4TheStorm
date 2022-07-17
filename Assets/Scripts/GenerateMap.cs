@@ -39,26 +39,26 @@ public class GenerateMap
             for (int j = 0; j < Branches.Count; j++) {
                 if (Branches[j] == mainBranch) {
                     // Let the mainbranch split off a couple of times at a random point.
-                    if (i == splittingOptions[0]) { // || i == splittingOptions[1]) {
-                        Branch newBranch = new Branch(mainBranch);
-                        Branches.Add(newBranch);
+                    //if (i == splittingOptions[0]) { // || i == splittingOptions[1]) {
+                    //    Branch newBranch = new Branch(mainBranch);
+                    //    Branches.Add(newBranch);
 
+                    //    AddLevel(mainBranch, i);
+                    //}
+                    //else {
                         AddLevel(mainBranch, i);
-                    }
-                    else {
-                        AddLevel(mainBranch, i);
-                    }
+                    //}
                 }
-                else if (Branches[j].IsActive) {
-                    // also branch out from non-main branches at a much lower chance and only before a certain point.
-                    if (Random.Range(0f, 1f) < 0.1f && i < 6) {
-                        Branch newBranch = new Branch(Branches[j]);
-                        Branches.Add(newBranch);
+                //else if (Branches[j].IsActive) {
+                //    // also branch out from non-main branches at a much lower chance and only before a certain point.
+                //    if (Random.Range(0f, 1f) < 0.1f && i < 6) {
+                //        Branch newBranch = new Branch(Branches[j]);
+                //        Branches.Add(newBranch);
                         
-                        AddLevel(Branches[j], i);
-                    }
-                    else AddLevel(Branches[j], i);
-                }
+                //        AddLevel(Branches[j], i);
+                //    }
+                //    else AddLevel(Branches[j], i);
+                //}
             }
         }
     }
