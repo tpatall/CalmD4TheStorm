@@ -21,6 +21,9 @@ public class ShopLevel : MonoBehaviour
     [SerializeField] private Sprite mageSprite;
     [SerializeField] private Sprite clericSprite;
 
+    [SerializeField] private Button button1;
+    [SerializeField] private Button button2;
+
     private PlayerInformation playerInformation;
 
     private List<(PlayerAction, int, string)> shopItems;
@@ -86,10 +89,14 @@ public class ShopLevel : MonoBehaviour
 
     public void UpgradeItem1() {
         shopItems[0].Item1.Upgrade();
+        Debug.Log("Item1 upgraded!");
+        button1.interactable = false;
     }
 
     public void UpgradeItem2() {
         shopItems[1].Item1.Upgrade();
+        Debug.Log("Item2 upgraded!");
+        button2.interactable = false;
     }
 
     public void LeaveShop() {
