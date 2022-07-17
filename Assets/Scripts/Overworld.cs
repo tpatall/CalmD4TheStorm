@@ -15,8 +15,6 @@ public class Overworld : PersistentSingleton<Overworld>
     /// </summary>
     public Vector3 PlayerPosition;
 
-    [SerializeField] private PlayerMovement playerMovement;
-    
     [SerializeField] private GameObject battleLevelPrefab;
     [SerializeField] private GameObject shopLevelPrefab;
     [SerializeField] private GameObject treasureLevelPrefab;

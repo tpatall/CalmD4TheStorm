@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShopLevel : MonoBehaviour
 {
     // 3 deals
-    [SerializeField] private List<Deal> items = new List<Deal>();
+    //[SerializeField] private List<Deal> items = new List<Deal>();
 
     private void Start() {
 

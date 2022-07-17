@@ -17,4 +17,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BattleScene.unity
     guid: d7398105becb9f64494b7b782603912f
+  - enabled: 1
+    path: Assets/Scenes/EnterLevel.unity
+    guid: 46bde465c86124d43ad815873b2bd9e5
+  - enabled: 1
+    path: Assets/Scenes/Choose.unity
+    guid: 88b210e3936b3904c9df5ed08c08b956
+  - enabled: 1
+    path: Assets/Scenes/Shop.unity
+    guid: 6c9be20f8d1e60f499c5ce00522d004c
+  - enabled: 1
+    path: Assets/Scenes/Treasure.unity
+    guid: 02757024a98d3bd45a6c83e84b20f124
   m_configObjects: {}
