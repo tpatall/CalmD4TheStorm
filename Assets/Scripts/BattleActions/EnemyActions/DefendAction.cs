@@ -8,8 +8,19 @@ public class DefendAction : MonoBehaviour, BattleAction {
     public DiceType diceType;
     public int diceAmount;
 
+    private AudioSource audioSource;
+    private AudioClip clip;
+
+    void Start() {
+        audioSource = Camera.main.GetComponent<AudioSource>();
+        clip = Resources.Load<AudioClip>("Audio/Sound Effects/Block");
+    }
+
     public void DoAction() {
         Debug.Log("Blocking");
+
+        audioSource.clip = clip;
+        audioSource.Play();
     }
 
     public string GetActionIcon() {

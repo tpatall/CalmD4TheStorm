@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: 0536c11b562efac4481e63097c918259
+<<<<<<<< HEAD:Assets/PoofCaller.cs.meta
+guid: 761bb6e0b19b47b4b8d44066c3cdb167
+========
+guid: 7050da77e57b06e43a7c0677ea18f763
+>>>>>>>> 7a5d150a62888330777c8e4310968f622b6c6411:Assets/StartGame.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
