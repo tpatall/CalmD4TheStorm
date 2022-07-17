@@ -1,19 +1,16 @@
 fileFormatVersion: 2
-guid: 5fbcb92548e30064893c60ccfdea14de
+guid: 1159e079109e153448a15c1d8acd97d9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8186635469264653507
-    second: Dicemie_Bat_idle_0
+      213: 9178134561778598478
+    second: Dicemie_Turret_Idle_0
   - first:
-      213: -845206518705822051
-    second: Dicemie_Bat_idle_1
+      213: 6922685886069938246
+    second: Dicemie_Turret_Idle_1
   - first:
-      213: -7583063821144163990
-    second: Dicemie_Bat_idle_2
-  - first:
-      213: 4192000688313660482
-    second: Dicemie_Bat_idle_3
+      213: -9128610746864842425
+    second: Dicemie_Turret_Idle_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -103,12 +100,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Dicemie_Bat_idle_0
+      name: Dicemie_Turret_Idle_0
       rect:
         serializedVersion: 2
         x: 0
         y: 64
-        width: 64
+        width: 32
         height: 64
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -117,19 +114,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3cc022ba595cc9170800000000000000
-      internalID: 8186635469264653507
+      spriteID: e428c8f81c84f5f70800000000000000
+      internalID: 9178134561778598478
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dicemie_Bat_idle_1
+      name: Dicemie_Turret_Idle_1
       rect:
         serializedVersion: 2
-        x: 64
+        x: 32
         y: 64
-        width: 64
+        width: 32
         height: 64
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -138,19 +135,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d96e1ba36293544f0800000000000000
-      internalID: -845206518705822051
+      spriteID: 6481fcaa222521060800000000000000
+      internalID: 6922685886069938246
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dicemie_Bat_idle_2
+      name: Dicemie_Turret_Idle_2
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
+        width: 32
         height: 64
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -159,29 +156,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a69f597a1ab83c690800000000000000
-      internalID: -7583063821144163990
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dicemie_Bat_idle_3
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 64
-        height: 64
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 244f0257a6afc2a30800000000000000
-      internalID: 4192000688313660482
+      spriteID: 749ce4424e8a05180800000000000000
+      internalID: -9128610746864842425
       vertices: []
       indices: 
       edges: []
