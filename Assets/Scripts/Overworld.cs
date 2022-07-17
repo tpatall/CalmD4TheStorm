@@ -21,29 +21,28 @@ public class Overworld : PersistentSingleton<Overworld>
 
     [SerializeField] private List<LevelTypes> Levels = new List<LevelTypes>();
 
+    // Generated list of branches.
+    private List<Branch> branches = new List<Branch>();
+
+    // List of possible levels to go to next.
+    private List<LevelObject> nextObjects = new List<LevelObject>();
+    
     /// <summary>
     ///     List of level objects in scene.
     ///     Used to get information about next level.
     /// </summary>
-    private List<LevelObject> levelObjects = new List<LevelObject>();
+    public List<LevelObject> LevelObjects { get; set; } = new List<LevelObject>();
 
     // Current index in levelObjects list.
-    private int currentLevelIndex = 0;
-
-    // List of possible levels to go to next.
-    private List<LevelObject> nextObjects = new List<LevelObject>();
+    public int CurrentLevelIndex { get; set; } = 0;
 
     void Start()
     {
-        PopulateMap();
-
-        LoadNextLevel();
+        GenerateMap generateMap = new GenerateMap(Levels.Count);
+        branches = generateMap.Branches;
     }
 
-    private void PopulateMap() {
-        GenerateMap generateMap = new GenerateMap(Levels.Count);
-        List<Branch> branches = generateMap.Branches;
-
+    public void PopulateMap() {
         int levelID;
         // Build the map branch by branch (to avoid crossing paths).
         for (int i = 0; i < branches.Count; i++) {
@@ -84,13 +83,9 @@ public class Overworld : PersistentSingleton<Overworld>
                         break;
                 }
 
-                currentLevelIndex++;
+                CurrentLevelIndex++;
             }
         }
-
-        // Set the 0th level as the first one to enter.
-        //nextObjects = new List<LevelObject>();
-        //nextObjects.Add(levelObjects[1]);
 
         GenerateBattleLevel();
     }
@@ -105,37 +100,11 @@ public class Overworld : PersistentSingleton<Overworld>
         GameObject gameObject = Instantiate(prefab, transform);
 
         LevelObject levelObject = gameObject.GetComponent<LevelObject>();
-        levelObject.SetUp(currentLevelIndex, levelType, level);
+        levelObject.SetUp(CurrentLevelIndex, levelType, level);
         level.AssignLevelObject(levelObject);
 
-        //LevelObject newLevelObject = new LevelObject();
-        //newLevelObject.SetUp(currentLevelIndex, levelType, level, this);
-        //level.AssignLevelObject(newLevelObject);
-
-        levelObjects.Add(levelObject);
+        LevelObjects.Add(levelObject);
     }
-
-    /// <summary>
-    ///     Get the level type of the next level and randomly generate the content.
-    /// </summary>
-    //public void StartNextLevel() {
-    //    Debug.Log("Entering level: " + Levels[progression]);
-
-    //    switch (Levels[progression]) {
-    //        case LevelTypes.BattleLevel:
-    //            GenerateBattleLevel();
-    //            break;
-    //        case LevelTypes.ShopLevel:
-    //            GenerateShopLevel();
-    //            break;
-    //        case LevelTypes.TreasureLevel:
-    //            GenerateTreasureLevel();
-    //            break;
-    //        default:
-    //            Debug.Log("This aint no level fool");
-    //            break;
-    //    }
-    //}
 
     /// <summary>
     ///     Start battle level.
@@ -146,11 +115,6 @@ public class Overworld : PersistentSingleton<Overworld>
 
         // Allow player to choose when to start encounter
         SceneManager.LoadScene("EnterLevel");
-        
-        // When they press enter.
-        // SceneManager.LoadScene("Encounter");
-
-        // When the specific scene is done, they will do LoadNextLevel();
     }
 
     /// <summary>
@@ -162,8 +126,6 @@ public class Overworld : PersistentSingleton<Overworld>
 
         // proceed to shop scene
         SceneManager.LoadScene("Shop");
-
-        // When the specific scene is done, they will do LoadNextLevel();
     }
 
     /// <summary>
@@ -175,8 +137,6 @@ public class Overworld : PersistentSingleton<Overworld>
 
         // proceed to treasure scene
         SceneManager.LoadScene("Treasure");
-        
-        // When the specific scene is done, they will do LoadNextLevel();
     }
 
     /// <summary>
@@ -184,7 +144,7 @@ public class Overworld : PersistentSingleton<Overworld>
     /// </summary>
     public void LoadNextLevel() {
         // Boss room, load special extra cursed scene?
-        if (currentLevelIndex + 1 == Levels.Count) {
+        if (CurrentLevelIndex + 1 == Levels.Count) {
             Debug.Log("Boss defeated lmao xd");
         }
 
@@ -250,10 +210,10 @@ public class Overworld : PersistentSingleton<Overworld>
     /// </summary>
     /// <returns>Position of the next level object.</returns>
     private void SetNextLevel(int currentLevelIndex) {
-        this.currentLevelIndex = currentLevelIndex;
+        this.CurrentLevelIndex = currentLevelIndex;
 
         // Enable the new possible to-be selected levels to be interacted with.
-        LevelObject levelObject = levelObjects[currentLevelIndex];
+        LevelObject levelObject = LevelObjects[currentLevelIndex];
         nextObjects = new List<LevelObject>();
         foreach (Level level in levelObject.Level.NextLevels) {
             //level.Object.Next = true;
