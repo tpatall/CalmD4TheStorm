@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Overworld : PersistentSingleton<Overworld>
 {
@@ -28,10 +29,14 @@ public class Overworld : PersistentSingleton<Overworld>
     /// </summary>
     private List<LevelObject> levelObjects = new List<LevelObject>();
 
+    // Current index in levelObjects list.
     private int currentLevelIndex = 0;
 
     // Levels since the start.
     private int progression = 0;
+
+    // List of possible levels to go to next.
+    private List<LevelObject> nextObjects = new List<LevelObject>();
 
     public GameState CurrentState { get; private set; }
 
@@ -77,9 +82,12 @@ public class Overworld : PersistentSingleton<Overworld>
 
         // Enable the new possible to-be selected levels to be interacted with.
         LevelObject levelObject = levelObjects[0];
+        nextObjects = new List<LevelObject>();
         foreach (Level level in levelObject.Level.NextLevels) {
             level.Object.Next = true;
             Debug.Log("Level " + level.Object.CurrentLevelIndex + " is enabled.");
+
+            nextObjects.Add(level.Object);
         }
     }
 
@@ -129,10 +137,8 @@ public class Overworld : PersistentSingleton<Overworld>
     private void GenerateBattleLevel() {
         // play battle animation
 
-        // proceed to encounter class
-
-        CurrentState = GameState.WaitForMoveNext;
-        Debug.Log("Waiting for movement.");
+        // proceed to encounter relevant scene
+        // SceneManager.LoadScene("Encounter");
     }
 
 
@@ -142,10 +148,8 @@ public class Overworld : PersistentSingleton<Overworld>
     private void GenerateShopLevel() {
         // play shop animation
 
-        // proceed to shop class
-
-        CurrentState = GameState.WaitForMoveNext;
-        Debug.Log("Waiting for movement.");
+        // proceed to shop scene
+        // SceneManager.LoadScene("ShopLevel");
     }
 
     /// <summary>
@@ -154,10 +158,33 @@ public class Overworld : PersistentSingleton<Overworld>
     private void GenerateTreasureLevel() {
         // play treasure animation
 
-        // proceed to treasure class
+        // proceed to treasure scene
+        // SceneManager.LoadScene("TreasureLevel");
+    }
 
-        CurrentState = GameState.WaitForMoveNext;
-        Debug.Log("Waiting for movement.");
+    /// <summary>
+    ///     Load the next scene based on the amount of next levels.
+    /// </summary>
+    public void LoadNextLevel() {
+        // Boss room, load special extra cursed scene?
+        if (currentLevelIndex == Levels.Count - 1) {
+
+        }
+
+        if (nextObjects.Count == 1) {
+            // No need to choose a path, load next level
+            //SceneManager.LoadScene("EnterLevel");
+
+            CurrentState = GameState.WaitForEnter;
+            Debug.Log("Waiting for enter.");
+        } else if (nextObjects.Count == 2) {
+            // load scene with choice between 2 paths
+            // if theres more than 2 options, just ignore the 2+.
+            //SceneManager.LoadScene("ChoosePath");
+
+            CurrentState = GameState.WaitForMoveNext;
+            Debug.Log("Waiting for movement.");
+        }
     }
 
     /// <summary>
@@ -165,22 +192,19 @@ public class Overworld : PersistentSingleton<Overworld>
     /// </summary>
     /// <returns>Position of the next level object.</returns>
     public void GoNextLevel(int currentLevelIndex, Vector2 objectPos) {
-         CurrentState = GameState.Walking;
+        CurrentState = GameState.Walking;
         Debug.Log("Walking to next position.");
-
-        // Disable the possible selected levels from being interacted with now that one is chosen.
-        //LevelObject levelObject = levelObjects[currentLevelIndex];
-        //foreach (Level level in levelObject.Level.NextLevels) {
-        //    level.Object.Next = false;
-        //}
 
         this.currentLevelIndex = currentLevelIndex;
 
         // Enable the new possible to-be selected levels to be interacted with.
         LevelObject levelObject = levelObjects[currentLevelIndex];
+        nextObjects = new List<LevelObject>();
         foreach (Level level in levelObject.Level.NextLevels) {
             level.Object.Next = true;
             Debug.Log("Level " + level.Object.CurrentLevelIndex + " is enabled.");
+
+            nextObjects.Add(level.Object);
         }
 
         progression++;

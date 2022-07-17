@@ -12,8 +12,25 @@ public class GenerateMap
         GenerateRandomBranches(levelLength);
     }
 
+    /// <summary>
+    ///     Generate random values that decide when the main branch will split off.
+    /// </summary>
+    /// <returns>An array of possible split numbers.</returns>
+    private int[] SplittingOptions() {
+        int firstSplit = (int)Mathf.Floor(Random.Range(3, 8));
+        int secondSplit = (int)Mathf.Floor(Random.Range(9, 13));
+
+        int[] splittingOptions = new int[2];
+        splittingOptions[0] = firstSplit;
+        splittingOptions[1] = secondSplit;
+
+        return splittingOptions;
+    }
+
     private void GenerateRandomBranches(int levelLength) {
-        Branch mainBranch = new Branch(Branches.Count, null, null);
+        int[] splittingOptions = SplittingOptions();
+        
+        Branch mainBranch = new Branch(null);
         mainBranch.AddLevel(0);
         Branches.Add(mainBranch);
 
@@ -21,79 +38,51 @@ public class GenerateMap
         for (int i = 1; i < levelLength; i++) {
             for (int j = 0; j < Branches.Count; j++) {
                 if (Branches[j] == mainBranch) {
-                    // Let the mainbranch split off a couple of times at a random or specific point.
-                    if (i % 6 == 0 && i < 15) { // every 6 steps split off.
-                        AddBranchAndLevel(mainBranch, i);
+                    // Let the mainbranch split off a couple of times at a random point.
+                    if (i == splittingOptions[0] || i == splittingOptions[1]) {
+                        Branch newBranch = new Branch(mainBranch);
+                        Branches.Add(newBranch);
+
+                        AddLevel(mainBranch, i);
                     }
                     else {
                         AddLevel(mainBranch, i);
                     }
                 }
-                else {
-                    // also branch out from non-main branches at a much lower chance and with some conditions.
-                    if (Random.Range(0f, 1f) < 0.05f && i < 15) { // 1 in 100 chance to split off.
-                        AddBranchAndLevel(Branches[j], i);
-                    }
-                    else if (Branches[j].Continuing)
+                else if (Branches[j].IsActive) {
+                    // also branch out from non-main branches at a much lower chance and only before a certain point.
+                    if (Random.Range(0f, 1f) < 0.1f && i < 15) {
+                        Branch newBranch = new Branch(Branches[j]);
+                        Branches.Add(newBranch);
+                        
                         AddLevel(Branches[j], i);
+                    }
+                    else AddLevel(Branches[j], i);
                 }
             }
         }
     }
 
-    /// <summary>
-    ///     Adds a new branch to the list of branches, and also adds a level for the parent branch and the new branch.
-    /// </summary>
-    /// <param name="branch">The parent branch.</param>
-    /// <param name="levelID">Current level ID.</param>
-    private void AddBranchAndLevel(Branch branch, int levelID) {
-        Branch newBranch = new Branch(Branches.Count, branch, branch.CurrentLevel);
-        Branches.Add(newBranch);
-
-        Level currentLevel = branch.CurrentLevel;
-
-        List<Level> levels = new List<Level>();
-
+    private void AddLevel(Branch branch, int levelID) {
         // Add level to branch
-        Level branchLevel = branch.AddLevel(levelID);
-        levels.Add(branchLevel);
+        Level newLevel = branch.AddLevel(levelID);
 
-        // Merge discontinued branches back into current
-        if (branch.ChildrenToBeMerged.Count > 0) {
-            for (int i = 0; i < branch.ChildrenToBeMerged.Count; i++) {
-                Level childLevel = branch.ChildrenToBeMerged[i];
-
-                childLevel.ReferenceNextLevels(levels);
-
-                branch.ChildrenToBeMerged.Remove(childLevel);
-            }
-        }
-
-        // Give the previous level references to the two newly created levels.
-        currentLevel.ReferenceNextLevels(levels);
+        MergeChildren(branch, newLevel);
     }
 
-    private void AddLevel(Branch branch, int levelID) {
-        List<Level> levels = new List<Level>();
-
-        Level currentLevel = branch.CurrentLevel;
-
-        // Add level to branch
-        Level branchLevel = branch.AddLevel(levelID);
-        levels.Add(branchLevel);
-
-        // Merge discontinued branches back into current
+    /// <summary>
+    ///     Merge discontinued branches back into current.
+    /// </summary>
+    private void MergeChildren(Branch branch, Level newLevel) {
         if (branch.ChildrenToBeMerged.Count > 0) {
             for (int i = 0; i < branch.ChildrenToBeMerged.Count; i++) {
                 Level childLevel = branch.ChildrenToBeMerged[i];
 
-                childLevel.ReferenceNextLevels(levels);
+                childLevel.ReferenceNextLevel(newLevel);
 
                 branch.ChildrenToBeMerged.Remove(childLevel);
             }
         }
-
-        currentLevel.ReferenceNextLevels(levels);
     }
 }
 
@@ -106,12 +95,12 @@ public class Branch
     ///     If this branch is still active.
     ///     If its inactive, make the next level merge into the parent branch and dont add more levels to this branch.
     /// </summary>
-    public bool Continuing = true;
+    public bool IsActive = true;
 
     /// <summary>
-    ///     Could be useful later, but for now only used to discern the main branch from non-main branches.
+    ///     Previous level from maybe previous branch used for map generation.
     /// </summary>
-    public int BranchID { get; set; }
+    public Level PreviousLevel { get; set; }
 
     /// <summary>
     ///     Current level used for map generation.
@@ -133,14 +122,18 @@ public class Branch
     /// </summary>
     public List<Level> Levels { get; set; }
 
-    public Branch(int branchID, Branch parentBranch, Level currentLevel) {
-        BranchID = branchID;
+    public Branch(Branch parentBranch) {
         ParentBranch = parentBranch;
 
+        if (parentBranch != null) {
+            PreviousLevel = parentBranch.CurrentLevel;
+            CurrentLevel = parentBranch.CurrentLevel;
+        } else {
+            PreviousLevel = null;
+            CurrentLevel = null;
+        }
+
         Levels = new List<Level>();
-
-        CurrentLevel = currentLevel;
-
         ChildrenToBeMerged = new List<Level>();
     }
 
@@ -148,25 +141,35 @@ public class Branch
     ///     Add a level to the list of levels in this branch.
     ///     If this exceeds a certain number, merge the branch into where it came from.
     /// </summary>
-    /// <param name="levelID">Progress ID of the level.</param>
-    public Level AddLevel(int levelID) {
-        Level level = new Level(levelID, Levels.Count, CurrentLevel);
-        Levels.Add(level);
+    /// <param name="newLevelID">Progress ID of the level.</param>
+    public Level AddLevel(int newLevelID) {
+        Level newLevel;
+        // If first level in new branch
+        if (CurrentLevel == null) {
+            newLevel = new Level(newLevelID, CurrentLevel, PreviousLevel);
+            // PreviousLevel remains null
+        } else {
+            newLevel = new Level(newLevelID, CurrentLevel, PreviousLevel);
+            PreviousLevel = CurrentLevel;
+        }
+        Levels.Add(newLevel);
 
-        if (BranchID != 0 && Levels.Count > 5) {
-            Continuing = false;
+        // If not main branch (as mainbranch has no parent)
+        // Then stop the branch at a random interval between 3 and 7 (exclusive 7).
+        if (ParentBranch != null && Levels.Count > Random.Range(3, 7)) {
+            IsActive = false;
 
-            // Search for the parent branch that is still continuing.
+            // Search for the parent branch that is still active.
             Branch parent = ParentBranch;
-            while (!parent.Continuing) {
+            while (!parent.IsActive) {
                 parent = parent.ParentBranch;
             }
             // And put the current level in a waiting list to be added there.
-            parent.ChildrenToBeMerged.Add(level);
+            parent.ChildrenToBeMerged.Add(newLevel);
         }
 
-        CurrentLevel = level;
-        return level;
+        CurrentLevel = newLevel;
+        return newLevel;
     }
 }
 
@@ -183,35 +186,23 @@ public class Level
     public int LevelID { get; set; }
 
     /// <summary>
-    ///     The index of this level in the current branch.
-    /// </summary>
-    public int CurrentBranchID { get; set; }
-
-    /// <summary>
     ///     If multiple, indicates a branch gets split.
     /// </summary>
     public List<Level> NextLevels { get; set; }
 
-    public Level(int levelID, int currentBranchID, Level previousLevel) {
+    public Level(int levelID, Level previousLevel, Level parentBranchLevel) {
         LevelID = levelID;
-        CurrentBranchID = currentBranchID;
-
-        NextLevels = new List<Level>();
 
         if (previousLevel != null) {
             previousLevel.ReferenceNextLevel(this);
         }
-    }
-
-    /// <summary>
-    ///     Define the levels that follow this level.
-    ///     This will only be called when the branch of this level will get a child.
-    /// </summary>
-    /// <param name="nextLevels">List of levels that follow from this level.</param>
-    public void ReferenceNextLevels(List<Level> nextLevels) {
-        foreach (Level l in nextLevels) {
-            NextLevels.Add(l);
+        // If previousLevel == null this is the first level in a new branch.
+        // So add a reference to the level from the parent branch.
+        else if (parentBranchLevel != null) {
+            parentBranchLevel.ReferenceNextLevel(this);
         }
+
+        NextLevels = new List<Level>();
     }
 
     public void ReferenceNextLevel(Level nextLevel) {
@@ -221,7 +212,7 @@ public class Level
     /// <summary>
     ///     Assign level object after generation.
     /// </summary>
-    /// <param name="gameObject">GameObject on the map.</param>
+    /// <param name="levelObject">GameObject on the map.</param>
     public void AssignLevelObject(LevelObject levelObject) {
         Object = levelObject;
     }

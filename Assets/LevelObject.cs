@@ -28,7 +28,7 @@ public class LevelObject : MonoBehaviour
     }
 
     private void Update() {
-        if (overworld.PlayerPosition.x > transform.position.x) {
+        if (Next && overworld.PlayerPosition.x + 1 > transform.position.x) {
             Next = false;
             spriteRenderer.sprite = startSprite;
         }

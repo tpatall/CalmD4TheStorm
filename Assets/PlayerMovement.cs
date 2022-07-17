@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     ///     Should be called once and the animation should start separately.
     /// </summary>
     public void MoveToNext(Vector3 nextLevelPosition) {
-        transform.position = Vector3.MoveTowards(transform.position, nextLevelPosition, 5f);
+        transform.position = Vector3.MoveTowards(transform.position, nextLevelPosition, 50f);
 
         // do this as animation in the overworld class maybe?
         overworld.PlayerPosition = transform.position;
