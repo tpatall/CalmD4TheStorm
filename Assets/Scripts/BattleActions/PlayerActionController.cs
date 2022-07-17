@@ -17,15 +17,13 @@ public class PlayerActionController : MonoBehaviour {
     int[] numbersRolled;
     Enemy[] targets;
 
-    public void SetUpActions(
-        List<PlayerAction> warriorActions, 
-        List<PlayerAction> rogueActions, 
-        List<PlayerAction> mageActions, 
-        List<PlayerAction> clericActions) {
-        this.warriorActions = warriorActions;
-        this.rogueActions = rogueActions;
-        this.mageActions = mageActions;
-        this.clericActions = clericActions;
+    private void Start() {
+        PlayerInformation playerInformation = FindObjectOfType<PlayerInformation>();
+
+        this.warriorActions = playerInformation.warriorActions;
+        this.rogueActions = playerInformation.rogueActions;
+        this.mageActions = playerInformation.mageActions;
+        this.clericActions = playerInformation.clericActions;
     }
 
     private void Update() {

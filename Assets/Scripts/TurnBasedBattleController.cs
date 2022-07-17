@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TurnBasedBattleController : MonoBehaviour {
 
@@ -37,12 +38,19 @@ public class TurnBasedBattleController : MonoBehaviour {
             case BattleState.ENEMY_TURN:
                 break;
             case BattleState.VICTORY:
+                VictoryState();
                 break;
             case BattleState.DEATH:
                 break;
             default:
                 break;
         }
+    }
+
+    private void VictoryState() {
+        FindObjectOfType<PlayerInformation>().PlayerHealth = player.health;
+
+        Overworld.Instance.LoadNextLevel();
     }
 
     public void StartFight(List<GameObject> enemyObjects) {
@@ -81,11 +89,19 @@ public class TurnBasedBattleController : MonoBehaviour {
         }
     }
 
-    public void VictoryState() {
+    public void DeathState() {
         currState = BattleState.DEATH;
 
         foreach(Enemy enemy in EnemyController.Instance.currEnemies) {
             enemy.HidePreview();
+        }
+
+        StartCoroutine(WaitToDie());
+
+        IEnumerator WaitToDie() {
+            yield return new WaitForSeconds(6f);
+
+            SceneManager.LoadScene("GameOver");
         }
 
         // Go to death screen

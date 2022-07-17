@@ -7,7 +7,7 @@ public class Player : MonoBehaviour {
 
     public static Player Instance;
 
-    int health;
+    public int health;
     public int maxHealth;
 
     public int block;
@@ -34,10 +34,8 @@ public class Player : MonoBehaviour {
 
     private void Start() {
         Instance = this;
-    }
 
-    public void SetUpHealth(int health) {
-        this.health = health;
+        health = FindObjectOfType<PlayerInformation>().PlayerHealth;
     }
 
     public void SwapCharacter() {
@@ -104,7 +102,7 @@ public class Player : MonoBehaviour {
             // Die.
             Debug.Log("You have died!");
             anim.SetTrigger("deathTrigger");
-            FindObjectOfType<TurnBasedBattleController>().VictoryState();
+            FindObjectOfType<TurnBasedBattleController>().DeathState();
             healthBar.value = (float)health / maxHealth;
             return true;
         }

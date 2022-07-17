@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PlayerInformation : MonoBehaviour
 {
-    List<PlayerAction> warriorActions = new List<PlayerAction>();
-    List<PlayerAction> rogueActions = new List<PlayerAction>();
-    List<PlayerAction> mageActions = new List<PlayerAction>();
-    List<PlayerAction> clericActions = new List<PlayerAction>();
+    public List<PlayerAction> warriorActions = new List<PlayerAction>();
+    public List<PlayerAction> rogueActions = new List<PlayerAction>();
+    public List<PlayerAction> mageActions = new List<PlayerAction>();
+    public List<PlayerAction> clericActions = new List<PlayerAction>();
 
     public int PlayerHealth { get; set; }
 
@@ -47,12 +47,6 @@ public class PlayerInformation : MonoBehaviour
         clericActions.Add(new ClericActionThree());
         clericActions.Add(new ClericActionFour());
         clericActions.Add(new ClericActionFive());
-    }
-
-    // Call after loading in battle scene.
-    public void GiveInformation() {
-        FindObjectOfType<PlayerActionController>().SetUpActions(warriorActions, rogueActions, mageActions, clericActions);
-        FindObjectOfType<Player>().SetUpHealth(PlayerHealth);
     }
 
     // Call after loading in shop scene.
