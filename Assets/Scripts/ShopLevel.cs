@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class ShopLevel : MonoBehaviour
 {
-    // 3 deals
-    //[SerializeField] private List<Deal> items = new List<Deal>();
+    private PlayerInformation playerInformation;
+
+    private List<PlayerAction> shopItems;
 
     private void Start() {
-
+        playerInformation = FindObjectOfType<PlayerInformation>();
+        shopItems = playerInformation.BuildShop();
     }
 
     public void LeaveShop() {

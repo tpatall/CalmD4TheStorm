@@ -8,9 +8,12 @@ public class WarriorActionOne : PlayerAction {
     public TargetType Target { get; set; }
     public bool SkipReroll { get; set; }
 
+    public DiceType DiceType { get; set; }
+    public bool Upgraded { get; set; } = false;
 
     public WarriorActionOne() {
         ActionText = "DEAL 3D4 DAMAGE";
+        DiceType = DiceType.D4;
         EnergyCost = 2;
         Target = TargetType.SINGLE;
     }
@@ -21,7 +24,7 @@ public class WarriorActionOne : PlayerAction {
         int[] numbersRolled = new int[3];
 
         for(int i = 0; i < 3; i++) {
-            numbersRolled[i] = DiceHelper.GetRandomFromDice(DiceType.D4);
+            numbersRolled[i] = DiceHelper.GetRandomFromDice(DiceType);
         }
 
         return numbersRolled;
@@ -36,6 +39,12 @@ public class WarriorActionOne : PlayerAction {
             }
         }
     }
+
+    public void Upgrade() {
+        Upgraded = true;
+
+        EnergyCost = 1;
+    }
 }
 
 public class WarriorActionTwo : PlayerAction {
@@ -44,9 +53,12 @@ public class WarriorActionTwo : PlayerAction {
     public TargetType Target { get; set; }
     public bool SkipReroll { get; set; }
 
+    public DiceType DiceType { get; set; }
+    public bool Upgraded { get; set; } = false;
 
     public WarriorActionTwo() {
         ActionText = "BLOCK 3D6";
+        DiceType = DiceType.D6;
         EnergyCost = 1;
         Target = TargetType.SELF;
     }
@@ -57,7 +69,7 @@ public class WarriorActionTwo : PlayerAction {
         int[] numbersRolled = new int[3];
 
         for(int i = 0; i < 3; i++) {
-            numbersRolled[i] = DiceHelper.GetRandomFromDice(DiceType.D6);
+            numbersRolled[i] = DiceHelper.GetRandomFromDice(DiceType);
         }
 
         return numbersRolled;
@@ -70,6 +82,13 @@ public class WarriorActionTwo : PlayerAction {
         }
         Player.Instance.GainBlock(totalBlock);
     }
+
+    public void Upgrade() {
+        Upgraded = true;
+
+        ActionText = "BLOCK 3D8";
+        DiceType = DiceType.D8;
+    }
 }
 
 public class WarriorActionThree : PlayerAction {
@@ -78,6 +97,8 @@ public class WarriorActionThree : PlayerAction {
     public TargetType Target { get; set; }
     public bool SkipReroll { get; set; }
 
+    public DiceType DiceType { get; set; }
+    public bool Upgraded { get; set; } = true;
 
     public WarriorActionThree() {
         ActionText = "INCREASE STRENGTH BY 1";
@@ -95,16 +116,24 @@ public class WarriorActionThree : PlayerAction {
     public void DoAction(Enemy[] enemy, int[] numbersRolled) {
         Player.Instance.strength++;
     }
+
+    public void Upgrade() {
+
+    }
 }
+
 public class WarriorActionFour : PlayerAction {
     public string ActionText { get; set; }
     public int EnergyCost { get; set; }
     public TargetType Target { get; set; }
     public bool SkipReroll { get; set; }
 
+    public DiceType DiceType { get; set; }
+    public bool Upgraded { get; set; } = true;
 
     public WarriorActionFour() {
         ActionText = "EMPTY";
+        DiceType = DiceType.D4;
         EnergyCost = 1;
         Target = TargetType.ALL;
     }
@@ -117,6 +146,9 @@ public class WarriorActionFour : PlayerAction {
 
     public void DoAction(Enemy[] enemy, int[] numbersRolled) {
 
+    }
+
+    public void Upgrade() {
     }
 }
 
@@ -126,9 +158,12 @@ public class WarriorActionFive : PlayerAction {
     public TargetType Target { get; set; }
     public bool SkipReroll { get; set; }
 
+    public DiceType DiceType { get; set; }
+    public bool Upgraded { get; set; } = true;
 
     public WarriorActionFive() {
         ActionText = "EMPTY";
+        DiceType = DiceType.D4;
         EnergyCost = 1;
         Target = TargetType.ALL;
     }
@@ -140,6 +175,10 @@ public class WarriorActionFive : PlayerAction {
     }
 
     public void DoAction(Enemy[] enemy, int[] numbersRolled) {
+
+    }
+
+    public void Upgrade() {
 
     }
 }

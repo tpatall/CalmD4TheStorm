@@ -8,9 +8,12 @@ public class MageActionOne : PlayerAction {
     public TargetType Target { get; set; }
     public bool SkipReroll { get; set; }
 
+    public DiceType DiceType { get; set; }
+    public bool Upgraded { get; set; } = false;
 
     public MageActionOne() {
         ActionText = "DEAL 2D4 DAMAGE TO ALL";
+        DiceType = DiceType.D4;
         EnergyCost = 1;
         Target = TargetType.ALL;
     }
@@ -21,7 +24,7 @@ public class MageActionOne : PlayerAction {
         int[] numbersRolled = new int[2];
 
         for(int i = 0; i < 2; i++) {
-            numbersRolled[i] = DiceHelper.GetRandomFromDice(DiceType.D4);
+            numbersRolled[i] = DiceHelper.GetRandomFromDice(DiceType);
         }
 
         return numbersRolled;
@@ -36,6 +39,13 @@ public class MageActionOne : PlayerAction {
             }
         }
     }
+
+    public void Upgrade() {
+        Upgraded = true;
+
+        ActionText = "DEAL 2D6 DAMAGE TO ALL";
+        DiceType = DiceType.D6;
+    }
 }
 
 public class MageActionTwo : PlayerAction {
@@ -44,9 +54,12 @@ public class MageActionTwo : PlayerAction {
     public TargetType Target { get; set; }
     public bool SkipReroll { get; set; }
 
+    public DiceType DiceType { get; set; }
+    public bool Upgraded { get; set; } = false;
 
     public MageActionTwo() {
         ActionText = "BLOCK 2D6";
+        DiceType = DiceType.D6;
         EnergyCost = 1;
         Target = TargetType.SELF;
     }
@@ -57,7 +70,7 @@ public class MageActionTwo : PlayerAction {
         int[] numbersRolled = new int[2];
 
         for(int i = 0; i < 2; i++) {
-            numbersRolled[i] = DiceHelper.GetRandomFromDice(DiceType.D6);
+            numbersRolled[i] = DiceHelper.GetRandomFromDice(DiceType);
         }
 
         return numbersRolled;
@@ -70,6 +83,13 @@ public class MageActionTwo : PlayerAction {
         }
         Player.Instance.GainBlock(totalBlock);
     }
+
+    public void Upgrade() {
+        Upgraded = true;
+
+        ActionText = "BLOCK 2D8";
+        DiceType = DiceType.D8;
+    }
 }
 
 public class MageActionThree : PlayerAction {
@@ -78,9 +98,12 @@ public class MageActionThree : PlayerAction {
     public TargetType Target { get; set; }
     public bool SkipReroll { get; set; }
 
+    public DiceType DiceType { get; set; }
+    public bool Upgraded { get; set; } = true;
 
     public MageActionThree() {
         ActionText = "EMPTY";
+        DiceType = DiceType.D4;
         EnergyCost = 1;
         Target = TargetType.ALL;
     }
@@ -94,16 +117,24 @@ public class MageActionThree : PlayerAction {
     public void DoAction(Enemy[] enemy, int[] numbersRolled) {
 
     }
+
+    public void Upgrade() {
+
+    }
 }
+
 public class MageActionFour : PlayerAction {
     public string ActionText { get; set; }
     public int EnergyCost { get; set; }
     public TargetType Target { get; set; }
     public bool SkipReroll { get; set; }
 
+    public DiceType DiceType { get; set; }
+    public bool Upgraded { get; set; } = true;
 
     public MageActionFour() {
         ActionText = "EMPTY";
+        DiceType = DiceType.D4;
         EnergyCost = 1;
         Target = TargetType.ALL;
     }
@@ -115,6 +146,10 @@ public class MageActionFour : PlayerAction {
     }
 
     public void DoAction(Enemy[] enemy, int[] numbersRolled) {
+
+    }
+
+    public void Upgrade() {
 
     }
 }
@@ -125,9 +160,12 @@ public class MageActionFive : PlayerAction {
     public TargetType Target { get; set; }
     public bool SkipReroll { get; set; }
 
+    public DiceType DiceType { get; set; }
+    public bool Upgraded { get; set; } = true;
 
     public MageActionFive() {
         ActionText = "EMPTY";
+        DiceType = DiceType.D4;
         EnergyCost = 1;
         Target = TargetType.ALL;
     }
@@ -139,6 +177,10 @@ public class MageActionFive : PlayerAction {
     }
 
     public void DoAction(Enemy[] enemy, int[] numbersRolled) {
+
+    }
+
+    public void Upgrade() {
 
     }
 }

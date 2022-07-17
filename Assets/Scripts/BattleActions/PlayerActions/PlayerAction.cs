@@ -24,7 +24,13 @@ public interface PlayerAction {
 
     public bool SkipReroll { get; set; }
 
+    public DiceType DiceType { get; set; }
+
+    public bool Upgraded { get; set; }
+
     public int[] PrepareAction();
 
     public void DoAction(Enemy[] targets, int[] numbersRolled);
+
+    public void Upgrade();
 }

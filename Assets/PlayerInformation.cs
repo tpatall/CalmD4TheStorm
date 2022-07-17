@@ -11,6 +11,8 @@ public class PlayerInformation : MonoBehaviour
 
     public int PlayerHealth { get; set; }
 
+    public int Pips { get; set; }
+
     private void Awake() {
         DontDestroyOnLoad(this.gameObject);
     }
@@ -19,6 +21,7 @@ public class PlayerInformation : MonoBehaviour
     void Start()
     {
         PlayerHealth = 20;
+        Pips = 0;
 
         // Create all actions.
         warriorActions.Add(new WarriorActionOne());
@@ -46,9 +49,79 @@ public class PlayerInformation : MonoBehaviour
         clericActions.Add(new ClericActionFive());
     }
 
+    // Call after loading in battle scene.
     public void GiveInformation() {
         FindObjectOfType<PlayerActionController>().SetUpActions(warriorActions, rogueActions, mageActions, clericActions);
         FindObjectOfType<Player>().SetUpHealth(PlayerHealth);
+    }
+
+    // Call after loading in shop scene.
+    public List<PlayerAction> BuildShop() {
+        List<PlayerAction> upgradeableActions = new List<PlayerAction>();
+
+        // Get 2 unupgraded actions.
+        int list;
+        PlayerAction playerAction;
+        for (int i = 0; i < 2; i++) {
+            list = Random.Range(0, 4);
+            if (list == 0) {
+                playerAction = GetRandomAction(warriorActions);
+                if (playerAction != null) {
+                    upgradeableActions.Add(playerAction);
+                } else {
+                    i--;
+                }
+
+            } else if (list == 1) {
+                playerAction = GetRandomAction(rogueActions);
+                if (playerAction != null) {
+                    upgradeableActions.Add(playerAction);
+                }
+                else {
+                    i--;
+                }
+
+            } else if (list == 2) {
+                playerAction = GetRandomAction(mageActions);
+                if (playerAction != null) {
+                    upgradeableActions.Add(playerAction);
+                }
+                else {
+                    i--;
+                }
+
+            } else {
+                playerAction = GetRandomAction(clericActions);
+                if (playerAction != null) {
+                    upgradeableActions.Add(playerAction);
+                }
+                else {
+                    i--;
+                }
+            }
+        }
+
+        return upgradeableActions;
+    }
+
+    public PlayerAction GetRandomAction(List<PlayerAction> actions) {
+        List<PlayerAction> playerActions = actions;
+        PlayerAction notUpgradedPlayerAction = GetRandomItemAndRemoveIt(playerActions);
+        while (playerActions.Count > 0 && !notUpgradedPlayerAction.Upgraded) {
+            notUpgradedPlayerAction = GetRandomItemAndRemoveIt(playerActions);
+        }
+
+        if (notUpgradedPlayerAction.Upgraded) {
+            return notUpgradedPlayerAction;
+        } else {
+            return null;
+        }
+    }
+
+    public PlayerAction GetRandomItemAndRemoveIt(List<PlayerAction> list) {
+        PlayerAction randomItem = list[Random.Range(0, list.Count)];
+        list.Remove(randomItem);
+        return randomItem;
     }
 
     public void ResetPlayerActions() {

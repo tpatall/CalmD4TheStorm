@@ -39,7 +39,6 @@ public class ClericActionOne : PlayerAction {
 
         ActionText = "DEAL D6 DAMAGE";
         DiceType = DiceType.D6;
-        EnergyCost = 1;
     }
 }
 
@@ -84,7 +83,6 @@ public class ClericActionTwo : PlayerAction {
 
         ActionText = "BLOCK 2D8";
         DiceType = DiceType.D8;
-        EnergyCost = 1;
     }
 }
 
@@ -125,7 +123,6 @@ public class ClericActionThree : PlayerAction {
 
         ActionText = "BLOCK 2D8";
         DiceType = DiceType.D8;
-        EnergyCost = 1;
     }
 }
 
@@ -135,6 +132,7 @@ public class ClericActionFour : PlayerAction {
     public TargetType Target { get; set; }
     public bool SkipReroll { get; set; }
 
+    public DiceType DiceType { get; set; }
     public bool Upgraded { get; set; } = true;
 
     public ClericActionFour() {
@@ -157,6 +155,10 @@ public class ClericActionFour : PlayerAction {
 
         enemy[0].previewText.text = enemy[0].readiedAction.GetActionText();
     }
+
+    public void Upgrade() {
+
+    }
 }
 
 public class ClericActionFive : PlayerAction {
@@ -165,6 +167,7 @@ public class ClericActionFive : PlayerAction {
     public TargetType Target { get; set; }
     public bool SkipReroll { get; set; }
 
+    public DiceType DiceType { get; set; }
     public bool Upgraded { get; set; } = true;
 
     public ClericActionFive() {
@@ -184,5 +187,9 @@ public class ClericActionFive : PlayerAction {
         enemy[0].debuffed = true;
 
         enemy[0].previewText.text = enemy[0].readiedAction.GetActionText();
+    }
+
+    public void Upgrade() {
+
     }
 }
