@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Treasure.unity
     guid: 02757024a98d3bd45a6c83e84b20f124
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: e31c5171d73eeda45ad0b41680f73f92
   m_configObjects: {}
