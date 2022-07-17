@@ -31,23 +31,7 @@ public class TurnBasedBattleController : MonoBehaviour {
         StartFight(null);
     }
 
-    private void Update() {
-        switch(currState) {
-            case BattleState.PLAYER_TURN:
-                break;
-            case BattleState.ENEMY_TURN:
-                break;
-            case BattleState.VICTORY:
-                VictoryState();
-                break;
-            case BattleState.DEATH:
-                break;
-            default:
-                break;
-        }
-    }
-
-    private void VictoryState() {
+    public void VictoryState() {
         FindObjectOfType<PlayerInformation>().PlayerHealth = player.health;
 
         Overworld.Instance.LoadNextLevel();

@@ -44,8 +44,7 @@ public class EnemyController : MonoBehaviour {
 
         if(currEnemies.Count == 0) {
             Debug.Log("All enemies are dead!");
+            FindObjectOfType<TurnBasedBattleController>().VictoryState();
         }
-
-
     }
 }
