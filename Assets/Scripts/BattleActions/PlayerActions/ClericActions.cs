@@ -6,6 +6,8 @@ public class ClericActionOne : PlayerAction {
     public string ActionText { get; set; }
     public int EnergyCost { get; set; }
     public TargetType Target { get; set; }
+    public bool SkipReroll { get; set; }
+
 
     public ClericActionOne() {
         ActionText = "DEAL D4 DAMAGE";
@@ -34,6 +36,8 @@ public class ClericActionTwo : PlayerAction {
     public string ActionText { get; set; }
     public int EnergyCost { get; set; }
     public TargetType Target { get; set; }
+    public bool SkipReroll { get; set; }
+
 
     public ClericActionTwo() {
         ActionText = "BLOCK 2D6";
@@ -66,6 +70,8 @@ public class ClericActionThree : PlayerAction {
     public string ActionText { get; set; }
     public int EnergyCost { get; set; }
     public TargetType Target { get; set; }
+    public bool SkipReroll { get; set; }
+
 
     public ClericActionThree() {
         ActionText = "HEAL D6 HEALTH";
@@ -93,11 +99,13 @@ public class ClericActionFour : PlayerAction {
     public string ActionText { get; set; }
     public int EnergyCost { get; set; }
     public TargetType Target { get; set; }
+    public bool SkipReroll { get; set; }
 
     public ClericActionFour() {
         ActionText = "REDUCE STRENGTH BY 1";
         EnergyCost = 1;
         Target = TargetType.SINGLE;
+        SkipReroll = true;
     }
 
     public int[] PrepareAction() {
@@ -109,7 +117,7 @@ public class ClericActionFour : PlayerAction {
     }
 
     public void DoAction(Enemy[] enemy, int[] numbersRolled) {
-        enemy[0].strengthDebuff++;
+        enemy[0].strengthDebuff += numbersRolled[0];
 
         enemy[0].previewText.text = enemy[0].readiedAction.GetActionText();
     }
@@ -119,11 +127,14 @@ public class ClericActionFive : PlayerAction {
     public string ActionText { get; set; }
     public int EnergyCost { get; set; }
     public TargetType Target { get; set; }
+    public bool SkipReroll { get; set; }
+
 
     public ClericActionFive() {
         ActionText = "REDUCE DICE VALUE";
         EnergyCost = 1;
         Target = TargetType.SINGLE;
+        SkipReroll = true;
     }
 
     public int[] PrepareAction() {

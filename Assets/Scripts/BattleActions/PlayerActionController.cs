@@ -12,6 +12,11 @@ public class PlayerActionController : MonoBehaviour {
 
     public TextMeshProUGUI[] actionTexts, actionCosts;
 
+    public GameObject targetAll, targetSelf;
+
+    int[] numbersRolled;
+    Enemy[] targets;
+
     private void Start() {
         // Create all actions.
         warriorActions.Add(new WarriorActionOne());
@@ -39,6 +44,12 @@ public class PlayerActionController : MonoBehaviour {
         clericActions.Add(new ClericActionFive());
     }
 
+    private void Update() {
+        if(Input.GetMouseButtonDown(1)) {
+            RemoveActivation();
+        }
+    }
+
     PlayerAction readiedAction;
     
     public void UpdateButtons() {
@@ -51,6 +62,12 @@ public class PlayerActionController : MonoBehaviour {
     }
 
     public void ActivateAction(int index) {
+        RemoveActivation();
+
+        if(numbersRolled != null) {
+            DoAction();
+        }
+
         readiedAction = GetActionFromIndex(index);
 
         if(readiedAction.EnergyCost > FindObjectOfType<Energy>().currEnergy) {
@@ -59,37 +76,64 @@ public class PlayerActionController : MonoBehaviour {
 
         switch(readiedAction.Target) {
             case TargetType.SELF:
+                targetSelf.SetActive(true);
                 break;
             case TargetType.SINGLE:
+                foreach(Enemy enemy in EnemyController.Instance.currEnemies) {
+                    enemy.targetObject.SetActive(true);
+                }
                 break;
             case TargetType.ALL:
+                targetAll.SetActive(true);
                 break;
         }
-
-        PreviewAction(index);
     }
 
-    public void PreviewAction(int index) {
-        int[] numbersRolled = readiedAction.PrepareAction();
+    public void PreviewAction(GameObject gameObject) {
+        RemoveActivation();
 
-        ActionPreviewController.Instance.ShowPreview(numbersRolled, Player.Instance.strength);
+        numbersRolled = readiedAction.PrepareAction();
 
-        Enemy[] targets;
 
         switch(readiedAction.Target) {
             case TargetType.SINGLE:
-                targets = new Enemy[1] { EnemyController.Instance.currEnemies[0] };
+                Enemy enemy = gameObject.GetComponent<Enemy>();
+                targets = new Enemy[1] { enemy };
                 break;
             case TargetType.ALL:
                 targets = EnemyController.Instance.currEnemies.ToArray();
                 break;
             default:
-                targets = new Enemy[0];
+                targets = null;
                 break;
         }
 
         FindObjectOfType<Energy>().SpendEnergy(readiedAction.EnergyCost);
-        readiedAction.DoAction(targets, numbersRolled);
+
+        if(!readiedAction.SkipReroll) {
+            ActionPreviewController.Instance.ShowPreview(numbersRolled, Player.Instance.strength);
+        } else {
+            DoAction();
+        }
+    }
+
+    public void DoAction() {
+        if(readiedAction != null && numbersRolled != null) {
+            readiedAction.DoAction(targets, numbersRolled);
+        }
+
+        readiedAction = null;
+        numbersRolled = null;
+        targets = null;
+
+        ActionPreviewController.Instance.HidePreview();
+    }
+
+    public void RerollAction() {
+        if(FindObjectOfType<RerollDice>().SpendDice()) {
+            numbersRolled = readiedAction.PrepareAction();
+            ActionPreviewController.Instance.ShowPreview(numbersRolled, Player.Instance.strength);
+        }
     }
 
     public PlayerAction GetActionFromIndex(int index) {
@@ -107,5 +151,14 @@ public class PlayerActionController : MonoBehaviour {
                 return clericActions[index];
         }
         return null;
+    }
+
+    public void RemoveActivation() {
+        foreach(Enemy target in EnemyController.Instance.currEnemies) {
+            target.targetObject.SetActive(false);
+        }
+
+        targetAll.SetActive(false);
+        targetSelf.SetActive(false);
     }
 }

@@ -6,6 +6,8 @@ public class RogueActionOne : PlayerAction {
     public string ActionText { get; set; }
     public int EnergyCost { get; set; }
     public TargetType Target { get; set; }
+    public bool SkipReroll { get; set; }
+
 
     public RogueActionOne() {
         ActionText = "DEAL D12 DAMAGE";
@@ -34,6 +36,8 @@ public class RogueActionTwo : PlayerAction {
     public string ActionText { get; set; }
     public int EnergyCost { get; set; }
     public TargetType Target { get; set; }
+    public bool SkipReroll { get; set; }
+
 
     public RogueActionTwo() {
         ActionText = "BLOCK D6";
@@ -62,6 +66,8 @@ public class RogueActionThree : PlayerAction {
     public string ActionText { get; set; }
     public int EnergyCost { get; set; }
     public TargetType Target { get; set; }
+    public bool SkipReroll { get; set; }
+
 
     public RogueActionThree() {
         ActionText = "DEAL D4 DAMAGE APPLY D6 POISON";
@@ -88,6 +94,8 @@ public class RogueActionFour : PlayerAction {
     public string ActionText { get; set; }
     public int EnergyCost { get; set; }
     public TargetType Target { get; set; }
+    public bool SkipReroll { get; set; }
+
 
     public RogueActionFour() {
         ActionText = "EMPTY";
@@ -110,6 +118,8 @@ public class RogueActionFive : PlayerAction {
     public string ActionText { get; set; }
     public int EnergyCost { get; set; }
     public TargetType Target { get; set; }
+    public bool SkipReroll { get; set; }
+
 
     public RogueActionFive() {
         ActionText = "EMPTY";

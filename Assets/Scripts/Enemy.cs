@@ -42,6 +42,8 @@ public class Enemy : MonoBehaviour {
     public Text previewText;
     public Image previewImage;
 
+    public GameObject targetObject;
+
     BattleAction[] battleActions;
     public BattleAction readiedAction;
 
@@ -91,5 +93,9 @@ public class Enemy : MonoBehaviour {
         healthBar.value = (float)health / maxHealth;
 
         healthText.text = health + "/" + maxHealth; 
+    }
+
+    public void Targeted() {
+        FindObjectOfType<PlayerActionController>().PreviewAction(gameObject);
     }
 }

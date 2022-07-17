@@ -6,6 +6,8 @@ public class MageActionOne : PlayerAction {
     public string ActionText { get; set; }
     public int EnergyCost { get; set; }
     public TargetType Target { get; set; }
+    public bool SkipReroll { get; set; }
+
 
     public MageActionOne() {
         ActionText = "DEAL 2D4 DAMAGE TO ALL";
@@ -40,6 +42,8 @@ public class MageActionTwo : PlayerAction {
     public string ActionText { get; set; }
     public int EnergyCost { get; set; }
     public TargetType Target { get; set; }
+    public bool SkipReroll { get; set; }
+
 
     public MageActionTwo() {
         ActionText = "BLOCK 2D6";
@@ -72,6 +76,8 @@ public class MageActionThree : PlayerAction {
     public string ActionText { get; set; }
     public int EnergyCost { get; set; }
     public TargetType Target { get; set; }
+    public bool SkipReroll { get; set; }
+
 
     public MageActionThree() {
         ActionText = "EMPTY";
@@ -93,6 +99,8 @@ public class MageActionFour : PlayerAction {
     public string ActionText { get; set; }
     public int EnergyCost { get; set; }
     public TargetType Target { get; set; }
+    public bool SkipReroll { get; set; }
+
 
     public MageActionFour() {
         ActionText = "EMPTY";
@@ -115,6 +123,8 @@ public class MageActionFive : PlayerAction {
     public string ActionText { get; set; }
     public int EnergyCost { get; set; }
     public TargetType Target { get; set; }
+    public bool SkipReroll { get; set; }
+
 
     public MageActionFive() {
         ActionText = "EMPTY";

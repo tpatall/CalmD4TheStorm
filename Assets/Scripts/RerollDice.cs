@@ -21,13 +21,7 @@ public class RerollDice : MonoBehaviour {
     public bool SpendDice() {
         if(amount > 0) {
             amount--;
-
-
-            GetComponent<Player>().SwapCharacter();
-
             UpdateText();
-
-
             return true;
         } else {
             // Corruption

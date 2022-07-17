@@ -72,7 +72,9 @@ public class Player : MonoBehaviour {
     }
 
     public void SpendReroll() {
-        GetComponent<RerollDice>().SpendDice();
+        if(GetComponent<RerollDice>().SpendDice()) {
+            SwapCharacter();
+        }
     }
 
     public void TakeDamage(int damage) {

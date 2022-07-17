@@ -6,6 +6,8 @@ public class WarriorActionOne : PlayerAction {
     public string ActionText { get; set; }
     public int EnergyCost { get; set; }
     public TargetType Target { get; set; }
+    public bool SkipReroll { get; set; }
+
 
     public WarriorActionOne() {
         ActionText = "DEAL 3D4 DAMAGE";
@@ -40,6 +42,8 @@ public class WarriorActionTwo : PlayerAction {
     public string ActionText { get; set; }
     public int EnergyCost { get; set; }
     public TargetType Target { get; set; }
+    public bool SkipReroll { get; set; }
+
 
     public WarriorActionTwo() {
         ActionText = "BLOCK 3D6";
@@ -72,6 +76,8 @@ public class WarriorActionThree : PlayerAction {
     public string ActionText { get; set; }
     public int EnergyCost { get; set; }
     public TargetType Target { get; set; }
+    public bool SkipReroll { get; set; }
+
 
     public WarriorActionThree() {
         ActionText = "INCREASE STRENGTH BY 1";
@@ -93,6 +99,8 @@ public class WarriorActionFour : PlayerAction {
     public string ActionText { get; set; }
     public int EnergyCost { get; set; }
     public TargetType Target { get; set; }
+    public bool SkipReroll { get; set; }
+
 
     public WarriorActionFour() {
         ActionText = "EMPTY";
@@ -115,6 +123,8 @@ public class WarriorActionFive : PlayerAction {
     public string ActionText { get; set; }
     public int EnergyCost { get; set; }
     public TargetType Target { get; set; }
+    public bool SkipReroll { get; set; }
+
 
     public WarriorActionFive() {
         ActionText = "EMPTY";

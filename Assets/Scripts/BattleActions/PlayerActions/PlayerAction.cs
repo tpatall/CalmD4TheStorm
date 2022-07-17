@@ -22,6 +22,8 @@ public interface PlayerAction {
 
     public string ActionText { get; set; }
 
+    public bool SkipReroll { get; set; }
+
     public int[] PrepareAction();
 
     public void DoAction(Enemy[] targets, int[] numbersRolled);
