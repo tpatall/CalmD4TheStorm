@@ -482,7 +482,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 4360357566864375924}
-  diceType: 1
+  diceType: 0
   diceAmount: 2
 --- !u!114 &1029491562651161672
 MonoBehaviour:
@@ -496,7 +496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e8263487aac3974d9ccaf5da5f9a869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amount: 2
+  amount: 1
 --- !u!1 &3944322853006560748
 GameObject:
   m_ObjectHideFlags: 0

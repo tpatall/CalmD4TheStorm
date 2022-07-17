@@ -736,7 +736,6 @@ GameObject:
   - component: {fileID: 8035255919541996696}
   - component: {fileID: 5522161207351634749}
   - component: {fileID: 7283489141396999246}
-  - component: {fileID: 9108758230553870081}
   - component: {fileID: 4561560161528778782}
   m_Layer: 0
   m_Name: TurretDice
@@ -867,19 +866,6 @@ MonoBehaviour:
   enemy: {fileID: 5522161207351634749}
   diceType: 2
   diceAmount: 2
---- !u!114 &9108758230553870081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6350422727087338671}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e8263487aac3974d9ccaf5da5f9a869, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  amount: 1
 --- !u!114 &4561560161528778782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -892,7 +878,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91b425c0073574c48ae5e8448bf10008, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 0}
+  enemy: {fileID: 5522161207351634749}
   diceType: 4
   diceAmount: 1
 --- !u!1 &7001661665128727848
