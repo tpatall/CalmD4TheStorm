@@ -8,9 +8,12 @@ public class ClericActionOne : PlayerAction {
     public TargetType Target { get; set; }
     public bool SkipReroll { get; set; }
 
+    public DiceType DiceType { get; set; }
+    public bool Upgraded { get; set; } = false;
 
     public ClericActionOne() {
         ActionText = "DEAL D4 DAMAGE";
+        DiceType = DiceType.D4;
         EnergyCost = 1;
         Target = TargetType.SINGLE;
     }
@@ -21,7 +24,7 @@ public class ClericActionOne : PlayerAction {
         int[] numbersRolled = new int[1];
 
         for(int i = 0; i < 1; i++) {
-            numbersRolled[i] = DiceHelper.GetRandomFromDice(DiceType.D4);
+            numbersRolled[i] = DiceHelper.GetRandomFromDice(DiceType);
         }
 
         return numbersRolled;
@@ -29,6 +32,14 @@ public class ClericActionOne : PlayerAction {
 
     public void DoAction(Enemy[] enemy, int[] numbersRolled) {
         enemy[0].ApplyDamage(numbersRolled[0] + Player.Instance.strength);
+    }
+
+    public void Upgrade() {
+        Upgraded = true;
+
+        ActionText = "DEAL D6 DAMAGE";
+        DiceType = DiceType.D6;
+        EnergyCost = 1;
     }
 }
 
@@ -38,9 +49,12 @@ public class ClericActionTwo : PlayerAction {
     public TargetType Target { get; set; }
     public bool SkipReroll { get; set; }
 
+    public DiceType DiceType { get; set; }
+    public bool Upgraded { get; set; } = false;
 
     public ClericActionTwo() {
         ActionText = "BLOCK 2D6";
+        DiceType = DiceType.D6;
         EnergyCost = 1;
         Target = TargetType.SELF;
     }
@@ -51,7 +65,7 @@ public class ClericActionTwo : PlayerAction {
         int[] numbersRolled = new int[2];
 
         for(int i = 0; i < 2; i++) {
-            numbersRolled[i] = DiceHelper.GetRandomFromDice(DiceType.D6);
+            numbersRolled[i] = DiceHelper.GetRandomFromDice(DiceType);
         }
 
         return numbersRolled;
@@ -64,6 +78,14 @@ public class ClericActionTwo : PlayerAction {
         }
         Player.Instance.GainBlock(totalBlock);
     }
+
+    public void Upgrade() {
+        Upgraded = true;
+
+        ActionText = "BLOCK 2D8";
+        DiceType = DiceType.D8;
+        EnergyCost = 1;
+    }
 }
 
 public class ClericActionThree : PlayerAction {
@@ -72,9 +94,12 @@ public class ClericActionThree : PlayerAction {
     public TargetType Target { get; set; }
     public bool SkipReroll { get; set; }
 
+    public DiceType DiceType { get; set; }
+    public bool Upgraded { get; set; } = false;
 
     public ClericActionThree() {
         ActionText = "HEAL D6 HEALTH";
+        DiceType = DiceType.D6;
         EnergyCost = 1;
         Target = TargetType.SELF;
     }
@@ -85,7 +110,7 @@ public class ClericActionThree : PlayerAction {
         int[] numbersRolled = new int[1];
 
         for(int i = 0; i < 1; i++) {
-            numbersRolled[i] = DiceHelper.GetRandomFromDice(DiceType.D6);
+            numbersRolled[i] = DiceHelper.GetRandomFromDice(DiceType);
         }
 
         return numbersRolled;
@@ -94,12 +119,23 @@ public class ClericActionThree : PlayerAction {
     public void DoAction(Enemy[] enemy, int[] numbersRolled) {
         Player.Instance.Heal(numbersRolled[0]);
     }
+
+    public void Upgrade() {
+        Upgraded = true;
+
+        ActionText = "BLOCK 2D8";
+        DiceType = DiceType.D8;
+        EnergyCost = 1;
+    }
 }
+
 public class ClericActionFour : PlayerAction {
     public string ActionText { get; set; }
     public int EnergyCost { get; set; }
     public TargetType Target { get; set; }
     public bool SkipReroll { get; set; }
+
+    public bool Upgraded { get; set; } = true;
 
     public ClericActionFour() {
         ActionText = "REDUCE STRENGTH BY 1";
@@ -129,6 +165,7 @@ public class ClericActionFive : PlayerAction {
     public TargetType Target { get; set; }
     public bool SkipReroll { get; set; }
 
+    public bool Upgraded { get; set; } = true;
 
     public ClericActionFive() {
         ActionText = "REDUCE DICE VALUE";
