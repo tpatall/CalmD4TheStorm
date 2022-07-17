@@ -92,7 +92,7 @@ public class Overworld : PersistentSingleton<Overworld>
         //nextObjects = new List<LevelObject>();
         //nextObjects.Add(levelObjects[1]);
 
-        SetNextLevel(0);
+        GenerateBattleLevel();
     }
 
     /// <summary>
@@ -261,6 +261,10 @@ public class Overworld : PersistentSingleton<Overworld>
 
             nextObjects.Add(level.Object);
         }
+    }
+
+    public void RegenerateMap() {
+        Destroy(this);
     }
 }
 
