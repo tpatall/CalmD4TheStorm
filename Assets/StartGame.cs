@@ -6,6 +6,6 @@ using UnityEngine.SceneManagement;
 public class StartGame : MonoBehaviour
 {
     public void PlayButton() {
-        SceneManager.LoadScene("EnterLevel");
+        Overworld.Instance.PopulateMap();
     }
 }

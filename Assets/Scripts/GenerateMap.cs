@@ -9,7 +9,25 @@ public class GenerateMap
     public GenerateMap(int levelLength) {
         Branches = new List<Branch>();
 
-        GenerateRandomBranches(levelLength);
+        GenerateLevels(levelLength);
+
+        //GenerateRandomBranches(levelLength);
+    }
+
+    private void GenerateLevels(int length) {
+        Branch mainBranch = new Branch(null);
+        mainBranch.AddLevel(0);
+        Branches.Add(mainBranch);
+
+        List<Level> levels = new List<Level>();
+
+        Level level;
+        for (int i = 0; i < length; i++) {
+            level = new Level(i, levels[i - 1], null);
+            levels[i - 1].ReferenceNextLevel(level);
+
+            levels.Add(level);
+        }
     }
 
     /// <summary>

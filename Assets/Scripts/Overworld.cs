@@ -22,7 +22,7 @@ public class Overworld : PersistentSingleton<Overworld>
     [SerializeField] private List<LevelTypes> Levels = new List<LevelTypes>();
 
     // Generated list of branches.
-    private List<Branch> branches = new List<Branch>();
+    private List<Level> branch = new List<Level>();
 
     // List of possible levels to go to next.
     private List<LevelObject> nextObjects = new List<LevelObject>();
@@ -38,16 +38,25 @@ public class Overworld : PersistentSingleton<Overworld>
 
     void Start()
     {
-        GenerateMap generateMap = new GenerateMap(Levels.Count);
-        branches = generateMap.Branches;
+        int length = Levels.Count;
+        branch = new List<Level>();
+
+        Level level = new Level(0, null, null);
+        branch.Add(level);
+        for (int i = 1; i < length; i++) {
+            level = new Level(i, branch[i - 1], null);
+            branch[i - 1].ReferenceNextLevel(level);
+
+            branch.Add(level);
+        }
     }
 
     public void PopulateMap() {
         int levelID;
         // Build the map branch by branch (to avoid crossing paths).
-        for (int i = 0; i < branches.Count; i++) {
-            for (int j = 0; j < branches[i].Levels.Count; j++) {
-                Level level = branches[i].Levels[j];
+        for (int i = 0; i < branch.Count; i++) {
+            //for (int j = 0; j < branch[i].Levels.Count; j++) {
+                Level level = branch[i];
 
                 // Choose the level type from the specified level types based on progression in the game.
                 // With a chance to divert?
@@ -84,7 +93,7 @@ public class Overworld : PersistentSingleton<Overworld>
                 }
 
                 CurrentLevelIndex++;
-            }
+            //}
         }
 
         GenerateBattleLevel();
