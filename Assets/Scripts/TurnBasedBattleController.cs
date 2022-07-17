@@ -28,7 +28,27 @@ public class TurnBasedBattleController : MonoBehaviour {
         player = FindObjectOfType<Player>();
         energy = FindObjectOfType<Energy>();
         enemyController = FindObjectOfType<EnemyController>();
-        StartFight(null);
+
+        List<GameObject> enemies = new List<GameObject>();
+
+        EnemyPool[] pools = new EnemyPool[0];
+
+        int level = Overworld.Instance.CurrentLevelIndex;
+        if(level < 3) {
+            pools = Overworld.Instance.transform.GetChild(0).GetComponents<EnemyPool>();
+            enemies = pools[Random.Range(0, pools.Length)].enemyPool;
+
+        } else if (level < 5) {
+            pools = Overworld.Instance.transform.GetChild(1).GetComponents<EnemyPool>();
+            enemies = pools[Random.Range(0, pools.Length)].enemyPool;
+
+        } else {
+            pools = Overworld.Instance.transform.GetChild(2).GetComponents<EnemyPool>();
+            enemies = pools[Random.Range(0, pools.Length)].enemyPool;
+
+        }
+
+        StartFight(enemies);
     }
 
     public void VictoryState() {
