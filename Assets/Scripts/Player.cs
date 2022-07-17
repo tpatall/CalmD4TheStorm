@@ -22,6 +22,8 @@ public class Player : MonoBehaviour {
 
     public Poof poof;
 
+    public GameObject damagePrefab;
+
     public enum CharacterType {
         BLANK,
         WARRIOR,
@@ -84,6 +86,9 @@ public class Player : MonoBehaviour {
 
     public bool TakeDamage(int damage) {
         Debug.Log("Player took " + damage + " damage.");
+
+        Instantiate(damagePrefab, transform.position, Quaternion.identity).GetComponent<DamageIndicator>().StartCoroutine("MoveAndDisappear", damage);
+
         if(damage < 0) {
             return false;
         }
