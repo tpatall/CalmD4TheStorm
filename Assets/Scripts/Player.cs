@@ -34,7 +34,10 @@ public class Player : MonoBehaviour {
 
     private void Start() {
         Instance = this;
-        health = maxHealth;
+    }
+
+    public void SetUpHealth(int health) {
+        this.health = health;
     }
 
     public void SwapCharacter() {

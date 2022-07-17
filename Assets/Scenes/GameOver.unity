@@ -220,7 +220,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 259667575}
         m_TargetAssemblyTypeName: DestroyOverworld, Assembly-CSharp
-        m_MethodName: RegenerateOverworld
+        m_MethodName: ResetSavedSettings
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

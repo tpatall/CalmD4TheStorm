@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class DestroyOverworld : MonoBehaviour
 {
-    public void RegenerateOverworld() {
+    public void ResetSavedSettings() {
         Overworld.Instance.RegenerateMap();
+        FindObjectOfType<PlayerInformation>().ResetPlayerActions();
     }
 }
