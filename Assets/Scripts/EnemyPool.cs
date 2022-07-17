@@ -3,5 +3,5 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyPool : MonoBehaviour {
-    [SerializeField] List<GameObject> enemyPool;
+    public List<GameObject> enemyPool;
 }

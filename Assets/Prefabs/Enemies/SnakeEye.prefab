@@ -880,7 +880,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91b425c0073574c48ae5e8448bf10008, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 0}
+  enemy: {fileID: 5522161207351634749}
   diceType: 0
   diceAmount: 8
 --- !u!114 &9054078793249774808
