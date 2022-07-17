@@ -20,7 +20,7 @@ public class TurnBasedBattleController : MonoBehaviour {
 
     EnemyController enemyController;
 
-    public GameObject playerUI, deathButton;
+    public GameObject playerUI;
 
 
     private void Start() {

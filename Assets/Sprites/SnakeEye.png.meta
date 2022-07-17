@@ -1,19 +1,31 @@
 fileFormatVersion: 2
-guid: 5fbcb92548e30064893c60ccfdea14de
+guid: 764fead562f3f5746bb83f1574dc2226
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8186635469264653507
-    second: Dicemie_Bat_idle_0
+      213: 6182522813851591585
+    second: SnakeEye_0
   - first:
-      213: -845206518705822051
-    second: Dicemie_Bat_idle_1
+      213: 6103073927345727970
+    second: SnakeEye_1
   - first:
-      213: -7583063821144163990
-    second: Dicemie_Bat_idle_2
+      213: 2060597254719968878
+    second: SnakeEye_2
   - first:
-      213: 4192000688313660482
-    second: Dicemie_Bat_idle_3
+      213: -74898540576225687
+    second: SnakeEye_3
+  - first:
+      213: -6336735710074115065
+    second: SnakeEye_4
+  - first:
+      213: -8472608420881620987
+    second: SnakeEye_5
+  - first:
+      213: -1788224817898177931
+    second: SnakeEye_6
+  - first:
+      213: -3841697724921329101
+    second: SnakeEye_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -103,55 +115,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Dicemie_Bat_idle_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 64
-        width: 64
-        height: 64
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3cc022ba595cc9170800000000000000
-      internalID: 8186635469264653507
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dicemie_Bat_idle_1
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 64
-        width: 64
-        height: 64
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d96e1ba36293544f0800000000000000
-      internalID: -845206518705822051
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dicemie_Bat_idle_2
+      name: SnakeEye_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 64
+        width: 128
+        height: 128
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -159,20 +129,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a69f597a1ab83c690800000000000000
-      internalID: -7583063821144163990
+      spriteID: 1a36f572ebbbcc550800000000000000
+      internalID: 6182522813851591585
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dicemie_Bat_idle_3
+      name: SnakeEye_1
       rect:
         serializedVersion: 2
-        x: 64
+        x: 128
         y: 0
-        width: 64
-        height: 64
+        width: 128
+        height: 128
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -180,8 +150,134 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 244f0257a6afc2a30800000000000000
-      internalID: 4192000688313660482
+      spriteID: 2e9e365c66972b450800000000000000
+      internalID: 6103073927345727970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SnakeEye_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e669ab02946b89c10800000000000000
+      internalID: 2060597254719968878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SnakeEye_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96642c69c28e5fef0800000000000000
+      internalID: -74898540576225687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SnakeEye_4
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70cef75f1746f08a0800000000000000
+      internalID: -6336735710074115065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SnakeEye_5
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5002e50f78f3b6a80800000000000000
+      internalID: -8472608420881620987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SnakeEye_6
+      rect:
+        serializedVersion: 2
+        x: 767
+        y: 0
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57a34a6a003fe27e0800000000000000
+      internalID: -1788224817898177931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SnakeEye_7
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 0
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33a43abf54c8faac0800000000000000
+      internalID: -3841697724921329101
       vertices: []
       indices: 
       edges: []

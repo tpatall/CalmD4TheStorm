@@ -1,19 +1,16 @@
 fileFormatVersion: 2
-guid: 5fbcb92548e30064893c60ccfdea14de
+guid: e0abb491c3d2d074c9092fbee34d4a4b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8186635469264653507
-    second: Dicemie_Bat_idle_0
+      213: -4263730732522341037
+    second: Return_To_Title_Neutral
   - first:
-      213: -845206518705822051
-    second: Dicemie_Bat_idle_1
+      213: -6613569952472574817
+    second: Return_To_Title_Hover
   - first:
-      213: -7583063821144163990
-    second: Dicemie_Bat_idle_2
-  - first:
-      213: 4192000688313660482
-    second: Dicemie_Bat_idle_3
+      213: 615030540422790591
+    second: Return_To_Title_Pressed
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -58,7 +55,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -99,89 +96,92 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Dicemie_Bat_idle_0
+      name: Return_To_Title_Neutral
       rect:
         serializedVersion: 2
         x: 0
-        y: 64
-        width: 64
-        height: 64
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        y: 74
+        width: 75
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3cc022ba595cc9170800000000000000
-      internalID: 8186635469264653507
+      spriteID: 35df61e2d7f24d4c0800000000000000
+      internalID: -4263730732522341037
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dicemie_Bat_idle_1
+      name: Return_To_Title_Hover
       rect:
         serializedVersion: 2
-        x: 64
-        y: 64
-        width: 64
-        height: 64
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 0
+        y: 37
+        width: 75
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d96e1ba36293544f0800000000000000
-      internalID: -845206518705822051
+      spriteID: f94dcad1b21e734a0800000000000000
+      internalID: -6613569952472574817
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dicemie_Bat_idle_2
+      name: Return_To_Title_Pressed
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 64
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 75
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a69f597a1ab83c690800000000000000
-      internalID: -7583063821144163990
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dicemie_Bat_idle_3
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 64
-        height: 64
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 244f0257a6afc2a30800000000000000
-      internalID: 4192000688313660482
+      spriteID: fbdbae79407098800800000000000000
+      internalID: 615030540422790591
       vertices: []
       indices: 
       edges: []
