@@ -63,20 +63,20 @@ public class Overworld : PersistentSingleton<Overworld>
                 levelID = level.LevelID;
                 LevelTypes levelType = Levels[levelID];
                 // If a battle or treasure level is between 3 and 3-before final boss, then allow variety based on random chance.
-                if (levelID > 3 && levelID < Levels.Count - 3
-                    && Levels[levelID - 1] != Levels[levelID] && Levels[levelID + 1] != Levels[levelID]) {
-                    if (levelType == LevelTypes.BattleLevel) {
-                        // 20% chance for a battle level to become a treasure level.
-                        if (Random.Range(0f, 1f) < 0.2f) {
-                            levelType = LevelTypes.TreasureLevel;
-                        }
-                    } else if (levelType == LevelTypes.TreasureLevel) {
-                        // 40% chance for a treasure level to become a battle level.
-                        if (Random.Range(0f, 1f) < 0.4f) {
-                            levelType = LevelTypes.BattleLevel;
-                        }
-                    }
-                }
+                //if (levelID > 3 && levelID < Levels.Count - 3
+                //    && Levels[levelID - 1] != Levels[levelID] && Levels[levelID + 1] != Levels[levelID]) {
+                //    if (levelType == LevelTypes.BattleLevel) {
+                //        // 20% chance for a battle level to become a treasure level.
+                //        if (Random.Range(0f, 1f) < 0.2f) {
+                //            levelType = LevelTypes.TreasureLevel;
+                //        }
+                //    } else if (levelType == LevelTypes.TreasureLevel) {
+                //        // 40% chance for a treasure level to become a battle level.
+                //        if (Random.Range(0f, 1f) < 0.4f) {
+                //            levelType = LevelTypes.BattleLevel;
+                //        }
+                //    }
+                //}
 
                 switch (levelType) {
                     case LevelTypes.BattleLevel:
@@ -96,7 +96,9 @@ public class Overworld : PersistentSingleton<Overworld>
             //}
         }
 
+        SetNextLevel(0);
         GenerateBattleLevel();
+
     }
 
     /// <summary>
@@ -157,29 +159,28 @@ public class Overworld : PersistentSingleton<Overworld>
             Debug.Log("Boss defeated lmao xd");
         }
 
-        if (nextObjects.Count == 1 && nextObjects[0] != null) {
-            LevelObject levelObject = nextObjects[0];
-            LevelTypes levelType = nextObjects[0].LevelType;
+        LevelObject levelObject = nextObjects[0];
+        LevelTypes levelType = nextObjects[0].LevelType;
 
-            SetNextLevel(levelObject.CurrentLevelIndex);
+        SetNextLevel(levelObject.CurrentLevelIndex);
 
-            // No need to choose a path, load next level
-            if (levelType == LevelTypes.BattleLevel) {
-                GenerateBattleLevel();
-            } else if (levelType == LevelTypes.ShopLevel) {
-                GenerateShopLevel();
-            } else {
-                GenerateTreasureLevel();
-            }
-
-            Debug.Log("Waiting for enter.");
-        } else if (nextObjects.Count == 2) {
-            // load scene with choice between 2 paths
-            // if theres more than 2 options, just ignore the 2+.
-            SceneManager.LoadScene("Choose");
-
-            Debug.Log("Waiting for choice.");
+        // No need to choose a path, load next level
+        if (levelType == LevelTypes.BattleLevel) {
+            GenerateBattleLevel();
+        } else if (levelType == LevelTypes.ShopLevel) {
+            GenerateShopLevel();
+        } else {
+            GenerateTreasureLevel();
         }
+
+        Debug.Log("Waiting for enter.");
+        //else if (nextObjects.Count == 2) {
+        //    // load scene with choice between 2 paths
+        //    // if theres more than 2 options, just ignore the 2+.
+        //    SceneManager.LoadScene("Choose");
+
+        //    Debug.Log("Waiting for choice.");
+        //}
     }
 
     /// <summary>

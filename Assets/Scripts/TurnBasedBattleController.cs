@@ -34,7 +34,15 @@ public class TurnBasedBattleController : MonoBehaviour {
     public void VictoryState() {
         FindObjectOfType<PlayerInformation>().PlayerHealth = player.health;
 
-        Overworld.Instance.LoadNextLevel();
+        StartCoroutine(WaitToDie());
+
+        IEnumerator WaitToDie() {
+            playerUI.SetActive(false);
+
+            yield return new WaitForSeconds(2f);
+
+            Overworld.Instance.LoadNextLevel();
+        }
     }
 
     public void StartFight(List<GameObject> enemyObjects) {
@@ -83,7 +91,9 @@ public class TurnBasedBattleController : MonoBehaviour {
         StartCoroutine(WaitToDie());
 
         IEnumerator WaitToDie() {
-            yield return new WaitForSeconds(6f);
+            playerUI.SetActive(false);
+
+            yield return new WaitForSeconds(5f);
 
             SceneManager.LoadScene("GameOver");
         }
