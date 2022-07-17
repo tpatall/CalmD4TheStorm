@@ -83,6 +83,7 @@ public class WarriorActionThree : PlayerAction {
         ActionText = "INCREASE STRENGTH BY 1";
         EnergyCost = 1;
         Target = TargetType.SELF;
+        SkipReroll = true;
     }
 
     public int[] PrepareAction() {

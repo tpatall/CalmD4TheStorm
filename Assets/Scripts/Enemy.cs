@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 [System.Serializable]
 public class Enemy : MonoBehaviour {
@@ -35,11 +36,11 @@ public class Enemy : MonoBehaviour {
 
     public bool debuffed;
 
-    public Text healthText;
+    public TextMeshProUGUI healthText;
     public Slider healthBar;
 
     public GameObject previewObject;
-    public Text previewText;
+    public TextMeshProUGUI previewText;
     public Image previewImage;
 
     public GameObject targetObject;
@@ -52,6 +53,7 @@ public class Enemy : MonoBehaviour {
         battleActions = GetComponents<BattleAction>();
 
         health = maxHealth;
+        UpdateHealthBar();
     }
 
     public void ReadyRandomAction() {

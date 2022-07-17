@@ -20,6 +20,8 @@ public class Player : MonoBehaviour {
 
     public Animator anim;
 
+    public Poof poof;
+
     public enum CharacterType {
         BLANK,
         WARRIOR,
@@ -36,6 +38,8 @@ public class Player : MonoBehaviour {
     }
 
     public void SwapCharacter() {
+        poof.AnimationStart();
+
         if(currType == CharacterType.BLANK) {
             SwapCharacterTo(Random.Range(1, 5));
             return;
