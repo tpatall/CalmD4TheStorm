@@ -568,7 +568,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 480225129}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eec0c18755c8d77498b4d148ff890cf6, type: 3}
   m_Name: 
@@ -585,6 +585,8 @@ MonoBehaviour:
   rogueSprite: {fileID: 7123483570100364149, guid: 80edbd61d4150c549b4ca96390b8b1f7, type: 3}
   mageSprite: {fileID: -7335841842015656658, guid: f61d3f5318c63594ab2fd794a5075713, type: 3}
   clericSprite: {fileID: -8243948527881225381, guid: bb53ebbe8df3765429454710837fcbc8, type: 3}
+  button1: {fileID: 1544761284}
+  button2: {fileID: 1289435768}
 --- !u!4 &480225131
 Transform:
   m_ObjectHideFlags: 0
@@ -828,7 +830,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -20.399994, y: -19.699997}
+  m_AnchoredPosition: {x: -20.400024, y: -19.700012}
   m_SizeDelta: {x: 19, y: 19}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &678280974
@@ -1340,7 +1342,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 0
+  m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -2047,7 +2049,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 0
+  m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}

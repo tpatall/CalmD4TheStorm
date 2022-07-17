@@ -97,8 +97,7 @@ public class Overworld : PersistentSingleton<Overworld>
         }
 
         SetNextLevel(0);
-        GenerateBattleLevel();
-
+        LoadNextLevel();
     }
 
     /// <summary>
@@ -156,7 +155,8 @@ public class Overworld : PersistentSingleton<Overworld>
     public void LoadNextLevel() {
         // Boss room, load special extra cursed scene?
         if (CurrentLevelIndex + 1 == Levels.Count) {
-            Debug.Log("Boss defeated lmao xd");
+            SceneManager.LoadScene("Ending");
+            return;
         }
 
         LevelObject levelObject = nextObjects[0];

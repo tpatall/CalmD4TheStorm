@@ -53,41 +53,35 @@ public class PlayerInformation : MonoBehaviour
         // Get 2 unupgraded actions.
         int list;
         PlayerAction playerAction;
+
+        List<PlayerAction> warriorActionsCopy = warriorActions;
+        List<PlayerAction> rogueActionsCopy = rogueActions;
+        List<PlayerAction> mageActionsCopy = mageActions;
+        List<PlayerAction> clericActionsCopy = clericActions;
         for (int i = 0; i < 2; i++) {
             list = Random.Range(0, 4);
             if (list == 0) {
-                playerAction = GetRandomAction(warriorActions);
+                playerAction = GetRandomAction(warriorActionsCopy);
                 if (playerAction != null) {
                     upgradeableActions.Add((playerAction, list));
-                } else {
-                    i--;
                 }
 
             } else if (list == 1) {
-                playerAction = GetRandomAction(rogueActions);
+                playerAction = GetRandomAction(rogueActionsCopy);
                 if (playerAction != null) {
                     upgradeableActions.Add((playerAction, list));
-                }
-                else {
-                    i--;
                 }
 
             } else if (list == 2) {
-                playerAction = GetRandomAction(mageActions);
+                playerAction = GetRandomAction(mageActionsCopy);
                 if (playerAction != null) {
                     upgradeableActions.Add((playerAction, list));
-                }
-                else {
-                    i--;
                 }
 
             } else {
-                playerAction = GetRandomAction(clericActions);
+                playerAction = GetRandomAction(clericActionsCopy);
                 if (playerAction != null) {
                     upgradeableActions.Add((playerAction, list));
-                }
-                else {
-                    i--;
                 }
             }
         }
@@ -96,14 +90,13 @@ public class PlayerInformation : MonoBehaviour
         for (int i = 0; i < upgradeableActions.Count; i++) {
             PlayerAction copyAction = upgradeableActions[i].Item1;
             copyAction.Upgrade();
-            shopItems.Add((shopItems[i].Item1, shopItems[i].Item2, copyAction.ActionText));
+            shopItems.Add((upgradeableActions[i].Item1, upgradeableActions[i].Item2, copyAction.ActionText));
         }
 
         return shopItems;
     }
 
-    public PlayerAction GetRandomAction(List<PlayerAction> actions) {
-        List<PlayerAction> playerActions = actions;
+    public PlayerAction GetRandomAction(List<PlayerAction> playerActions) {
         PlayerAction notUpgradedPlayerAction = GetRandomItemAndRemoveIt(playerActions);
         while (playerActions.Count > 0 && !notUpgradedPlayerAction.Upgraded) {
             notUpgradedPlayerAction = GetRandomItemAndRemoveIt(playerActions);

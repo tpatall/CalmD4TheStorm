@@ -565,6 +565,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4507303930034425234, guid: 547093ec3db48a34aa990494abe95296, type: 3}
+      propertyPath: Levels.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4507303930034425234, guid: 547093ec3db48a34aa990494abe95296, type: 3}
+      propertyPath: Levels.Array.data[0]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4507303930034425234, guid: 547093ec3db48a34aa990494abe95296, type: 3}
+      propertyPath: Levels.Array.data[1]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4507303930034425234, guid: 547093ec3db48a34aa990494abe95296, type: 3}
+      propertyPath: Levels.Array.data[2]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4507303930034425234, guid: 547093ec3db48a34aa990494abe95296, type: 3}
+      propertyPath: Levels.Array.data[3]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4507303930034425234, guid: 547093ec3db48a34aa990494abe95296, type: 3}
+      propertyPath: Levels.Array.data[4]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4507303930034425234, guid: 547093ec3db48a34aa990494abe95296, type: 3}
+      propertyPath: Levels.Array.data[5]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4507303930034425234, guid: 547093ec3db48a34aa990494abe95296, type: 3}
+      propertyPath: Levels.Array.data[7]
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4507303930034425235, guid: 547093ec3db48a34aa990494abe95296, type: 3}
       propertyPath: m_Name
       value: OverworldManager
