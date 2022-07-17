@@ -6,11 +6,20 @@ public class BuffAction : MonoBehaviour, BattleAction {
     Enemy enemy;
     public int amount;
 
+    private AudioSource audioSource;
+    private AudioClip clip;
+
     void Start() {
+        audioSource = Camera.main.GetComponent<AudioSource>();
+        clip = Resources.Load<AudioClip>("Audio/Sound Effects/Buff");
+
         enemy = GetComponent<Enemy>();
     }
 
     public void DoAction() {
+        audioSource.clip = clip;
+        audioSource.Play();
+
         enemy.Strength += amount;
         Debug.Log("Buffing strength!");
     }

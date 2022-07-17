@@ -8,8 +8,19 @@ public class AttackAction : MonoBehaviour, BattleAction {
     public DiceType diceType;
     public int diceAmount;
 
+    private AudioSource audioSource;
+    private AudioClip clip;
+
+    void Start() {
+        audioSource = Camera.main.GetComponent<AudioSource>();
+        clip = Resources.Load<AudioClip>("Audio/Sound Effects/Impact");
+    }
+
     public void DoAction() {
         DiceType damageDiceType = diceType;
+
+        audioSource.clip = clip;
+        audioSource.Play();
 
         if(enemy.debuffed && damageDiceType > 0) {
             damageDiceType--;
