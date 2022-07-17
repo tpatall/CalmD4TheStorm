@@ -1,37 +1,37 @@
 fileFormatVersion: 2
-guid: 26f09d201b7707847a5732fab8d1d5b8
+guid: 4032bbfcd1074914e8b1670af8b055ce
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7198539669831903162
-    second: D4_Cleric_Death_0
+      213: 149801572645709954
+    second: D4_Warrior_Death_0
   - first:
-      213: 6648718696796888652
-    second: D4_Cleric_Death_1
+      213: 4941680354531115896
+    second: D4_Warrior_Death_1
   - first:
-      213: -161737892287090091
-    second: D4_Cleric_Death_2
+      213: 6326851933616906719
+    second: D4_Warrior_Death_2
   - first:
-      213: 2144481997072957195
-    second: D4_Cleric_Death_3
+      213: 417537903904721328
+    second: D4_Warrior_Death_3
   - first:
-      213: 1446986098145257528
-    second: D4_Cleric_Death_4
+      213: 1438485531925737571
+    second: D4_Warrior_Death_4
   - first:
-      213: -3066992718374725776
-    second: D4_Cleric_Death_5
+      213: 2114081921640897949
+    second: D4_Warrior_Death_5
   - first:
-      213: 7566616068828153551
-    second: D4_Cleric_Death_6
+      213: 9119964993357465268
+    second: D4_Warrior_Death_6
   - first:
-      213: 3458885120434610057
-    second: D4_Cleric_Death_7
+      213: -110170037305727641
+    second: D4_Warrior_Death_7
   - first:
-      213: -8586585790170841203
-    second: D4_Cleric_Death_8
+      213: -3503860454925563423
+    second: D4_Warrior_Death_8
   - first:
-      213: 7742070727530027786
-    second: D4_Cleric_Death_10
+      213: -2460425414087062464
+    second: D4_Warrior_Death_10
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -121,7 +121,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: D4_Cleric_Death_0
+      name: D4_Warrior_Death_0
       rect:
         serializedVersion: 2
         x: 0
@@ -135,14 +135,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6489c1e4f46a91c90800000000000000
-      internalID: -7198539669831903162
+      spriteID: 288a7549cb3341200800000000000000
+      internalID: 149801572645709954
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: D4_Cleric_Death_1
+      name: D4_Warrior_Death_1
       rect:
         serializedVersion: 2
         x: 32
@@ -156,14 +156,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c4e9316ad6ef44c50800000000000000
-      internalID: 6648718696796888652
+      spriteID: 8738a5da910649440800000000000000
+      internalID: 4941680354531115896
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: D4_Cleric_Death_2
+      name: D4_Warrior_Death_2
       rect:
         serializedVersion: 2
         x: 64
@@ -177,14 +177,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 552f18f6e3461cdf0800000000000000
-      internalID: -161737892287090091
+      spriteID: fd1aab1005e7dc750800000000000000
+      internalID: 6326851933616906719
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: D4_Cleric_Death_3
+      name: D4_Warrior_Death_3
       rect:
         serializedVersion: 2
         x: 96
@@ -198,14 +198,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b0ff0cea30bb2cd10800000000000000
-      internalID: 2144481997072957195
+      spriteID: 0b9808ae2846bc500800000000000000
+      internalID: 417537903904721328
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: D4_Cleric_Death_4
+      name: D4_Warrior_Death_4
       rect:
         serializedVersion: 2
         x: 128
@@ -219,14 +219,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 83860e6903ab41410800000000000000
-      internalID: 1446986098145257528
+      spriteID: 360f8f848f686f310800000000000000
+      internalID: 1438485531925737571
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: D4_Cleric_Death_5
+      name: D4_Warrior_Death_5
       rect:
         serializedVersion: 2
         x: 160
@@ -240,14 +240,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 077909c4f5adf65d0800000000000000
-      internalID: -3066992718374725776
+      spriteID: d9d1b7d8e4ab65d10800000000000000
+      internalID: 2114081921640897949
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: D4_Cleric_Death_6
+      name: D4_Warrior_Death_6
       rect:
         serializedVersion: 2
         x: 192
@@ -261,14 +261,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fc6c3469935020960800000000000000
-      internalID: 7566616068828153551
+      spriteID: 4b6c11187df909e70800000000000000
+      internalID: 9119964993357465268
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: D4_Cleric_Death_7
+      name: D4_Warrior_Death_7
       rect:
         serializedVersion: 2
         x: 224
@@ -282,14 +282,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98f936ae0bd600030800000000000000
-      internalID: 3458885120434610057
+      spriteID: 765208d4fe8987ef0800000000000000
+      internalID: -110170037305727641
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: D4_Cleric_Death_8
+      name: D4_Warrior_Death_8
       rect:
         serializedVersion: 2
         x: 256
@@ -303,14 +303,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d8f337fa7b156d880800000000000000
-      internalID: -8586585790170841203
+      spriteID: 1e98f910b79cf5fc0800000000000000
+      internalID: -3503860454925563423
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: D4_Cleric_Death_10
+      name: D4_Warrior_Death_10
       rect:
         serializedVersion: 2
         x: 320
@@ -324,8 +324,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a0b9064be4c517b60800000000000000
-      internalID: 7742070727530027786
+      spriteID: 04c4ffc2f10daddd0800000000000000
+      internalID: -2460425414087062464
       vertices: []
       indices: 
       edges: []

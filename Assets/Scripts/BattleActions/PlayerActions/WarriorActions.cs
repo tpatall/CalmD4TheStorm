@@ -93,7 +93,7 @@ public class WarriorActionThree : PlayerAction {
     }
 
     public void DoAction(Enemy[] enemy, int[] numbersRolled) {
-
+        Player.Instance.strength++;
     }
 }
 public class WarriorActionFour : PlayerAction {

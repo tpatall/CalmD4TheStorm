@@ -81,10 +81,10 @@ public class Player : MonoBehaviour {
         }
     }
 
-    public void TakeDamage(int damage) {
+    public bool TakeDamage(int damage) {
         Debug.Log("Player took " + damage + " damage.");
         if(damage < 0) {
-            return;
+            return false;
         }
 
         if(block >= damage) {
@@ -100,10 +100,14 @@ public class Player : MonoBehaviour {
         if(health <= 0) {
             // Die.
             Debug.Log("You have died!");
-            transform.GetChild(1).transform.rotation = Quaternion.Euler(0,0,90) ;
+            anim.SetTrigger("deathTrigger");
+            FindObjectOfType<TurnBasedBattleController>().VictoryState();
+            healthBar.value = (float)health / maxHealth;
+            return true;
         }
 
         healthBar.value = (float)health / maxHealth;
+        return false;
     }
 
     public void Heal(int heal) {
