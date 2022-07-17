@@ -1,13 +1,16 @@
 fileFormatVersion: 2
-guid: 51c41af85423d0b4e843d5f7d57751f0
+guid: 67420f47fe80ca24f99b062a042936c9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4179935115137375064
-    second: D20_Neutral
+      213: -2992230443247651359
+    second: Reroll_Neutral
   - first:
-      213: -7360957125009514419
-    second: D20_Hover
+      213: -5033962202857519786
+    second: Reroll_Hover
+  - first:
+      213: 2482859962097816446
+    second: Reroll_Pressed
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -38,7 +41,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -74,7 +77,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -86,7 +89,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -98,7 +101,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -110,7 +113,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -121,13 +124,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: D20_Neutral
+      name: Reroll_Neutral
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 55
-        height: 65
+        width: 19
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -135,20 +138,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 85bd1f947dc120a30800000000000000
-      internalID: 4179935115137375064
+      spriteID: 1e53d10f3467976d0800000000000000
+      internalID: -2992230443247651359
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: D20_Hover
+      name: Reroll_Hover
       rect:
         serializedVersion: 2
-        x: 55
+        x: 19
         y: 0
-        width: 55
-        height: 65
+        width: 19
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -156,8 +159,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d406decae70a8d990800000000000000
-      internalID: -7360957125009514419
+      spriteID: 6554fed2c06c32ab0800000000000000
+      internalID: -5033962202857519786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Reroll_Pressed
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 0
+        width: 19
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7351e31bf3e47220800000000000000
+      internalID: 2482859962097816446
       vertices: []
       indices: 
       edges: []
