@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerInformation : MonoBehaviour
 {
+    [SerializeField] private int startHealth = 20;
+    public int PlayerHealth { get; set; }
+
     // TODO: Initialize actions in Start() using the in-inspector given values.
     public Warrior Warrior;
     public Rogue Rogue;
@@ -15,8 +18,6 @@ public class PlayerInformation : MonoBehaviour
     public List<PlayerAction> mageActions = new List<PlayerAction>();
     public List<PlayerAction> clericActions = new List<PlayerAction>();
 
-    public int PlayerHealth { get; set; }
-
     private void Awake() {
         DontDestroyOnLoad(this.gameObject);
     }
@@ -24,38 +25,13 @@ public class PlayerInformation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerHealth = 20;
+        PlayerHealth = startHealth;
 
         // Initialize the playerActions per class.
         warriorActions = Warrior.GetActions();
         rogueActions = Rogue.GetActions();
         mageActions = Mage.GetActions();
         clericActions = Cleric.GetActions();
-
-        // Create all actions.
-        //warriorActions.Add(new WarriorActionOne());
-        //warriorActions.Add(new WarriorActionTwo());
-        //warriorActions.Add(new WarriorActionThree());
-        //warriorActions.Add(new WarriorActionFour());
-        //warriorActions.Add(new WarriorActionFive());
-
-        //rogueActions.Add(new RogueActionOne());
-        //rogueActions.Add(new RogueActionTwo());
-        //rogueActions.Add(new RogueActionThree());
-        //rogueActions.Add(new RogueActionFour());
-        //rogueActions.Add(new RogueActionFive());
-
-        //mageActions.Add(new MageActionOne());
-        //mageActions.Add(new MageActionTwo());
-        //mageActions.Add(new MageActionThree());
-        //mageActions.Add(new MageActionFour());
-        //mageActions.Add(new MageActionFive());
-
-        //clericActions.Add(new ClericActionOne());
-        //clericActions.Add(new ClericActionTwo());
-        //clericActions.Add(new ClericActionThree());
-        //clericActions.Add(new ClericActionFour());
-        //clericActions.Add(new ClericActionFive());
     }
 
     // Call after loading in shop scene.

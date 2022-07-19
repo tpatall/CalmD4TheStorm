@@ -22,6 +22,8 @@ public enum ActionIcon {
 }
 
 public class PlayerAction {
+    public string ActionName { get; set; }
+
     public string ActionText { get; set; }
 
     public int EnergyCost { get; set; }
@@ -41,8 +43,10 @@ public class PlayerAction {
     public UpgradeType UpgradeType { get; set; }
     public int UpgradeCost { get; set; }
 
-    public PlayerAction(int energyCost, TargetType targetType, int diceCount, DiceType diceType, DebuffType debuffType,
+    public PlayerAction(string actionName, int energyCost, TargetType targetType, int diceCount, DiceType diceType, DebuffType debuffType,
         ActionIcon actionType, UpgradeType upgradeType, int upgradeCost) {
+
+        ActionName = actionName;
         EnergyCost = energyCost;
         Target = targetType;
         this.diceCount = diceCount;
@@ -190,9 +194,11 @@ public class PlayerAction {
             case UpgradeType.DICECOUNT:
                 diceCount++;
                 break;
+            // Already takes into account if DiceType is lower than D20
             case UpgradeType.DICETYPE:
                 DiceType = GetNextDiceType(DiceType);
                 break;
+            // Already takes into account if EnergyCost is higher than 1
             case UpgradeType.ENERGYCOST:
                 EnergyCost--;
                 break;
