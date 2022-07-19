@@ -132,6 +132,6 @@ public class ShopLevel : MonoBehaviour
     }
 
     public void LeaveShop() {
-        Overworld.Instance.LoadNextLevel();
+        GameManager.Instance.LoadNextLevel();
     }
 }

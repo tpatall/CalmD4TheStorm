@@ -3,17 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Overworld : PersistentSingleton<Overworld>
+public class GameManager : PersistentSingleton<GameManager>
 {
     /// <summary>
     ///     First next level for testing purposes.
     /// </summary>
     public int StartLevel = 0;
-
-    /// <summary>
-    ///     Position of the starting position.
-    /// </summary>
-    public Vector3 PlayerPosition;
 
     [SerializeField] private GameObject battleLevelPrefab;
     [SerializeField] private GameObject shopLevelPrefab;
@@ -125,6 +120,8 @@ public class Overworld : PersistentSingleton<Overworld>
     private void GenerateBattleLevel() {
         Debug.Log("Battle!");
         // play battle animation
+
+        MusicPlayer.Instance.PlayMapMusic();
 
         // Allow player to choose when to start encounter
         SceneManager.LoadScene("EnterLevel");
@@ -241,7 +238,31 @@ public class Overworld : PersistentSingleton<Overworld>
         }
     }
 
-    public void RegenerateMap() {
+    public void EnterBattle() {
+        MusicPlayer.Instance.PlayBattleMusic();
+
+        SceneManager.LoadScene("BattleScene");
+    }
+
+    public void LeaveBattle() {
+        MusicPlayer.Instance.PlayMapMusic();
+
+        LoadNextLevel();
+    }
+
+    public void GameOver() {
+        MusicPlayer.Instance.PlayGameOverMusic();
+
+        SceneManager.LoadScene("GameOver");
+    }
+
+    /// <summary>
+    ///     Go back to title screen, when either pressing it on the 'Game Over'-screen or the 'Ending'-screen.
+    /// </summary>
+    public void ResetWorld() {
+        MusicPlayer.Instance.PlayTitleMusic();
+
+        Destroy(PlayerInformation.Instance);
         Destroy(this);
     }
 }

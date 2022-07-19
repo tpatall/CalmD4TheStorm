@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class EnterButton : MonoBehaviour
+public class StartGame : MonoBehaviour
 {
-    public void EnterLevel() {
-        SceneManager.LoadScene("BattleScene");
+    public void PlayButton() {
+        GameManager.Instance.PopulateMap();
     }
 }

@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class ExitButton : MonoBehaviour
 {
-    Overworld overworld;
+    GameManager overworld;
 
     // Start is called before the first frame update
     void Start() {
-        overworld = Overworld.Instance;
+        overworld = GameManager.Instance;
     }
 
     public void ExitLevel() {

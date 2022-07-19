@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInformation : MonoBehaviour
+public class PlayerInformation : PersistentSingleton<PlayerInformation>
 {
     [Tooltip("Total hitpoints the player starts with.")]
     [SerializeField] private int startHealth = 20;

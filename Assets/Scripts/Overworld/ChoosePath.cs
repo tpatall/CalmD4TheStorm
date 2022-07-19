@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class ChoosePath : MonoBehaviour
 {
-    Overworld overworld;
+    GameManager overworld;
 
     // Start is called before the first frame update
     void Start() {
-        overworld = Overworld.Instance;
+        overworld = GameManager.Instance;
     }
 
     public void ChooseLeft(bool left) {

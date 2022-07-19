@@ -36,17 +36,17 @@ public class TurnBasedBattleController : MonoBehaviour {
 
         EnemyPool[] pools = new EnemyPool[0];
 
-        int level = Overworld.Instance.CurrentLevelIndex;
+        int level = GameManager.Instance.CurrentLevelIndex;
         if(level < 3) {
-            pools = Overworld.Instance.transform.GetChild(0).GetComponents<EnemyPool>();
+            pools = GameManager.Instance.transform.GetChild(0).GetComponents<EnemyPool>();
             enemies = pools[Random.Range(0, pools.Length)].enemyPool;
 
         } else if (level < 5) {
-            pools = Overworld.Instance.transform.GetChild(1).GetComponents<EnemyPool>();
+            pools = GameManager.Instance.transform.GetChild(1).GetComponents<EnemyPool>();
             enemies = pools[Random.Range(0, pools.Length)].enemyPool;
 
         } else {
-            pools = Overworld.Instance.transform.GetChild(2).GetComponents<EnemyPool>();
+            pools = GameManager.Instance.transform.GetChild(2).GetComponents<EnemyPool>();
             enemies = pools[Random.Range(0, pools.Length)].enemyPool;
 
         }
@@ -133,7 +133,7 @@ public class TurnBasedBattleController : MonoBehaviour {
 
             yield return new WaitForSeconds(playerVictoryTime);
 
-            Overworld.Instance.LoadNextLevel();
+            GameManager.Instance.LeaveBattle();
         }
     }
 
@@ -152,8 +152,8 @@ public class TurnBasedBattleController : MonoBehaviour {
             playerUI.SetActive(false);
 
             yield return new WaitForSeconds(playerDeathTime);
-            
-            SceneManager.LoadScene("GameOver");
+
+            GameManager.Instance.GameOver();
         }
     }
 }
