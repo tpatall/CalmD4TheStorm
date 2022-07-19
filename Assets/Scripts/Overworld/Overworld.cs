@@ -8,7 +8,7 @@ public class Overworld : PersistentSingleton<Overworld>
     /// <summary>
     ///     First next level for testing purposes.
     /// </summary>
-    public int StartLevel = 1;
+    public int StartLevel = 0;
 
     /// <summary>
     ///     Position of the starting position.
@@ -33,6 +33,8 @@ public class Overworld : PersistentSingleton<Overworld>
     /// </summary>
     public List<LevelObject> LevelObjects { get; set; } = new List<LevelObject>();
 
+    // Display the current level index in inspector.
+    public int CurrentLevel => CurrentLevelIndex;
     // Current index in levelObjects list.
     public int CurrentLevelIndex { get; set; } = 0;
 
@@ -96,8 +98,9 @@ public class Overworld : PersistentSingleton<Overworld>
             //}
         }
 
-        SetNextLevel(0);
-        LoadNextLevel();
+        CurrentLevelIndex = 0;
+        SetNextLevel(CurrentLevelIndex);
+        GenerateByType(LevelObjects[CurrentLevelIndex].LevelType);
     }
 
     /// <summary>
@@ -163,15 +166,7 @@ public class Overworld : PersistentSingleton<Overworld>
         LevelTypes levelType = nextObjects[0].LevelType;
 
         SetNextLevel(levelObject.CurrentLevelIndex);
-
-        // No need to choose a path, load next level
-        if (levelType == LevelTypes.BattleLevel) {
-            GenerateBattleLevel();
-        } else if (levelType == LevelTypes.ShopLevel) {
-            GenerateShopLevel();
-        } else {
-            GenerateTreasureLevel();
-        }
+        GenerateByType(levelType);
 
         Debug.Log("Waiting for enter.");
         //else if (nextObjects.Count == 2) {
@@ -181,6 +176,19 @@ public class Overworld : PersistentSingleton<Overworld>
 
         //    Debug.Log("Waiting for choice.");
         //}
+    }
+
+    private void GenerateByType(LevelTypes levelType) {
+        // No need to choose a path, load next level
+        if (levelType == LevelTypes.BattleLevel) {
+            GenerateBattleLevel();
+        }
+        else if (levelType == LevelTypes.ShopLevel) {
+            GenerateShopLevel();
+        }
+        else {
+            GenerateTreasureLevel();
+        }
     }
 
     /// <summary>
