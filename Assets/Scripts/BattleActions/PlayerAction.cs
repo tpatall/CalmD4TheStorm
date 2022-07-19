@@ -75,6 +75,10 @@ public class PlayerAction {
         ActionText = ActionTextBuilder();
     }
 
+    /// <summary>
+    ///     Build the action text based on the action components.
+    /// </summary>
+    /// <returns>An action text string.</returns>
     private string ActionTextBuilder() {
         string actionText = "EMPTY";
 
@@ -91,7 +95,12 @@ public class PlayerAction {
                     actionText += " TO ALL";
                 break;
             case ActionIcon.BLOCK:
-                actionText = string.Format("BLOCK {0} DAMAGE", DiceType.ToString());
+                if (diceCount == 1) {
+                    actionText = string.Format("BLOCK {0} DAMAGE", DiceType.ToString());
+                }
+                else {
+                    actionText = string.Format("BLOCK {0}{1} DAMAGE", diceCount, DiceType.ToString());
+                }
                 break;
             case ActionIcon.POISON:
                 actionText = string.Format("DEAL {0} DAMAGE", DiceType.ToString());
@@ -112,7 +121,11 @@ public class PlayerAction {
                 }
                 break;
             case ActionIcon.HEAL:
-                actionText = string.Format("HEAL {0}{1} HEALTH", diceCount, DiceType.ToString());
+                if (diceCount == 1) {
+                    actionText = string.Format("HEAL {0} HEALTH", DiceType.ToString());
+                } else {
+                    actionText = string.Format("HEAL {0}{1} HEALTH", diceCount, DiceType.ToString());
+                }
                 break;
             default:
                 break;
@@ -121,7 +134,12 @@ public class PlayerAction {
         return actionText;
     }
 
+    /// <summary>
+    ///     Get the dice numbers based on number of rolls.
+    /// </summary>
+    /// <returns>The integer values from the dice rolls, or 0 or 1 if special action.</returns>
     public int[] PrepareAction() {
+        // For empty actions.
         if (diceCount < 0) return new int[1] { 0 };
         
         Debug.Log("Preparing action.");
@@ -140,6 +158,11 @@ public class PlayerAction {
         return numbersRolled;
     }
 
+    /// <summary>
+    ///     Perform the action on the given targets using the numbers rolled, or change attributes.
+    /// </summary>
+    /// <param name="targets">Enemy targets affected by this action.</param>
+    /// <param name="numbersRolled">Dice numbers based on rolls.</param>
     public void DoAction(Enemy[] targets, int[] numbersRolled) {
         switch (actionType) {
             case ActionIcon.ATTACK:
@@ -171,6 +194,11 @@ public class PlayerAction {
         }
     }
 
+    /// <summary>
+    ///     Do an attack on the given targets.
+    /// </summary>
+    /// <param name="targets">Enemy targets affected by this attack.</param>
+    /// <param name="numbersRolled">Dice numbers based on rolls.</param>
     private void DoAttack(Enemy[] targets, int[] numbersRolled) {
         for (int i = 0; i < targets.Length; i++) {
             for (int j = 0; j < numbersRolled.Length; j++) {
@@ -181,6 +209,10 @@ public class PlayerAction {
         }
     }
 
+    /// <summary>
+    ///     Do a block based on the dice rolls.
+    /// </summary>
+    /// <param name="numbersRolled">Dice numbers based on rolls.</param>
     private void DoBlock(int[] numbersRolled) {
         int totalBlock = 0;
         for (int i = 0; i < numbersRolled.Length; i++) {
@@ -189,6 +221,38 @@ public class PlayerAction {
         Player.Instance.GainBlock(totalBlock);
     }
 
+    /// <summary>
+    ///     Do a fake-out upgrade to get the correct text.
+    /// </summary>
+    /// <returns>The actionText if this action was upgraded.</returns>
+    public string GetUpgradeText() {
+        string upgradeText = "";
+
+        switch (this.UpgradeType) {
+            case UpgradeType.DICECOUNT:
+                diceCount++;
+                upgradeText = ActionTextBuilder();
+                diceCount--;
+                break;
+            case UpgradeType.DICETYPE:
+                DiceType = GetNextDiceType(DiceType);
+                upgradeText = ActionTextBuilder();
+                DiceType = GetPreviousDiceType(DiceType);
+                break;
+            case UpgradeType.ENERGYCOST:
+                upgradeText = "LOWER MANA COST \n\nFROM 2 TO 1";
+                break;
+            default:
+                break;
+        }
+
+        // Update action text.
+        return upgradeText;
+    }
+
+    /// <summary>
+    ///     Upgrade this action.
+    /// </summary>
     public void Upgrade() {
         switch (this.UpgradeType) {
             case UpgradeType.DICECOUNT:
@@ -210,6 +274,33 @@ public class PlayerAction {
         ActionText = ActionTextBuilder();
         // No longer upgradeable now.
         UpgradeType = UpgradeType.NONE;
+    }
+
+    // Ugly but necessary hardcoded enum iteration to save space elsewhere.
+    #region DiceType enum iteration
+    private DiceType GetPreviousDiceType(DiceType currentDiceType) {
+        DiceType previousDiceType;
+        switch (currentDiceType) {
+            case DiceType.D6:
+                previousDiceType = DiceType.D4;
+                break;
+            case DiceType.D8:
+                previousDiceType = DiceType.D6;
+                break;
+            case DiceType.D10:
+                previousDiceType = DiceType.D8;
+                break;
+            case DiceType.D12:
+                previousDiceType = DiceType.D10;
+                break;
+            case DiceType.D20:
+                previousDiceType = DiceType.D12;
+                break;
+            default:
+                previousDiceType = DiceType.D4;
+                break;
+        }
+        return previousDiceType;
     }
 
     private DiceType GetNextDiceType(DiceType currentDiceType) {
@@ -236,25 +327,5 @@ public class PlayerAction {
         }
         return nextDiceType;
     }
+    #endregion
 }
-
-//public interface PlayerAction
-//{
-//    public int EnergyCost { get; set; }
-
-//    public TargetType Target { get; set; }
-
-//    public string ActionText { get; set; }
-
-//    public bool SkipReroll { get; set; }
-
-//    public DiceType DiceType { get; set; }
-
-//    public bool Upgraded { get; set; }
-
-//    public int[] PrepareAction();
-
-//    public void DoAction(Enemy[] targets, int[] numbersRolled);
-
-//    public void Upgrade();
-//}

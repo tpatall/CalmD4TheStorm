@@ -43,6 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9e88deff9eea0745ab2c7ecba33d1c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startHealth: 20
+  startRerolls: 9
   Warrior:
     action1:
       ActionType: 1

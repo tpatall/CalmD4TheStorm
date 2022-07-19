@@ -13,6 +13,16 @@ public interface CharacterClass
 }
 
 [System.Serializable]
+public enum CharacterType
+{
+    BLANK,
+    WARRIOR,
+    ROGUE,
+    MAGE,
+    CLERIC
+}
+
+[System.Serializable]
 public class Warrior : CharacterClass
 {
     public CharacterType CharacterType { get; set; } = CharacterType.WARRIOR;

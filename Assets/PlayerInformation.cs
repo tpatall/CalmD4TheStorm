@@ -7,6 +7,10 @@ public class PlayerInformation : MonoBehaviour
     [SerializeField] private int startHealth = 20;
     public int PlayerHealth { get; set; }
 
+    [Tooltip("Amount of rerolls a player starts with each encounter.")]
+    [SerializeField] private int startRerolls = 2;
+    public int MaxRerolls { get; set; }
+
     // TODO: Initialize actions in Start() using the in-inspector given values.
     public Warrior Warrior;
     public Rogue Rogue;
@@ -26,6 +30,7 @@ public class PlayerInformation : MonoBehaviour
     void Start()
     {
         PlayerHealth = startHealth;
+        MaxRerolls = startRerolls;
 
         // Initialize the playerActions per class.
         warriorActions = Warrior.GetActions();
@@ -34,72 +39,67 @@ public class PlayerInformation : MonoBehaviour
         clericActions = Cleric.GetActions();
     }
 
-    // Call after loading in shop scene.
-    public List<(PlayerAction, int, string)> BuildShop() {
-        List<(PlayerAction, int)> upgradeableActions = new List<(PlayerAction, int)>();
+    /// <summary>
+    ///     Return a list of upgradeable player actions, along with their character type 
+    ///     Is called when the shopLevel is entered.
+    /// </summary>
+    /// <param name="items">Total items the shop should consist of.</param>
+    /// <param name="onePerClass">Whether you can upgrade one action maximally per class.</param>
+    /// <returns></returns>
+    public List<(CharacterType, PlayerAction)> BuildShop(int totalItems = 2, bool onePerClass = true) {
+        List<(CharacterType, PlayerAction)> upgradeableActions = new List<(CharacterType, PlayerAction)>();
+        PopulateListByClass(upgradeableActions, CharacterType.WARRIOR, warriorActions);
+        PopulateListByClass(upgradeableActions, CharacterType.ROGUE, rogueActions);
+        PopulateListByClass(upgradeableActions, CharacterType.MAGE, mageActions);
+        PopulateListByClass(upgradeableActions, CharacterType.CLERIC, clericActions);
 
-        // Get 2 unupgraded actions.
-        int list;
-        PlayerAction playerAction;
+        List<(CharacterType, PlayerAction)> items = new List<(CharacterType, PlayerAction)>();
+        (CharacterType, PlayerAction) upgradeableAction;
+        for (int i = 0; i < totalItems; i++) {
+            upgradeableAction = GetRandomItemAndRemoveIt(upgradeableActions, onePerClass);
+            items.Add(upgradeableAction);
+        }
 
-        List<PlayerAction> warriorActionsCopy = warriorActions;
-        List<PlayerAction> rogueActionsCopy = rogueActions;
-        List<PlayerAction> mageActionsCopy = mageActions;
-        List<PlayerAction> clericActionsCopy = clericActions;
-        for (int i = 0; i < 2; i++) {
-            list = Random.Range(0, 4);
-            if (list == 0) {
-                playerAction = GetRandomAction(warriorActionsCopy);
-                if (playerAction != null) {
-                    upgradeableActions.Add((playerAction, list));
-                }
+        return items;
+    }
 
-            } else if (list == 1) {
-                playerAction = GetRandomAction(rogueActionsCopy);
-                if (playerAction != null) {
-                    upgradeableActions.Add((playerAction, list));
-                }
-
-            } else if (list == 2) {
-                playerAction = GetRandomAction(mageActionsCopy);
-                if (playerAction != null) {
-                    upgradeableActions.Add((playerAction, list));
-                }
-
-            } else {
-                playerAction = GetRandomAction(clericActionsCopy);
-                if (playerAction != null) {
-                    upgradeableActions.Add((playerAction, list));
-                }
+    /// <summary>
+    ///     Add unupgraded actions to list, sorted by class.
+    /// </summary>
+    /// <param name="list">List of tuples of CharacterType and other unupgraded actions.</param>
+    /// <param name="characterType">Class type.</param>
+    /// <param name="actions">List of PlayerActions of that class.</param>
+    private void PopulateListByClass(List<(CharacterType, PlayerAction)> list, CharacterType characterType, List<PlayerAction> actions) {
+        for (int i = 0; i < actions.Count; i++) {
+            if (actions[i].UpgradeType != UpgradeType.NONE) {
+                list.Add((characterType, actions[i]));
             }
         }
-
-        List<(PlayerAction, int, string)> shopItems = new List<(PlayerAction, int, string)>();
-        for (int i = 0; i < upgradeableActions.Count; i++) {
-            PlayerAction copyAction = upgradeableActions[i].Item1;
-            copyAction.Upgrade();
-            shopItems.Add((upgradeableActions[i].Item1, upgradeableActions[i].Item2, copyAction.ActionText));
-        }
-
-        return shopItems;
     }
 
-    public PlayerAction GetRandomAction(List<PlayerAction> playerActions) {
-        PlayerAction notUpgradedPlayerAction = GetRandomItemAndRemoveIt(playerActions);
-        while (playerActions.Count > 0 && notUpgradedPlayerAction.UpgradeType != UpgradeType.NONE) {
-            notUpgradedPlayerAction = GetRandomItemAndRemoveIt(playerActions);
-        }
-
-        if (notUpgradedPlayerAction.UpgradeType != UpgradeType.NONE) {
-            return notUpgradedPlayerAction;
+    /// <summary>
+    ///     Get a random item from the list and then remove that item.
+    /// </summary>
+    /// <param name="list">List of actions, sorted by class type.</param>
+    /// <param name="removeClass">If the whole class should be removed from the list after one action is picked.</param>
+    /// <returns></returns>
+    public (CharacterType, PlayerAction) GetRandomItemAndRemoveIt(List<(CharacterType, PlayerAction)> list, bool removeClass) {
+        (CharacterType, PlayerAction) randomItem = list[Random.Range(0, list.Count)];
+        
+        if (removeClass) {
+            int i = 0;
+            while (i < list.Count) {
+                // Dont increment the index when removing an item, as the list will decrease in size.
+                if (list[i].Item1 == randomItem.Item1) {
+                    list.Remove(list[i]);
+                } else {
+                    i++;
+                }
+            }
         } else {
-            return null;
+            list.Remove(randomItem);
         }
-    }
 
-    public PlayerAction GetRandomItemAndRemoveIt(List<PlayerAction> list) {
-        PlayerAction randomItem = list[Random.Range(0, list.Count)];
-        list.Remove(randomItem);
         return randomItem;
     }
 

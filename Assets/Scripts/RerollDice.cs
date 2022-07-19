@@ -6,13 +6,15 @@ using TMPro;
 
 public class RerollDice : MonoBehaviour {
     public int amount;
-
-    [SerializeField] int maxAmount;
+    private int maxAmount;
 
     public TextMeshProUGUI rerollText;
 
     private void Start() {
+        maxAmount = FindObjectOfType<PlayerInformation>().MaxRerolls;
         amount = maxAmount;
+
+        UpdateText();
     }
 
     public void RestoreDice() {

@@ -140,13 +140,3 @@ public class Player : MonoBehaviour {
         }
     }
 }
-
-[System.Serializable]
-public enum CharacterType
-{
-    BLANK,
-    WARRIOR,
-    ROGUE,
-    MAGE,
-    CLERIC
-}
