@@ -5,9 +5,10 @@ using UnityEditor;
 public class ActionInformationDrawer : PropertyDrawer
 {
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label) {
-        // 7 custom properties including label + 2 pixels inbetween
-        int amountOfProperties = 7;
-        return EditorGUIUtility.singleLineHeight * (amountOfProperties + 1) + (amountOfProperties * 3);
+        // Maximum properties that can be activated at the same time (see Attack).
+        // Excludes label, and 3 pixels inbetween each
+        int maxPropertiesOnScreen = 7;
+        return EditorGUIUtility.singleLineHeight * (maxPropertiesOnScreen + 1) + (maxPropertiesOnScreen * 3);
     }
 
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
@@ -31,13 +32,13 @@ public class ActionInformationDrawer : PropertyDrawer
         switch ((ActionIcon) actionType.enumValueIndex) {
             case ActionIcon.ATTACK:
                 targetTypeRect = new Rect(position.x, position.y + 60, position.width, 16);
-                diceTypeRect = new Rect(position.x, position.y + 80, position.width, 16);
-                diceCountRect = new Rect(position.x, position.y + 100, position.width, 16);
+                diceCountRect = new Rect(position.x, position.y + 80, position.width, 16);
+                diceTypeRect = new Rect(position.x, position.y + 100, position.width, 16);
                 upgradeTypeRect = new Rect(position.x, position.y + 120, position.width, 16);
                 
                 EditorGUI.PropertyField(targetTypeRect, property.FindPropertyRelative("TargetType"));
-                EditorGUI.PropertyField(diceTypeRect, property.FindPropertyRelative("DiceType"));
                 EditorGUI.PropertyField(diceCountRect, property.FindPropertyRelative("DiceCount"));
+                EditorGUI.PropertyField(diceTypeRect, property.FindPropertyRelative("DiceType"));
 
                 upgradeType = property.FindPropertyRelative("UpgradeType");
 
@@ -50,12 +51,12 @@ public class ActionInformationDrawer : PropertyDrawer
 
                 break;
             case ActionIcon.BLOCK:
-                diceTypeRect = new Rect(position.x, position.y + 60, position.width, 16);
-                diceCountRect = new Rect(position.x, position.y + 80, position.width, 16);
+                diceCountRect = new Rect(position.x, position.y + 60, position.width, 16);
+                diceTypeRect = new Rect(position.x, position.y + 80, position.width, 16);
                 upgradeTypeRect = new Rect(position.x, position.y + 100, position.width, 16);
 
-                EditorGUI.PropertyField(diceTypeRect, property.FindPropertyRelative("DiceType"));
                 EditorGUI.PropertyField(diceCountRect, property.FindPropertyRelative("DiceCount"));
+                EditorGUI.PropertyField(diceTypeRect, property.FindPropertyRelative("DiceType"));
 
                 upgradeType = property.FindPropertyRelative("UpgradeType");
 
@@ -84,17 +85,19 @@ public class ActionInformationDrawer : PropertyDrawer
                 }
                 break;
             case ActionIcon.DEBUFF:
-                targetTypeRect = new Rect(position.x, position.y + 54, position.width, 16);
-                
+                targetTypeRect = new Rect(position.x, position.y + 60, position.width, 16);
+                var debuffTypeRect = new Rect(position.x, position.y + 80, position.width, 16);
+
                 EditorGUI.PropertyField(targetTypeRect, property.FindPropertyRelative("TargetType"));
+                EditorGUI.PropertyField(debuffTypeRect, property.FindPropertyRelative("DebuffType"));
                 break;
             case ActionIcon.HEAL:
-                diceTypeRect = new Rect(position.x, position.y + 60, position.width, 16);
-                diceCountRect = new Rect(position.x, position.y + 80, position.width, 16);
+                diceCountRect = new Rect(position.x, position.y + 60, position.width, 16);
+                diceTypeRect = new Rect(position.x, position.y + 80, position.width, 16);
                 upgradeTypeRect = new Rect(position.x, position.y + 100, position.width, 16);
                 
-                EditorGUI.PropertyField(diceTypeRect, property.FindPropertyRelative("DiceType"));
                 EditorGUI.PropertyField(diceCountRect, property.FindPropertyRelative("DiceCount"));
+                EditorGUI.PropertyField(diceTypeRect, property.FindPropertyRelative("DiceType"));
 
                 upgradeType = property.FindPropertyRelative("UpgradeType");
 

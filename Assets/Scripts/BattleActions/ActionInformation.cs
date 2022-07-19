@@ -20,6 +20,13 @@
 // Heal multiple times
 
 [System.Serializable]
+public enum DebuffType
+{
+    STRENGTH,
+    DICETYPE
+}
+
+[System.Serializable]
 public enum UpgradeType {
     [InspectorName(null)]
     NONE,
@@ -38,10 +45,12 @@ public class ActionInformation
 
     public TargetType TargetType = TargetType.SINGLE;
 
-    public DiceType DiceType = DiceType.D4;
-
     [Range(1, 10)]
     public int DiceCount = 1;
+    
+    public DiceType DiceType = DiceType.D4;
+
+    public DebuffType DebuffType = DebuffType.STRENGTH;
 
     public UpgradeType UpgradeType = UpgradeType.DICECOUNT;
 
@@ -53,28 +62,46 @@ public class ActionInformation
 
         switch (ActionType) {
             case ActionIcon.EMPTY:
-                playerAction = new PlayerAction(0, TargetType.ALL, DiceType.D4, -1, ActionIcon.EMPTY, UpgradeType.NONE, 0);
+                playerAction = new PlayerAction(0, TargetType.ALL, -1, DiceType.D4, DebuffType.STRENGTH, ActionIcon.EMPTY, UpgradeType.NONE, 0);
                 break;
             case ActionIcon.ATTACK:
-                playerAction = new PlayerAction(EnergyCost, TargetType, DiceType, DiceCount, ActionIcon.ATTACK, UpgradeType, UpgradeCost);
+                playerAction = new PlayerAction(EnergyCost, TargetType, 
+                    DiceCount, DiceType,
+                    DebuffType.STRENGTH, ActionIcon.ATTACK, 
+                    UpgradeType, UpgradeCost);
                 break;
             case ActionIcon.BLOCK:
-                playerAction = new PlayerAction(EnergyCost, TargetType.SELF, DiceType, DiceCount, ActionIcon.BLOCK, UpgradeType, UpgradeCost);
+                playerAction = new PlayerAction(EnergyCost, TargetType.SELF, 
+                    DiceCount, DiceType,
+                    DebuffType.STRENGTH, ActionIcon.BLOCK, 
+                    UpgradeType, UpgradeCost);
                 break;
             case ActionIcon.POISON:
-                playerAction = new PlayerAction(EnergyCost, TargetType.SELF, DiceType, DiceCount, ActionIcon.POISON, UpgradeType, UpgradeCost);
+                playerAction = new PlayerAction(EnergyCost, TargetType.SELF, 
+                    DiceCount, DiceType,
+                    DebuffType.STRENGTH, ActionIcon.POISON, 
+                    UpgradeType, UpgradeCost);
                 break;
             case ActionIcon.BUFF:
-                playerAction = new PlayerAction(EnergyCost, TargetType.SELF, DiceType.D4, 0, ActionIcon.BUFF, UpgradeType.NONE, 0);
+                playerAction = new PlayerAction(EnergyCost, TargetType.SELF, 
+                    0, DiceType.D4,
+                    DebuffType.STRENGTH, ActionIcon.BUFF, 
+                    UpgradeType.NONE, 0);
                 break;
             case ActionIcon.DEBUFF:
-                playerAction = new PlayerAction(EnergyCost, TargetType, DiceType.D4, 0, ActionIcon.DEBUFF, UpgradeType.NONE, 0);
+                playerAction = new PlayerAction(EnergyCost, TargetType, 
+                    0, DiceType.D4,
+                    DebuffType, ActionIcon.DEBUFF, 
+                    UpgradeType.NONE, 0);
                 break;
             case ActionIcon.HEAL:
-                playerAction = new PlayerAction(EnergyCost, TargetType.SELF, DiceType, DiceCount, ActionIcon.HEAL, UpgradeType, UpgradeCost);
+                playerAction = new PlayerAction(EnergyCost, TargetType.SELF, 
+                    DiceCount, DiceType,
+                    DebuffType.STRENGTH, ActionIcon.HEAL, 
+                    UpgradeType, UpgradeCost);
                 break;
             default:
-                playerAction = new PlayerAction(0, TargetType.SELF, DiceType.D4, -1, ActionIcon.EMPTY, UpgradeType.NONE, 0);
+                playerAction = new PlayerAction(0, TargetType.SELF, -1, DiceType.D4, DebuffType.STRENGTH, ActionIcon.EMPTY, UpgradeType.NONE, 0);
                 break;
         }
 

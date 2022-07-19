@@ -48,40 +48,45 @@ MonoBehaviour:
       ActionType: 1
       EnergyCost: 2
       TargetType: 1
-      DiceType: 0
       DiceCount: 3
+      DiceType: 0
+      DebuffType: 0
       UpgradeType: 3
       UpgradeCost: 1
     action2:
       ActionType: 2
       EnergyCost: 1
       TargetType: 1
-      DiceType: 1
       DiceCount: 3
+      DiceType: 1
+      DebuffType: 0
       UpgradeType: 2
       UpgradeCost: 1
     action3:
       ActionType: 4
       EnergyCost: 1
       TargetType: 1
-      DiceType: 0
       DiceCount: 1
+      DiceType: 0
+      DebuffType: 0
       UpgradeType: 1
       UpgradeCost: 1
     action4:
       ActionType: 0
       EnergyCost: 1
       TargetType: 1
-      DiceType: 0
       DiceCount: 1
+      DiceType: 0
+      DebuffType: 0
       UpgradeType: 1
       UpgradeCost: 1
     action5:
       ActionType: 0
       EnergyCost: 1
       TargetType: 1
-      DiceType: 0
       DiceCount: 1
+      DiceType: 0
+      DebuffType: 0
       UpgradeType: 1
       UpgradeCost: 1
   Rogue:
@@ -89,40 +94,45 @@ MonoBehaviour:
       ActionType: 1
       EnergyCost: 1
       TargetType: 1
-      DiceType: 4
       DiceCount: 1
+      DiceType: 4
+      DebuffType: 0
       UpgradeType: 2
       UpgradeCost: 1
     action2:
       ActionType: 2
       EnergyCost: 1
       TargetType: 1
-      DiceType: 1
       DiceCount: 1
+      DiceType: 1
+      DebuffType: 0
       UpgradeType: 2
       UpgradeCost: 1
     action3:
       ActionType: 1
       EnergyCost: 2
       TargetType: 1
-      DiceType: 0
       DiceCount: 4
+      DiceType: 0
+      DebuffType: 0
       UpgradeType: 3
       UpgradeCost: 1
     action4:
       ActionType: 0
       EnergyCost: 1
       TargetType: 1
-      DiceType: 0
       DiceCount: 1
+      DiceType: 0
+      DebuffType: 0
       UpgradeType: 1
       UpgradeCost: 1
     action5:
       ActionType: 0
       EnergyCost: 1
       TargetType: 1
-      DiceType: 0
       DiceCount: 1
+      DiceType: 0
+      DebuffType: 0
       UpgradeType: 1
       UpgradeCost: 1
   Mage:
@@ -130,40 +140,45 @@ MonoBehaviour:
       ActionType: 1
       EnergyCost: 1
       TargetType: 2
-      DiceType: 0
       DiceCount: 2
+      DiceType: 0
+      DebuffType: 0
       UpgradeType: 2
       UpgradeCost: 1
     action2:
       ActionType: 2
       EnergyCost: 1
       TargetType: 1
-      DiceType: 1
       DiceCount: 2
+      DiceType: 1
+      DebuffType: 0
       UpgradeType: 2
       UpgradeCost: 1
     action3:
       ActionType: 6
       EnergyCost: 1
       TargetType: 1
-      DiceType: 0
       DiceCount: 2
+      DiceType: 0
+      DebuffType: 0
       UpgradeType: 1
       UpgradeCost: 1
     action4:
       ActionType: 0
       EnergyCost: 1
       TargetType: 1
-      DiceType: 0
       DiceCount: 1
+      DiceType: 0
+      DebuffType: 0
       UpgradeType: 1
       UpgradeCost: 1
     action5:
       ActionType: 0
       EnergyCost: 1
       TargetType: 1
-      DiceType: 0
       DiceCount: 1
+      DiceType: 0
+      DebuffType: 0
       UpgradeType: 1
       UpgradeCost: 1
   Cleric:
@@ -171,39 +186,44 @@ MonoBehaviour:
       ActionType: 1
       EnergyCost: 1
       TargetType: 1
-      DiceType: 0
       DiceCount: 1
+      DiceType: 0
+      DebuffType: 0
       UpgradeType: 2
       UpgradeCost: 1
     action2:
       ActionType: 2
       EnergyCost: 1
       TargetType: 1
-      DiceType: 1
       DiceCount: 2
+      DiceType: 1
+      DebuffType: 0
       UpgradeType: 2
       UpgradeCost: 1
     action3:
       ActionType: 6
       EnergyCost: 1
       TargetType: 1
-      DiceType: 1
       DiceCount: 1
+      DiceType: 1
+      DebuffType: 0
       UpgradeType: 2
       UpgradeCost: 1
     action4:
       ActionType: 5
       EnergyCost: 1
       TargetType: 1
-      DiceType: 0
       DiceCount: 1
+      DiceType: 0
+      DebuffType: 0
       UpgradeType: 1
       UpgradeCost: 1
     action5:
       ActionType: 5
       EnergyCost: 2
-      TargetType: 2
-      DiceType: 0
+      TargetType: 1
       DiceCount: 1
+      DiceType: 0
+      DebuffType: 1
       UpgradeType: 1
       UpgradeCost: 1

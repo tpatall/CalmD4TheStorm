@@ -28,9 +28,11 @@ public class PlayerAction {
 
     public TargetType Target { get; set; }
 
+    private int diceCount;
+
     public DiceType DiceType { get; set; }
 
-    private int diceCount;
+    private DebuffType debuffType;
 
     private ActionIcon actionType;
 
@@ -39,13 +41,18 @@ public class PlayerAction {
     public UpgradeType UpgradeType { get; set; }
     public int UpgradeCost { get; set; }
 
-    public PlayerAction(int energyCost, TargetType targetType, DiceType diceType, int diceCount, 
+    public PlayerAction(int energyCost, TargetType targetType, int diceCount, DiceType diceType, DebuffType debuffType,
         ActionIcon actionType, UpgradeType upgradeType, int upgradeCost) {
         EnergyCost = energyCost;
         Target = targetType;
-        DiceType = diceType;
         this.diceCount = diceCount;
+        DiceType = diceType;
+        this.debuffType = debuffType;
         this.actionType = actionType;
+
+        if (actionType == ActionIcon.BUFF || actionType == ActionIcon.DEBUFF) {
+            SkipReroll = true;
+        }
 
         UpgradeType = upgradeType;
         if (upgradeType != UpgradeType.NONE) {
@@ -94,7 +101,11 @@ public class PlayerAction {
                 actionText = "INCREASE STRENGTH BY 1";
                 break;
             case ActionIcon.DEBUFF:
-                actionText = "REDUCE ENEMY STRENGTH BY 1";
+                if (debuffType == DebuffType.STRENGTH) {
+                    actionText = "REDUCE ENEMY STRENGTH BY 1";
+                } else {
+                    actionText = "REDUCE DICE VALUE";
+                }
                 break;
             case ActionIcon.HEAL:
                 actionText = string.Format("HEAL {0}{1} HEALTH", diceCount, DiceType.ToString());
@@ -140,7 +151,12 @@ public class PlayerAction {
                 Player.Instance.strength++;
                 break;
             case ActionIcon.DEBUFF:
-                targets[0].strengthDebuff += numbersRolled[0];
+                if (debuffType == DebuffType.STRENGTH) {
+                    targets[0].strengthDebuff += numbersRolled[0];
+                } else {
+                    targets[0].debuffed = true;
+                }
+
                 targets[0].previewText.text = targets[0].readiedAction.GetActionText();
                 break;
             case ActionIcon.HEAL:

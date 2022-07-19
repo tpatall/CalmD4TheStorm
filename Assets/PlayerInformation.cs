@@ -26,7 +26,7 @@ public class PlayerInformation : MonoBehaviour
     {
         PlayerHealth = 20;
 
-        // Every class has 5 actions
+        // Initialize the playerActions per class.
         warriorActions = Warrior.GetActions();
         rogueActions = Rogue.GetActions();
         mageActions = Mage.GetActions();
