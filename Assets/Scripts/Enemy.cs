@@ -53,6 +53,7 @@ public class Enemy : MonoBehaviour {
         battleActions = GetComponents<BattleAction>();
 
         health = maxHealth;
+        healthBar.enabled = false;
         UpdateHealthBar();
     }
 

@@ -31,6 +31,7 @@ public class Player : MonoBehaviour {
 
         health = FindObjectOfType<PlayerInformation>().PlayerHealth;
         healthBar.value = (float)health / maxHealth;
+        healthBar.enabled = false;
     }
 
     public void SwapCharacter() {
