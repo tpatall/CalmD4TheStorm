@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 
 public class RerollDice : MonoBehaviour {
+    
     public int amount;
     private int maxAmount;
 

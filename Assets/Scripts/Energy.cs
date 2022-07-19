@@ -7,9 +7,14 @@ using TMPro;
 public class Energy : MonoBehaviour {
 
     public int currEnergy;
-    public int maxEnergy;
+    private int maxEnergy;
 
     public TextMeshProUGUI energyText;
+
+    private void Start() {
+        maxEnergy = FindObjectOfType<PlayerInformation>().MaxEnergy;
+        currEnergy = maxEnergy;
+    }
 
     public void SpendEnergy(int energyCost) {
         if(currEnergy >= energyCost) {

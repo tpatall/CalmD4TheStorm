@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class PlayerInformation : MonoBehaviour
 {
+    [Tooltip("Total hitpoints the player starts with.")]
     [SerializeField] private int startHealth = 20;
     public int PlayerHealth { get; set; }
 
     [Tooltip("Amount of rerolls a player starts with each encounter.")]
     [SerializeField] private int startRerolls = 2;
     public int MaxRerolls { get; set; }
+
+    [Tooltip("Amount of energy a player starts with each encounter.")]
+    [SerializeField] private int startEnergy = 4;
+    public int MaxEnergy { get; set; }
 
     // TODO: Initialize actions in Start() using the in-inspector given values.
     public Warrior Warrior;
@@ -31,6 +36,7 @@ public class PlayerInformation : MonoBehaviour
     {
         PlayerHealth = startHealth;
         MaxRerolls = startRerolls;
+        MaxEnergy = startEnergy;
 
         // Initialize the playerActions per class.
         warriorActions = Warrior.GetActions();
@@ -43,7 +49,7 @@ public class PlayerInformation : MonoBehaviour
     ///     Return a list of upgradeable player actions, along with their character type 
     ///     Is called when the shopLevel is entered.
     /// </summary>
-    /// <param name="items">Total items the shop should consist of.</param>
+    /// <param name="totalItems">Total items the shop should consist of.</param>
     /// <param name="onePerClass">Whether you can upgrade one action maximally per class.</param>
     /// <returns></returns>
     public List<(CharacterType, PlayerAction)> BuildShop(int totalItems = 2, bool onePerClass = true) {

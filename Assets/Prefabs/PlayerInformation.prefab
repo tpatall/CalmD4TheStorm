@@ -45,6 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startHealth: 20
   startRerolls: 9
+  startEnergy: 4
   Warrior:
     action1:
       ActionType: 1

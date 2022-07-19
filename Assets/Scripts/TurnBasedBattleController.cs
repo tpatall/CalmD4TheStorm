@@ -23,6 +23,9 @@ public class TurnBasedBattleController : MonoBehaviour {
 
     public GameObject playerUI;
 
+    private float enemyActionTime = 2f;
+    private float playerVictoryTime = 2f;
+    private float playerDeathTime = 5f;
 
     private void Start() {
         player = FindObjectOfType<Player>();
@@ -51,20 +54,6 @@ public class TurnBasedBattleController : MonoBehaviour {
         StartFight(enemies);
     }
 
-    public void VictoryState() {
-        FindObjectOfType<PlayerInformation>().PlayerHealth = player.health;
-
-        StartCoroutine(WaitToDie());
-
-        IEnumerator WaitToDie() {
-            playerUI.SetActive(false);
-
-            yield return new WaitForSeconds(2f);
-
-            Overworld.Instance.LoadNextLevel();
-        }
-    }
-
     public void StartFight(List<GameObject> enemyObjects) {
         currState = BattleState.INITIATE;
 
@@ -73,9 +62,7 @@ public class TurnBasedBattleController : MonoBehaviour {
 
         // Optional cinematic effects
 
-
         // Apply "Start of Battle" effects
-
 
         NextState();
     }
@@ -101,28 +88,8 @@ public class TurnBasedBattleController : MonoBehaviour {
         }
     }
 
-    public void DeathState() {
-        currState = BattleState.DEATH;
-
-        foreach(Enemy enemy in EnemyController.Instance.currEnemies) {
-            enemy.HidePreview();
-        }
-
-        StartCoroutine(WaitToDie());
-
-        IEnumerator WaitToDie() {
-            playerUI.SetActive(false);
-
-            yield return new WaitForSeconds(5f);
-
-            SceneManager.LoadScene("GameOver");
-        }
-
-        // Go to death screen
-    }
-
     void TurnStart() {
-        foreach(Enemy enemy in enemyController.currEnemies) {
+        foreach (Enemy enemy in enemyController.currEnemies) {
             enemy.debuffed = false;
             enemy.strengthDebuff = 0;
             enemy.ReadyRandomAction();
@@ -140,17 +107,53 @@ public class TurnBasedBattleController : MonoBehaviour {
     }
 
     IEnumerator EnemyTurn() {
-        foreach(Enemy enemy in enemyController.currEnemies) {
-            if(currState == BattleState.DEATH) {
+        foreach (Enemy enemy in enemyController.currEnemies) {
+            if (currState == BattleState.DEATH) {
                 yield break;
             }
             enemy.PerformAction();
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(enemyActionTime);
         }
 
-        if(currState == BattleState.DEATH) {
+        if (currState == BattleState.DEATH) {
             yield break;
         }
         NextState();
+    }
+
+    /// <summary>
+    ///     On player win.
+    /// </summary>
+    public void VictoryState() {
+        FindObjectOfType<PlayerInformation>().PlayerHealth = player.health;
+
+        StartCoroutine(WaitToDie());
+        IEnumerator WaitToDie() {
+            playerUI.SetActive(false);
+
+            yield return new WaitForSeconds(playerVictoryTime);
+
+            Overworld.Instance.LoadNextLevel();
+        }
+    }
+
+    /// <summary>
+    ///     On player death.
+    /// </summary>
+    public void DeathState() {
+        currState = BattleState.DEATH;
+
+        foreach(Enemy enemy in EnemyController.Instance.currEnemies) {
+            enemy.HidePreview();
+        }
+
+        StartCoroutine(WaitToDie());
+        IEnumerator WaitToDie() {
+            playerUI.SetActive(false);
+
+            yield return new WaitForSeconds(playerDeathTime);
+            
+            SceneManager.LoadScene("GameOver");
+        }
     }
 }
