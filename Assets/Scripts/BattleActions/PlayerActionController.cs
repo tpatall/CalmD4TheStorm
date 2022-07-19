@@ -124,16 +124,16 @@ public class PlayerActionController : MonoBehaviour {
 
     public PlayerAction GetActionFromIndex(int index) {
         switch(Player.Instance.currType) {
-            case Player.CharacterType.BLANK:
+            case CharacterType.BLANK:
                 Debug.LogError("Blank character has no actions.");
                 break;
-            case Player.CharacterType.WARRIOR:
+            case CharacterType.WARRIOR:
                 return warriorActions[index];
-            case Player.CharacterType.ROGUE:
+            case CharacterType.ROGUE:
                 return rogueActions[index];
-            case Player.CharacterType.MAGE:
+            case CharacterType.MAGE:
                 return mageActions[index];
-            case Player.CharacterType.CLERIC:
+            case CharacterType.CLERIC:
                 return clericActions[index];
         }
         return null;

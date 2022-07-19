@@ -24,14 +24,6 @@ public class Player : MonoBehaviour {
 
     public GameObject damagePrefab;
 
-    public enum CharacterType {
-        BLANK,
-        WARRIOR,
-        ROGUE,
-        MAGE,
-        CLERIC
-    }
-
     public CharacterType currType;
 
     private void Start() {
@@ -125,6 +117,7 @@ public class Player : MonoBehaviour {
         }
 
         healthBar.value = (float)health / maxHealth;
+        healthBar.value = (float)health / maxHealth;
     }
 
     public void GainBlock(int block) {
@@ -145,4 +138,14 @@ public class Player : MonoBehaviour {
             blockText.text = block.ToString();
         }
     }
+}
+
+[System.Serializable]
+public enum CharacterType
+{
+    BLANK,
+    WARRIOR,
+    ROGUE,
+    MAGE,
+    CLERIC
 }
