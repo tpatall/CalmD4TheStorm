@@ -13,6 +13,9 @@ public class TurnBasedBattleController : MonoBehaviour {
         DEATH
     }
 
+    [SerializeField]
+    List<ActionButton> actionButtons = new List<ActionButton>();
+
     BattleState currState;
 
     Player player;
@@ -104,6 +107,7 @@ public class TurnBasedBattleController : MonoBehaviour {
         playerUI.SetActive(true);
 
         energy.RefreshEnergy();
+        UpdateActionButtons();
     }
 
     IEnumerator EnemyTurn() {
@@ -119,6 +123,12 @@ public class TurnBasedBattleController : MonoBehaviour {
             yield break;
         }
         NextState();
+    }
+
+    private void UpdateActionButtons() {
+        for (int i = 0; i < actionButtons.Count; i++) {
+            actionButtons[i].UpdateValues();
+        }
     }
 
     /// <summary>

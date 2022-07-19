@@ -2782,6 +2782,7 @@ GameObject:
   - component: {fileID: 848262636}
   - component: {fileID: 848262635}
   - component: {fileID: 848262634}
+  - component: {fileID: 848262637}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -2902,6 +2903,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 848262632}
   m_CullTransparentMesh: 1
+--- !u!114 &848262637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 848262632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e8e5deb92197e949a666a725e7de1b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enabledSprite: {fileID: -2120864679662724977, guid: 59ad34eff3920804dbf2f7dddb18712b, type: 3}
+  disabledSprite: {fileID: -6740646415245254284, guid: 59ad34eff3920804dbf2f7dddb18712b, type: 3}
+  playerEnergy: {fileID: 504509909}
+  energyCostText: {fileID: 841367441}
+  turnBasedBattleController: {fileID: 0}
 --- !u!1 &868170114
 GameObject:
   m_ObjectHideFlags: 0
@@ -3375,7 +3393,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 25.59999, y: 66.5}
+  m_AnchoredPosition: {x: 25.599976, y: 66.5}
   m_SizeDelta: {x: 44.74, y: 17.54}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &965892722
@@ -3839,6 +3857,7 @@ GameObject:
   - component: {fileID: 1079811976}
   - component: {fileID: 1079811975}
   - component: {fileID: 1079811974}
+  - component: {fileID: 1079811977}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -3959,6 +3978,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1079811972}
   m_CullTransparentMesh: 1
+--- !u!114 &1079811977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1079811972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e8e5deb92197e949a666a725e7de1b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enabledSprite: {fileID: -2120864679662724977, guid: 59ad34eff3920804dbf2f7dddb18712b, type: 3}
+  disabledSprite: {fileID: -6740646415245254284, guid: 59ad34eff3920804dbf2f7dddb18712b, type: 3}
+  playerEnergy: {fileID: 504509909}
+  energyCostText: {fileID: 1924588013}
+  turnBasedBattleController: {fileID: 0}
 --- !u!1 &1099304761
 GameObject:
   m_ObjectHideFlags: 0
@@ -4344,6 +4380,7 @@ GameObject:
   - component: {fileID: 1276307899}
   - component: {fileID: 1276307898}
   - component: {fileID: 1276307897}
+  - component: {fileID: 1276307900}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -4464,6 +4501,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1276307895}
   m_CullTransparentMesh: 1
+--- !u!114 &1276307900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1276307895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e8e5deb92197e949a666a725e7de1b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enabledSprite: {fileID: -2120864679662724977, guid: 59ad34eff3920804dbf2f7dddb18712b, type: 3}
+  disabledSprite: {fileID: -6740646415245254284, guid: 59ad34eff3920804dbf2f7dddb18712b, type: 3}
+  playerEnergy: {fileID: 504509909}
+  energyCostText: {fileID: 6816116}
+  turnBasedBattleController: {fileID: 0}
 --- !u!1 &1361785043
 GameObject:
   m_ObjectHideFlags: 0
@@ -4552,6 +4606,7 @@ GameObject:
   - component: {fileID: 1362186103}
   - component: {fileID: 1362186102}
   - component: {fileID: 1362186101}
+  - component: {fileID: 1362186104}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -4672,6 +4727,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1362186099}
   m_CullTransparentMesh: 1
+--- !u!114 &1362186104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362186099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e8e5deb92197e949a666a725e7de1b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enabledSprite: {fileID: -2120864679662724977, guid: 59ad34eff3920804dbf2f7dddb18712b, type: 3}
+  disabledSprite: {fileID: -6740646415245254284, guid: 59ad34eff3920804dbf2f7dddb18712b, type: 3}
+  playerEnergy: {fileID: 504509909}
+  energyCostText: {fileID: 439641523}
+  turnBasedBattleController: {fileID: 0}
 --- !u!1 &1402940172
 GameObject:
   m_ObjectHideFlags: 0
@@ -5890,6 +5962,7 @@ GameObject:
   - component: {fileID: 1654107585}
   - component: {fileID: 1654107584}
   - component: {fileID: 1654107583}
+  - component: {fileID: 1654107586}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -6010,6 +6083,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1654107581}
   m_CullTransparentMesh: 1
+--- !u!114 &1654107586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654107581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e8e5deb92197e949a666a725e7de1b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enabledSprite: {fileID: -2120864679662724977, guid: 59ad34eff3920804dbf2f7dddb18712b, type: 3}
+  disabledSprite: {fileID: -6740646415245254284, guid: 59ad34eff3920804dbf2f7dddb18712b, type: 3}
+  playerEnergy: {fileID: 504509909}
+  energyCostText: {fileID: 1433048252}
+  turnBasedBattleController: {fileID: 0}
 --- !u!1 &1719945893
 GameObject:
   m_ObjectHideFlags: 0
@@ -6974,6 +7064,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27f1ff6271ee5b544a50252f77b99b45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  actionButtons:
+  - {fileID: 1079811977}
+  - {fileID: 848262637}
+  - {fileID: 1362186104}
+  - {fileID: 1276307900}
+  - {fileID: 1654107586}
   playerUI: {fileID: 1099304761}
 --- !u!1 &2105261514
 GameObject:
