@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Player : MonoBehaviour {
 
@@ -14,9 +15,10 @@ public class Player : MonoBehaviour {
     public int strength;
 
     public Slider healthBar;
+    public TextMeshProUGUI healthText;
 
     public GameObject blockIcon;
-    public Text blockText;
+    public TextMeshProUGUI blockText;
 
     public Animator anim;
 
@@ -24,7 +26,7 @@ public class Player : MonoBehaviour {
 
     public GameObject damagePrefab;
 
-    public CharacterType currType;
+    public CharacterType CurrentCharacterType { get; set; }
 
     private void Start() {
         Instance = this;
@@ -32,17 +34,19 @@ public class Player : MonoBehaviour {
         health = FindObjectOfType<PlayerInformation>().PlayerHealth;
         healthBar.value = (float)health / maxHealth;
         healthBar.enabled = false;
+        
+        UpdateHealth();
     }
 
     public void SwapCharacter() {
         poof.AnimationStart();
 
-        if(currType == CharacterType.BLANK) {
+        if(CurrentCharacterType == CharacterType.BLANK) {
             SwapCharacterTo(Random.Range(1, 5));
             return;
         }
         int randomIndex = Random.Range(1, 4);
-        if(randomIndex >= (int)currType) {
+        if(randomIndex >= (int)CurrentCharacterType) {
             randomIndex++;
         }
 
@@ -50,7 +54,7 @@ public class Player : MonoBehaviour {
     }
 
     void SwapCharacterTo(int index) {
-        currType = (CharacterType)index;
+        CurrentCharacterType = (CharacterType)index;
 
         switch((CharacterType)index) {
             case CharacterType.WARRIOR:
@@ -69,7 +73,7 @@ public class Player : MonoBehaviour {
 
         FindObjectOfType<PlayerActionController>().UpdateButtons();
 
-        Debug.Log("Player is now of type - " + currType.ToString());
+        Debug.Log("Player is now of type - " + CurrentCharacterType.ToString());
     }
 
     public void SpendReroll() {
@@ -96,6 +100,7 @@ public class Player : MonoBehaviour {
         }
 
         UpdateBlock();
+        UpdateHealth();
 
         if(health <= 0) {
             // Die.
@@ -119,6 +124,8 @@ public class Player : MonoBehaviour {
 
         healthBar.value = (float)health / maxHealth;
         healthBar.value = (float)health / maxHealth;
+
+        UpdateHealth();
     }
 
     public void GainBlock(int block) {
@@ -138,5 +145,14 @@ public class Player : MonoBehaviour {
             blockIcon.SetActive(true);
             blockText.text = block.ToString();
         }
+    }
+
+    public void UpdateHealth() {
+        // Although the UI is disabled before this is displayed, whynot.
+        if (health <= 0) {
+            health = 0;
+        }
+
+        healthText.text = health + "/" + maxHealth;
     }
 }

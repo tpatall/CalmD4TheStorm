@@ -123,7 +123,7 @@ public class PlayerActionController : MonoBehaviour {
     }
 
     public PlayerAction GetActionFromIndex(int index) {
-        switch(Player.Instance.currType) {
+        switch(Player.Instance.CurrentCharacterType) {
             case CharacterType.BLANK:
                 Debug.LogError("Blank character has no actions.");
                 break;
