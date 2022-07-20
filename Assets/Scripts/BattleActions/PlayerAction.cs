@@ -240,7 +240,7 @@ public class PlayerAction {
                 DiceType = GetPreviousDiceType(DiceType);
                 break;
             case UpgradeType.ENERGYCOST:
-                upgradeText = "LOWER MANA COST \n\nFROM 2 TO 1";
+                upgradeText = "LOWER ENERGY COST \n\nFROM 2 TO 1";
                 break;
             default:
                 break;
