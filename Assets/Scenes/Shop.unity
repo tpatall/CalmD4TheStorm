@@ -550,6 +550,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 245925475}
+  - component: {fileID: 245925479}
+  - component: {fileID: 245925478}
   - component: {fileID: 245925476}
   - component: {fileID: 245925477}
   m_Layer: 5
@@ -598,7 +600,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 5
+  m_ScrollSensitivity: 10
   m_Viewport: {fileID: 245925475}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 1108189533}
@@ -623,6 +625,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Padding: {x: 0, y: 0, z: 0, w: 0}
   m_Softness: {x: 0, y: 0}
+--- !u!114 &245925478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245925474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &245925479
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245925474}
+  m_CullTransparentMesh: 1
 --- !u!1 &277193927
 GameObject:
   m_ObjectHideFlags: 0
@@ -2064,7 +2104,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.0000076293945}
   m_SizeDelta: {x: 185.75, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1052287199
@@ -2188,8 +2228,8 @@ MonoBehaviour:
   m_Interactable: 1
   m_TargetGraphic: {fileID: 564316835}
   m_HandleRect: {fileID: 564316834}
-  m_Direction: 3
-  m_Value: 0.5
+  m_Direction: 2
+  m_Value: 0.5000002
   m_Size: 0.65337646
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -2804,7 +2844,6 @@ GameObject:
   - component: {fileID: 1207346464}
   - component: {fileID: 1207346463}
   - component: {fileID: 1207346462}
-  - component: {fileID: 1207346461}
   m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
@@ -2831,18 +2870,6 @@ RectTransform:
   m_AnchoredPosition: {x: 50.5, y: 28}
   m_SizeDelta: {x: 75, y: 24}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1207346461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1207346459}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 301a3979081dd6042aca4791f903dd59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1207346462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2887,9 +2914,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1207346461}
-        m_TargetAssemblyTypeName: ExitButton, Assembly-CSharp
-        m_MethodName: ExitLevel
+      - m_Target: {fileID: 480225130}
+        m_TargetAssemblyTypeName: ShopLevel, Assembly-CSharp
+        m_MethodName: LeaveShop
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -75,13 +75,13 @@ MonoBehaviour:
       UpgradeType: 1
       UpgradeCost: 1
     action4:
-      ActionType: 0
+      ActionType: 1
       EnergyCost: 1
       TargetType: 1
-      DiceCount: 1
+      DiceCount: 2
       DiceType: 0
       DebuffType: 0
-      UpgradeType: 1
+      UpgradeType: 2
       UpgradeCost: 1
     action5:
       ActionType: 0
@@ -121,11 +121,11 @@ MonoBehaviour:
       UpgradeType: 3
       UpgradeCost: 2
     action4:
-      ActionType: 0
+      ActionType: 1
       EnergyCost: 1
-      TargetType: 1
+      TargetType: 2
       DiceCount: 1
-      DiceType: 0
+      DiceType: 2
       DebuffType: 0
       UpgradeType: 1
       UpgradeCost: 1
@@ -167,11 +167,11 @@ MonoBehaviour:
       UpgradeType: 1
       UpgradeCost: 2
     action4:
-      ActionType: 0
+      ActionType: 1
       EnergyCost: 1
       TargetType: 1
       DiceCount: 1
-      DiceType: 0
+      DiceType: 2
       DebuffType: 0
       UpgradeType: 1
       UpgradeCost: 1
@@ -230,4 +230,3 @@ MonoBehaviour:
       DebuffType: 1
       UpgradeType: 1
       UpgradeCost: 1
-  CurrentMoney: 0

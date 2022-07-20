@@ -80,11 +80,12 @@ public class ShopLevel : MonoBehaviour
     public void SuccessfulPurchase(int upgradeCost) {
         currentMoney -= upgradeCost;
         currentMoneyText.text = currentMoney.ToString();
+        Debug.Log("New current money: " + currentMoney);
     }
 
     public void LeaveShop() {
         playerInformation.CurrentMoney = currentMoney;
-
+        
         GameManager.Instance.NextLevel();
     }
 }

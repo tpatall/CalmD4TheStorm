@@ -27,7 +27,7 @@ public class PlayerInformation : PersistentSingleton<PlayerInformation>
     public List<PlayerAction> mageActions = new List<PlayerAction>();
     public List<PlayerAction> clericActions = new List<PlayerAction>();
 
-    public int CurrentMoney;
+    public int CurrentMoney { get; set; }
 
     // Start is called before the first frame update
     void Start()
@@ -107,6 +107,10 @@ public class PlayerInformation : PersistentSingleton<PlayerInformation>
         }
 
         return randomItem;
+    }
+
+    public void UpdateCash(int newCurrentMoney) {
+        CurrentMoney = newCurrentMoney;
     }
 
     public void ResetPlayerActions() {
