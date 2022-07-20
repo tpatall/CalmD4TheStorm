@@ -265,6 +265,10 @@ public class GameManager : PersistentSingleton<GameManager>
         Destroy(PlayerInformation.Instance);
         Destroy(this);
     }
+
+    private void OnDestroy() {
+        SceneManager.LoadScene("TitleScene");
+    }
 }
 
 public enum LevelTypes
