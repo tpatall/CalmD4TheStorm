@@ -12,8 +12,6 @@ public class ActionButton : MonoBehaviour
     [SerializeField] private Energy playerEnergy;
     [SerializeField] private TextMeshProUGUI energyCostText;
 
-    [SerializeField] private TurnBasedBattleController turnBasedBattleController;
-
     private Image image;
     private Button button;
 
@@ -25,13 +23,11 @@ public class ActionButton : MonoBehaviour
         image = GetComponent<Image>();
         button = GetComponent<Button>();
 
-        // Safely assume its always an integer.
-        energyCost = int.Parse(energyCostText.text);
-
-        Switch(playerEnergy.currEnergy < energyCost);
+        UpdateValues();
     }
 
     public void UpdateValues() {
+        // Safely assume its always an integer.
         energyCost = int.Parse(energyCostText.text);
 
         Switch(playerEnergy.currEnergy < energyCost);

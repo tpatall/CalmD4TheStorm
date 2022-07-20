@@ -175,7 +175,7 @@ public class PlayerAction {
                 DoAttack(targets, numbersRolled);
                 break;
             case ActionIcon.BUFF:
-                Player.Instance.strength++;
+                Player.Instance.UpdateStrength();
                 break;
             case ActionIcon.DEBUFF:
                 if (debuffType == DebuffType.STRENGTH) {
@@ -202,7 +202,7 @@ public class PlayerAction {
     private void DoAttack(Enemy[] targets, int[] numbersRolled) {
         for (int i = 0; i < targets.Length; i++) {
             for (int j = 0; j < numbersRolled.Length; j++) {
-                if (targets[i].ApplyDamage(numbersRolled[j] + Player.Instance.strength)) {
+                if (targets[i].ApplyDamage(numbersRolled[j] + Player.Instance.Strength)) {
                     break;
                 }
             }

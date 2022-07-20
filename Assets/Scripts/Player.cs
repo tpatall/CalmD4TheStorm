@@ -12,7 +12,6 @@ public class Player : MonoBehaviour {
     public int maxHealth;
 
     public int block;
-    public int strength;
 
     public Slider healthBar;
     public TextMeshProUGUI healthText;
@@ -20,11 +19,15 @@ public class Player : MonoBehaviour {
     public GameObject blockIcon;
     public TextMeshProUGUI blockText;
 
+    public GameObject buffIcon;
+
     public Animator anim;
 
     public Poof poof;
 
     public GameObject damagePrefab;
+
+    public int Strength { get; set; }
 
     public CharacterType CurrentCharacterType { get; set; }
 
@@ -154,5 +157,11 @@ public class Player : MonoBehaviour {
         }
 
         healthText.text = health + "/" + maxHealth;
+    }
+
+    // Buff to max. 1 for the rest of the encounter.
+    public void UpdateStrength() {
+        Strength = 1;
+        buffIcon.SetActive(true);
     }
 }

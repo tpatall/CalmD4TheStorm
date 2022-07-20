@@ -96,7 +96,7 @@ public class PlayerActionController : MonoBehaviour {
             if(readiedAction.Target == TargetType.SELF) {
                 ActionPreviewController.Instance.ShowPreview(numbersRolled, 0);
             } else {
-                ActionPreviewController.Instance.ShowPreview(numbersRolled, Player.Instance.strength);
+                ActionPreviewController.Instance.ShowPreview(numbersRolled, Player.Instance.Strength);
             }
         } else {
             DoAction();
@@ -118,7 +118,7 @@ public class PlayerActionController : MonoBehaviour {
     public void RerollAction() {
         if(FindObjectOfType<RerollDice>().SpendDice()) {
             numbersRolled = readiedAction.PrepareAction();
-            ActionPreviewController.Instance.ShowPreview(numbersRolled, Player.Instance.strength);
+            ActionPreviewController.Instance.ShowPreview(numbersRolled, Player.Instance.Strength);
         }
     }
 
