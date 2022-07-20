@@ -187,7 +187,7 @@ public class PlayerAction {
                 targets[0].previewText.text = targets[0].readiedAction.GetActionText();
                 break;
             case ActionIcon.HEAL:
-                Player.Instance.Heal(numbersRolled[0]);
+                Player.Instance.Heal(numbersRolled);
                 break;
             default:
                 break;

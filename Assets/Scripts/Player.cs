@@ -121,11 +121,14 @@ public class Player : MonoBehaviour {
         return false;
     }
 
-    public void Heal(int heal) {
-        if(health + heal >= maxHealth) {
+    public void Heal(int[] heal) {
+        int gainedHealth = 0;
+        for (int i = 0; i < heal.Length; i++) gainedHealth += heal[i];
+
+        if (health + gainedHealth >= maxHealth) {
             health = maxHealth;
         } else {
-            health += heal;
+            health += gainedHealth;
         }
 
         healthBar.value = (float)health / maxHealth;
