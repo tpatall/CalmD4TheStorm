@@ -84,13 +84,13 @@ MonoBehaviour:
       UpgradeType: 2
       UpgradeCost: 1
     action5:
-      ActionType: 0
+      ActionType: 6
       EnergyCost: 1
       TargetType: 1
       DiceCount: 1
-      DiceType: 0
+      DiceType: 1
       DebuffType: 0
-      UpgradeType: 1
+      UpgradeType: 2
       UpgradeCost: 1
   Rogue:
     action1:
@@ -115,10 +115,10 @@ MonoBehaviour:
       ActionType: 1
       EnergyCost: 2
       TargetType: 1
-      DiceCount: 4
+      DiceCount: 6
       DiceType: 0
       DebuffType: 0
-      UpgradeType: 3
+      UpgradeType: 2
       UpgradeCost: 2
     action4:
       ActionType: 1
@@ -130,8 +130,8 @@ MonoBehaviour:
       UpgradeType: 1
       UpgradeCost: 1
     action5:
-      ActionType: 0
-      EnergyCost: 1
+      ActionType: 4
+      EnergyCost: 2
       TargetType: 1
       DiceCount: 1
       DiceType: 0
@@ -158,7 +158,7 @@ MonoBehaviour:
       UpgradeType: 2
       UpgradeCost: 1
     action3:
-      ActionType: 6
+      ActionType: 5
       EnergyCost: 1
       TargetType: 1
       DiceCount: 2
@@ -176,13 +176,13 @@ MonoBehaviour:
       UpgradeType: 1
       UpgradeCost: 1
     action5:
-      ActionType: 0
+      ActionType: 1
       EnergyCost: 1
-      TargetType: 1
+      TargetType: 2
       DiceCount: 1
       DiceType: 0
       DebuffType: 0
-      UpgradeType: 1
+      UpgradeType: 2
       UpgradeCost: 1
   Cleric:
     action1:
@@ -207,10 +207,10 @@ MonoBehaviour:
       ActionType: 6
       EnergyCost: 1
       TargetType: 1
-      DiceCount: 1
+      DiceCount: 2
       DiceType: 1
       DebuffType: 0
-      UpgradeType: 2
+      UpgradeType: 1
       UpgradeCost: 1
     action4:
       ActionType: 5
