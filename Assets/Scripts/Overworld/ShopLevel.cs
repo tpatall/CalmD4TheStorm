@@ -74,10 +74,21 @@ public class ShopLevel : MonoBehaviour
 
         Debug.Log(upgradeUI.classType.text + " upgraded!");
         upgradeUI.GetComponent<Button>().interactable = false;
+        UpgradeRelevantItem(upgradeUI);
+
         SuccessfulPurchase(upgradeCost);
     }
 
-    public void SuccessfulPurchase(int upgradeCost) {
+    private void UpgradeRelevantItem(UpgradeUI upgradeUI) {
+        for (int i = 0; i < shopItems.Count; i++) {
+            // Upgrade item based on index.
+            if (upgradeUIs[i] == upgradeUI) {
+                shopItems[i].Item2.Upgrade();
+            }
+        }
+    }
+
+    private void SuccessfulPurchase(int upgradeCost) {
         currentMoney -= upgradeCost;
         currentMoneyText.text = currentMoney.ToString();
         Debug.Log("New current money: " + currentMoney);
