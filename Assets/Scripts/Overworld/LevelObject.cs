@@ -1,17 +1,20 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
+/// <summary>
+///     Store all necessary information about a level.
+/// </summary>
 public class LevelObject : MonoBehaviour
 {
     public bool Next;
 
     public int CurrentLevelIndex;
 
-    public LevelTypes LevelType { get; private set; }
+    public LevelType LevelType { get; private set; }
 
     public Level Level { get; private set; }
 
-    public void SetUp(int currentLevelIndex, LevelTypes levelType, Level level) {
+    public void SetUp(int currentLevelIndex, LevelType levelType, Level level) {
         CurrentLevelIndex = currentLevelIndex;
         LevelType = levelType;
         Level = level;

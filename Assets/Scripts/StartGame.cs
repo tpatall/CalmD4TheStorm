@@ -6,6 +6,6 @@ using UnityEngine.SceneManagement;
 public class StartGame : MonoBehaviour
 {
     public void PlayButton() {
-        GameManager.Instance.PopulateMap();
+        GameManager.Instance.BuildWorld();
     }
 }

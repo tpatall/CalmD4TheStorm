@@ -12,6 +12,6 @@ public class ExitButton : MonoBehaviour
     }
 
     public void ExitLevel() {
-        overworld.LoadNextLevel();
+        overworld.NextLevel();
     }
 }

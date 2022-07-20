@@ -132,6 +132,6 @@ public class ShopLevel : MonoBehaviour
     }
 
     public void LeaveShop() {
-        GameManager.Instance.LoadNextLevel();
+        GameManager.Instance.NextLevel();
     }
 }

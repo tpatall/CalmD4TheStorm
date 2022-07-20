@@ -35,24 +35,8 @@ public class TurnBasedBattleController : MonoBehaviour {
         energy = FindObjectOfType<Energy>();
         enemyController = FindObjectOfType<EnemyController>();
 
-        List<GameObject> enemies = new List<GameObject>();
-
-        EnemyPool[] pools = new EnemyPool[0];
-
-        int level = GameManager.Instance.CurrentLevelIndex;
-        if(level < 3) {
-            pools = GameManager.Instance.transform.GetChild(0).GetComponents<EnemyPool>();
-            enemies = pools[Random.Range(0, pools.Length)].enemyPool;
-
-        } else if (level < 5) {
-            pools = GameManager.Instance.transform.GetChild(1).GetComponents<EnemyPool>();
-            enemies = pools[Random.Range(0, pools.Length)].enemyPool;
-
-        } else {
-            pools = GameManager.Instance.transform.GetChild(2).GetComponents<EnemyPool>();
-            enemies = pools[Random.Range(0, pools.Length)].enemyPool;
-
-        }
+        GameManager gameManager = GameManager.Instance;
+        List<GameObject> enemies = gameManager.LevelObjects[gameManager.CurrentLevelIndex - 1].Enemies;
 
         StartFight(enemies);
     }
@@ -143,7 +127,7 @@ public class TurnBasedBattleController : MonoBehaviour {
 
             yield return new WaitForSeconds(playerVictoryTime);
 
-            GameManager.Instance.LeaveBattle();
+            GameManager.Instance.NextLevel();
         }
     }
 

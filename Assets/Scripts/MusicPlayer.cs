@@ -16,35 +16,34 @@ public class MusicPlayer : PersistentSingleton<MusicPlayer>
     }
 
     public void PlayMusicUI(AudioClip clip) {
+        // Already playing this music.
+        if (audioSource.clip == clip)
+            return;
+
         audioSource.clip = clip;
         audioSource.Play();
     }
 
     public void PlayTitleMusic() {
-        audioSource.clip = titleMusic;
-        audioSource.Play();
+        PlayMusicUI(titleMusic);
     }
 
     public void PlayMapMusic() {
-        audioSource.clip = mapMusic;
-        audioSource.Play();
+        PlayMusicUI(mapMusic);
     }
 
     public void PlayBattleMusic() {
-        audioSource.clip = battleMusic;
-        audioSource.Play();
+        PlayMusicUI(battleMusic);
     }
 
     public void PlayBossMusic() {
-        audioSource.clip = bossMusic;
-        audioSource.Play();
+        PlayMusicUI(bossMusic);
     }
 
     /// <summary>
     ///     Play music once the player died in battle.
     /// </summary>
     public void PlayGameOverMusic() {
-        audioSource.clip = bossMusic;
-        audioSource.Play();
+        PlayMusicUI(bossMusic);
     }
 }
