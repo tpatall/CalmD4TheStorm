@@ -9,7 +9,7 @@ public class ActionButton : MonoBehaviour
     [SerializeField] private Sprite enabledSprite;
     [SerializeField] private Sprite disabledSprite;
 
-    [SerializeField] private Energy playerEnergy;
+    private Energy playerEnergy;
     [SerializeField] private TextMeshProUGUI energyCostText;
 
     private Image image;
@@ -22,6 +22,7 @@ public class ActionButton : MonoBehaviour
     {
         image = GetComponent<Image>();
         button = GetComponent<Button>();
+        playerEnergy = Player.Instance.GetComponent<Energy>();
 
         UpdateValues();
     }

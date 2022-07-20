@@ -20,6 +20,7 @@ public class Player : MonoBehaviour {
     public TextMeshProUGUI blockText;
 
     public GameObject buffIcon;
+    private TextMeshProUGUI buffText;
 
     public Animator anim;
 
@@ -37,7 +38,9 @@ public class Player : MonoBehaviour {
         health = FindObjectOfType<PlayerInformation>().PlayerHealth;
         healthBar.value = (float)health / maxHealth;
         healthBar.enabled = false;
-        
+
+        buffText = buffIcon.GetComponentInChildren<TextMeshProUGUI>();
+
         UpdateHealth();
     }
 
@@ -159,9 +162,10 @@ public class Player : MonoBehaviour {
         healthText.text = health + "/" + maxHealth;
     }
 
-    // Buff to max. 1 for the rest of the encounter.
+    // Buff strength by 1 for the rest of the encounter.
     public void UpdateStrength() {
-        Strength = 1;
+        Strength++;
+        buffText.text = Strength.ToString();
         buffIcon.SetActive(true);
     }
 }
