@@ -27,9 +27,7 @@ public class PlayerInformation : PersistentSingleton<PlayerInformation>
     public List<PlayerAction> mageActions = new List<PlayerAction>();
     public List<PlayerAction> clericActions = new List<PlayerAction>();
 
-    private void Awake() {
-        DontDestroyOnLoad(this.gameObject);
-    }
+    public int CurrentMoney;
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +41,8 @@ public class PlayerInformation : PersistentSingleton<PlayerInformation>
         rogueActions = Rogue.GetActions();
         mageActions = Mage.GetActions();
         clericActions = Cleric.GetActions();
+        
+        CurrentMoney = 0;
     }
 
     /// <summary>
@@ -52,7 +52,7 @@ public class PlayerInformation : PersistentSingleton<PlayerInformation>
     /// <param name="totalItems">Total items the shop should consist of.</param>
     /// <param name="onePerClass">Whether you can upgrade one action maximally per class.</param>
     /// <returns></returns>
-    public List<(CharacterType, PlayerAction)> BuildShop(int totalItems = 2, bool onePerClass = true) {
+    public List<(CharacterType, PlayerAction)> BuildShop(int totalItems = 4, bool onePerClass = true) {
         List<(CharacterType, PlayerAction)> upgradeableActions = new List<(CharacterType, PlayerAction)>();
         PopulateListByClass(upgradeableActions, CharacterType.WARRIOR, warriorActions);
         PopulateListByClass(upgradeableActions, CharacterType.ROGUE, rogueActions);

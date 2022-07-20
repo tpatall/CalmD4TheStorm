@@ -684,42 +684,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8071884305331032167, guid: 28836a5293cda19489bc9ec342079ba7, type: 3}
-      propertyPath: Mage.action1.DiceType
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8071884305331032167, guid: 28836a5293cda19489bc9ec342079ba7, type: 3}
-      propertyPath: Mage.action1.DiceCount
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8071884305331032167, guid: 28836a5293cda19489bc9ec342079ba7, type: 3}
-      propertyPath: Rogue.action1.DiceType
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8071884305331032167, guid: 28836a5293cda19489bc9ec342079ba7, type: 3}
-      propertyPath: Cleric.action1.DiceType
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8071884305331032167, guid: 28836a5293cda19489bc9ec342079ba7, type: 3}
-      propertyPath: Mage.action1.TargetType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8071884305331032167, guid: 28836a5293cda19489bc9ec342079ba7, type: 3}
-      propertyPath: Rogue.action1.DiceCount
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8071884305331032167, guid: 28836a5293cda19489bc9ec342079ba7, type: 3}
-      propertyPath: Cleric.action1.DiceCount
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8071884305331032167, guid: 28836a5293cda19489bc9ec342079ba7, type: 3}
-      propertyPath: Warrior.action1.DiceType
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8071884305331032167, guid: 28836a5293cda19489bc9ec342079ba7, type: 3}
-      propertyPath: Warrior.action1.DiceCount
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 8524771067353651719, guid: 28836a5293cda19489bc9ec342079ba7, type: 3}
       propertyPath: m_Name
       value: PlayerInformation

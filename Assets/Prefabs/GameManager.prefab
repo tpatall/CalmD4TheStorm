@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 259d168bc775a5646b62039874db1310, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reward: 0
+  reward: 3
   enemyPool:
   - {fileID: 6350422727087338671, guid: b7aa36f772e9f074e9bd5e7cfcbf2daf, type: 3}
 --- !u!114 &2161341236709762047
@@ -27,7 +27,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 259d168bc775a5646b62039874db1310, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reward: 0
+  reward: 3
   enemyPool:
   - {fileID: 2882455037170819046, guid: 9de96ca1b4fcf8648a0a29432be08ccf, type: 3}
   - {fileID: 6350422727087338671, guid: b7aa36f772e9f074e9bd5e7cfcbf2daf, type: 3}
@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 259d168bc775a5646b62039874db1310, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reward: 0
+  reward: 3
   enemyPool:
   - {fileID: 6350422727087338671, guid: b7aa36f772e9f074e9bd5e7cfcbf2daf, type: 3}
   - {fileID: 6350422727087338671, guid: c03de683b242cff4d8867df9c58e9b37, type: 3}
@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 259d168bc775a5646b62039874db1310, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reward: 0
+  reward: 2
   enemyPool:
   - {fileID: 6350422727087338671, guid: c03de683b242cff4d8867df9c58e9b37, type: 3}
   - {fileID: 2882455037170819046, guid: 9de96ca1b4fcf8648a0a29432be08ccf, type: 3}
@@ -177,6 +177,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1233214597042513253, guid: 0041f6eb3d928c5419d4905e6abc451e, type: 3}
+      propertyPath: reward
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1233214597042513254, guid: 0041f6eb3d928c5419d4905e6abc451e, type: 3}
+      propertyPath: reward
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1233214597042513255, guid: 0041f6eb3d928c5419d4905e6abc451e, type: 3}
       propertyPath: m_Name
       value: EnemyPool-Easy
@@ -245,9 +253,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1233214597042513253, guid: 0041f6eb3d928c5419d4905e6abc451e, type: 3}
+      propertyPath: reward
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1233214597042513253, guid: 0041f6eb3d928c5419d4905e6abc451e, type: 3}
       propertyPath: enemyPool.Array.data[1]
       value: 
       objectReference: {fileID: 2882455037170819046, guid: 9de96ca1b4fcf8648a0a29432be08ccf, type: 3}
+    - target: {fileID: 1233214597042513254, guid: 0041f6eb3d928c5419d4905e6abc451e, type: 3}
+      propertyPath: reward
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1233214597042513254, guid: 0041f6eb3d928c5419d4905e6abc451e, type: 3}
       propertyPath: enemyPool.Array.size
       value: 2
@@ -324,6 +340,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1233214597042513253, guid: 0041f6eb3d928c5419d4905e6abc451e, type: 3}
+      propertyPath: reward
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1233214597042513253, guid: 0041f6eb3d928c5419d4905e6abc451e, type: 3}
       propertyPath: enemyPool.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -366,6 +386,10 @@ PrefabInstance:
       propertyPath: enemyPool.Array.data[1]
       value: 
       objectReference: {fileID: 6350422727087338671, guid: c03de683b242cff4d8867df9c58e9b37, type: 3}
+    - target: {fileID: 8825527526409658650, guid: b84f399e26872614db8a07d64d30b0f7, type: 3}
+      propertyPath: reward
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8825527526409658651, guid: b84f399e26872614db8a07d64d30b0f7, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -477,6 +501,10 @@ PrefabInstance:
     - target: {fileID: 5348298295239718980, guid: a496974adb2c4704ca1f8ba0665fd208, type: 3}
       propertyPath: m_Name
       value: EnemyPool-Boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348298295239718981, guid: a496974adb2c4704ca1f8ba0665fd208, type: 3}
+      propertyPath: reward
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a496974adb2c4704ca1f8ba0665fd208, type: 3}

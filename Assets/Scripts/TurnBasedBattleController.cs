@@ -127,7 +127,12 @@ public class TurnBasedBattleController : MonoBehaviour {
 
             yield return new WaitForSeconds(playerVictoryTime);
 
-            GameManager.Instance.NextLevel();
+            // Get paid
+            GameManager gameManager = GameManager.Instance;
+            int reward = gameManager.LevelObjects[gameManager.CurrentLevelIndex - 1].Reward;
+            PlayerInformation.Instance.CurrentMoney += reward;
+
+            gameManager.NextLevel();
         }
     }
 
