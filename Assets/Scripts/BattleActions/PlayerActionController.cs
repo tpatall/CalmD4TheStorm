@@ -56,12 +56,26 @@ public class PlayerActionController : MonoBehaviour {
             return;
         }
 
-        switch(readiedAction.Target) {
+        switch (readiedAction.Target) {
             case TargetType.SELF:
                 targetSelf.SetActive(true);
                 break;
             case TargetType.SINGLE:
+                bool debuffDiceType = false;
+                if (readiedAction.ActionText == "REDUCE DICE VALUE") {
+                    debuffDiceType = true;
+                }
+
                 foreach(Enemy enemy in EnemyController.Instance.currEnemies) {
+                    if (debuffDiceType) {
+                        string enemyActionText = enemy.readiedAction.GetActionText();
+                        bool lowestDiceType = enemyActionText.Contains("D4");
+                        // If DiceType is D4, it cannot be reduced further.
+                        if (lowestDiceType) {
+                            continue;
+                        }
+                    }
+
                     enemy.targetObject.SetActive(true);
                 }
                 break;
@@ -92,7 +106,7 @@ public class PlayerActionController : MonoBehaviour {
 
         FindObjectOfType<Energy>().SpendEnergy(readiedAction.EnergyCost);
 
-        if(!readiedAction.SkipReroll) {
+        if (!readiedAction.SkipReroll) {
             if(readiedAction.Target == TargetType.SELF) {
                 ActionPreviewController.Instance.ShowPreview(numbersRolled, 0);
             } else {
