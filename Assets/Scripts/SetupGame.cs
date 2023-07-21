@@ -11,13 +11,27 @@ public class SetupGame : MonoBehaviour
 
     private void Awake()
     {
-        // If the persistent prefabs have already been instantiated, do not instantiate them again.
-        GameObject gameObject = GameObject.FindGameObjectWithTag("GameController");
-        if (!gameObject) {
-            Instantiate(GameManagerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        GameObject musicPlayer = GameObject.FindGameObjectWithTag("MusicPlayer");
+        if (!musicPlayer) {
             Instantiate(MusicPlayerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-            Instantiate(PlayerInformationPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         }
+
+        // Destroy any existing prefabs that can contain saved information.
+        GameObject gameManager = GameObject.FindGameObjectWithTag("GameController");
+        if (gameManager) {
+            Destroy(gameManager);
+        }
+        
+        GameObject playerInformation = GameObject.FindGameObjectWithTag("PlayerInformation");
+        if (playerInformation) {
+            Destroy(playerInformation);
+        }
+    }
+
+    private void Start()
+    {
+        Instantiate(GameManagerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        Instantiate(PlayerInformationPrefab, new Vector3(0, 0, 0), Quaternion.identity);
     }
 
     public void PlayButton() {

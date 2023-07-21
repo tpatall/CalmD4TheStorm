@@ -83,11 +83,6 @@ public class GameManager : PersistentSingleton<GameManager>
     public void ResetWorld() {
         MusicPlayer.Instance.PlayTitleMusic();
 
-        Destroy(PlayerInformation.Instance);
-        Destroy(this);
-    }
-
-    private void OnDestroy() {
         SceneManager.LoadScene("TitleScene");
     }
 }
