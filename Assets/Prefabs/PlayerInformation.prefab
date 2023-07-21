@@ -119,7 +119,7 @@ MonoBehaviour:
       DiceType: 0
       DebuffType: 0
       UpgradeType: 2
-      UpgradeCost: 2
+      UpgradeCost: 3
     action4:
       ActionType: 1
       EnergyCost: 1
@@ -128,7 +128,7 @@ MonoBehaviour:
       DiceType: 2
       DebuffType: 0
       UpgradeType: 1
-      UpgradeCost: 1
+      UpgradeCost: 2
     action5:
       ActionType: 4
       EnergyCost: 2
@@ -174,7 +174,7 @@ MonoBehaviour:
       DiceType: 2
       DebuffType: 0
       UpgradeType: 1
-      UpgradeCost: 1
+      UpgradeCost: 2
     action5:
       ActionType: 1
       EnergyCost: 1
@@ -183,7 +183,7 @@ MonoBehaviour:
       DiceType: 0
       DebuffType: 0
       UpgradeType: 2
-      UpgradeCost: 1
+      UpgradeCost: 2
   Cleric:
     action1:
       ActionType: 1
@@ -211,7 +211,7 @@ MonoBehaviour:
       DiceType: 1
       DebuffType: 0
       UpgradeType: 1
-      UpgradeCost: 1
+      UpgradeCost: 2
     action4:
       ActionType: 5
       EnergyCost: 1

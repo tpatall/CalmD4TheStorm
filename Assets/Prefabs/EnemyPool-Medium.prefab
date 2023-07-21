@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8825527526409658651}
   - component: {fileID: 8825527526409658650}
-  - component: {fileID: 8825527526409658649}
   m_Layer: 0
   m_Name: EnemyPool-Medium
   m_TagString: Untagged
@@ -44,22 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 259d168bc775a5646b62039874db1310, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reward: 0
   enemyPool:
   - {fileID: 2882455037170819046, guid: 9de96ca1b4fcf8648a0a29432be08ccf, type: 3}
   - {fileID: 2882455037170819046, guid: 9de96ca1b4fcf8648a0a29432be08ccf, type: 3}
---- !u!114 &8825527526409658649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8825527526409658648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 259d168bc775a5646b62039874db1310, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyPool:
-  - {fileID: 6350422727087338671, guid: c03de683b242cff4d8867df9c58e9b37, type: 3}
-  - {fileID: 2882455037170819046, guid: 9de96ca1b4fcf8648a0a29432be08ccf, type: 3}
-  - {fileID: 6350422727087338671, guid: c03de683b242cff4d8867df9c58e9b37, type: 3}
