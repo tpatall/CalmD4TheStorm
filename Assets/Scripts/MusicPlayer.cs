@@ -12,6 +12,9 @@ public class MusicPlayer : PersistentSingleton<MusicPlayer>
     // Start is called before the first frame update
     void Start()
     {
+        float volume = PlayerPrefs.GetFloat("volume", 0.5f);
+        AudioListener.volume = volume;
+
         audioSource = GetComponent<AudioSource>();
     }
 
