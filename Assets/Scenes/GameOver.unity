@@ -492,8 +492,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: GAME OVER
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 434047c32394cae48beea2a3d5520827, type: 2}
-  m_sharedMaterial: {fileID: -4454969113282574469, guid: 434047c32394cae48beea2a3d5520827, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 519cc78a29644944e80773677d26dc3f, type: 2}
+  m_sharedMaterial: {fileID: -2880091633742285846, guid: 519cc78a29644944e80773677d26dc3f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -628,8 +628,8 @@ MonoBehaviour:
 
     EVIL HAS RAVAGED THE LAND'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 434047c32394cae48beea2a3d5520827, type: 2}
-  m_sharedMaterial: {fileID: -4454969113282574469, guid: 434047c32394cae48beea2a3d5520827, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 519cc78a29644944e80773677d26dc3f, type: 2}
+  m_sharedMaterial: {fileID: -2880091633742285846, guid: 519cc78a29644944e80773677d26dc3f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
